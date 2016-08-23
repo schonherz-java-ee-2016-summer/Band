@@ -1,6 +1,6 @@
 logs/
 .idea
-.iml
+*.iml
 target/
 pom.xml.tag
 pom.xml.releaseBackup
