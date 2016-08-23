@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="band-web:war">
+    <output-path>$PROJECT_DIR$/band-web/target</output-path>
+    <root id="archive" name="band-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="band-web:war exploded" />
+    </root>
+  </artifact>
+</component>

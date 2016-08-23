@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="band-service:ejb">
+    <output-path>$PROJECT_DIR$/band-service/target</output-path>
+    <root id="archive" name="band-service-1.0-SNAPSHOT.jar">
+      <element id="artifact" artifact-name="band-service:ejb exploded" />
+    </root>
+  </artifact>
+</component>

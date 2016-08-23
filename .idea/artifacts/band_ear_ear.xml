@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="band-ear:ear">
+    <output-path>$PROJECT_DIR$/band-ear/target</output-path>
+    <root id="archive" name="ear-1.0-SNAPSHOT.ear">
+      <element id="artifact" artifact-name="band-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>
