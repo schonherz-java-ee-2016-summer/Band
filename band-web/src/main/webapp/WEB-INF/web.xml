@@ -1,5 +1,9 @@
 <web-app>
 
+    <welcome-file-list>
+        <welcome-file>/pages/index.jsf</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>faces</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
