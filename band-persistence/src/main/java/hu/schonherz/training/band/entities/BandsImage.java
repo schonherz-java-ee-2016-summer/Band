@@ -11,15 +11,19 @@ import javax.persistence.*;
 public class BandsImage extends BaseEntity{
 
     @Basic
+    @Column(nullable = false)
     private String name;
 
     @Basic
+    @Column(nullable = false)
     private String filename;
 
     @Basic
+    @Column(nullable = false)
     private Long bandId;
 
     @Basic
+    @Column(nullable = false)
     private String caption;
 
     public BandsImage(String name, String filename, Long bandId, String caption) {

@@ -7,19 +7,23 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "\"eventpictures\"")
+@Table(name = "\"eventspictures\"")
 public class EventsImage extends BaseEntity{
 
     @Basic
+    @Column(nullable = false)
     private String name;
 
     @Basic
+    @Column(nullable = false)
     private String filename;
 
     @Basic
+    @Column(nullable = false)
     private Long eventId;
 
     @Basic
+    @Column(nullable = false)
     private String caption;
 
     public EventsImage(String name, String filename, Long eventId, String caption) {
