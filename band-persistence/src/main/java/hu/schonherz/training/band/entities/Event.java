@@ -1,9 +1,6 @@
 package hu.schonherz.training.band.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -11,7 +8,7 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "events")
-public class EventEntity extends BaseEntity {
+public class Event extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
@@ -36,6 +33,18 @@ public class EventEntity extends BaseEntity {
     @Basic
     @Column(nullable = false)
     private int venueId;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "eventId", nullable = false)
+    private Collection<EventsImage> images;
+
+    public Collection<EventsImage> getImages() {
+        return images;
+    }
+
+    public void setImages(Collection<EventsImage> images) {
+        this.images = images;
+    }
 
     public String getName() {
         return name;
