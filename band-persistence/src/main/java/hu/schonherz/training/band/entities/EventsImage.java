@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "\"Eventsimage\"")
-public class EventsImage {
+public class EventsImage extends BaseEntity{
 
     @Basic
     private String name;
