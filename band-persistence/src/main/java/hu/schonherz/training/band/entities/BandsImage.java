@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "\"Bandsimages\"")
+@Table(name = "bandspictures")
 public class BandsImage extends BaseEntity{
 
     @Basic

@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "\"Eventsimages\"")
+@Table(name = "\"eventpictures\"")
 public class EventsImage extends BaseEntity{
 
     @Basic
