@@ -3,11 +3,11 @@ package hu.schonherz.training.band.entities;
 import javax.persistence.*;
 
 /**
- * Created by Attila on 2016.08.25..
+ * In this class's instance there will be picture, which belong to an bang.
  */
 
 @Entity
-@Table(name = "\"Bandsimage\"")
+@Table(name = "\"Bandsimages\"")
 public class BandsImage extends BaseEntity{
 
     @Basic

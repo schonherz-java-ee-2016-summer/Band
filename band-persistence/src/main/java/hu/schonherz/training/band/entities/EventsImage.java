@@ -3,11 +3,11 @@ package hu.schonherz.training.band.entities;
 import javax.persistence.*;
 
 /**
- * Created by Attila on 2016.08.25..
+ * In this class's instance there will be picture, which belong to an event.
  */
 
 @Entity
-@Table(name = "\"Eventsimage\"")
+@Table(name = "\"Eventsimages\"")
 public class EventsImage extends BaseEntity{
 
     @Basic
