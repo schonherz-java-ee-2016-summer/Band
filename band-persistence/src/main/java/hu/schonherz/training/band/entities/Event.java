@@ -2,6 +2,7 @@ package hu.schonherz.training.band.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 /**
  * Created by Lenovo on 2016.08.25..

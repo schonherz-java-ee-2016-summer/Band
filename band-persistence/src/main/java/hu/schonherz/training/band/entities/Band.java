@@ -1,6 +1,7 @@
 package hu.schonherz.training.band.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 /**
@@ -23,7 +24,7 @@ public class Band extends BaseEntity{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
-    private Collection<EventEntity> events;
+    private Collection<Event> events;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
@@ -32,6 +33,18 @@ public class Band extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "eventId")
     private Collection<EventsImage> eventsImages;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bandId")
+    private Collection<Demo> demos;
+
+    public Collection<Demo> getDemos() {
+        return demos;
+    }
+
+    public void setDemos(Collection<Demo> demos) {
+        this.demos = demos;
+    }
 
     public Band() {
     }
@@ -60,11 +73,11 @@ public class Band extends BaseEntity{
         this.description = description;
     }
 
-    public Collection<EventEntity> getEvents() {
+    public Collection<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Collection<EventEntity> events) {
+    public void setEvents(Collection<Event> events) {
         this.events = events;
     }
 
