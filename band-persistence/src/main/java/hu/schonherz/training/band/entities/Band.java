@@ -1,6 +1,7 @@
 package hu.schonherz.training.band.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 /**
@@ -23,7 +24,7 @@ public class Band extends BaseEntity{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
-    private Collection<EventEntity> events;
+    private Collection<Event> events;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
@@ -32,6 +33,10 @@ public class Band extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "eventId")
     private Collection<EventsImage> eventsImages;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bandId")
+    private Collection<BandMember> bandMembers;
 
     public Band() {
     }
@@ -60,11 +65,11 @@ public class Band extends BaseEntity{
         this.description = description;
     }
 
-    public Collection<EventEntity> getEvents() {
+    public Collection<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Collection<EventEntity> events) {
+    public void setEvents(Collection<Event> events) {
         this.events = events;
     }
 
@@ -82,5 +87,13 @@ public class Band extends BaseEntity{
 
     public void setEventsImages(Collection<EventsImage> eventsImages) {
         this.eventsImages = eventsImages;
+    }
+
+    public Collection<BandMember> getBandMembers() {
+        return bandMembers;
+    }
+
+    public void setBandMembers(Collection<BandMember> bandMembers) {
+        this.bandMembers = bandMembers;
     }
 }
