@@ -5,36 +5,24 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
- * Created by Lenovo on 2016.08.25..
+ * Entity for events.
  */
 @Entity
 @Table(name = "event")
 public class EventEntity extends BaseEntity {
 
-    /**
-     * The name of the event.
-     */
     @Basic
     @Column(nullable = false)
     private String name;
 
-    /**
-     * A short description of the event.
-     */
     @Basic
     @Column(nullable = false)
     private String description;
 
-    /**
-     * The time the event starts.
-     */
     @Basic
     @Column(nullable = false)
     private LocalDateTime start;
 
-    /**
-     * The time the event finishes.
-     */
     @Basic
     @Column(nullable = false)
     private LocalDateTime finish;
@@ -47,10 +35,64 @@ public class EventEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
-    private Long venueId;
+    private int venueId;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "eventimage")
     private Collection<EventImageEntity> images;
 
+    public Collection<EventImageEntity> getImages() {
+        return images;
+    }
 
+    public void setImages(Collection<EventImageEntity> images) {
+        this.images = images;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public void setStart(LocalDateTime start) {
+        this.start = start;
+    }
+
+    public LocalDateTime getFinish() {
+        return finish;
+    }
+
+    public void setFinish(LocalDateTime finish) {
+        this.finish = finish;
+    }
+
+    public BandEntity getBand() {
+        return band;
+    }
+
+    public void setBand(BandEntity band) {
+        this.band = band;
+    }
+
+    public int getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(int venueId) {
+        this.venueId = venueId;
+    }
 }
