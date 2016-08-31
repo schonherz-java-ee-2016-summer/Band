@@ -24,6 +24,10 @@ public class Band extends BaseEntity{
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
+    private Collection<BandMember> bandMembers;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bandId")
     private Collection<Event> events;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -37,14 +41,6 @@ public class Band extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "bandId")
     private Collection<Demo> demos;
-
-    public Collection<Demo> getDemos() {
-        return demos;
-    }
-
-    public void setDemos(Collection<Demo> demos) {
-        this.demos = demos;
-    }
 
     public Band() {
     }
@@ -73,6 +69,14 @@ public class Band extends BaseEntity{
         this.description = description;
     }
 
+    public Collection<BandMember> getBandMembers() {
+        return bandMembers;
+    }
+
+    public void setBandMembers(Collection<BandMember> bandMembers) {
+        this.bandMembers = bandMembers;
+    }
+
     public Collection<Event> getEvents() {
         return events;
     }
@@ -95,5 +99,13 @@ public class Band extends BaseEntity{
 
     public void setEventsImages(Collection<EventsImage> eventsImages) {
         this.eventsImages = eventsImages;
+    }
+
+    public Collection<Demo> getDemos() {
+        return demos;
+    }
+
+    public void setDemos(Collection<Demo> demos) {
+        this.demos = demos;
     }
 }
