@@ -3,12 +3,12 @@ package hu.schonherz.training.band.entities;
 import javax.persistence.*;
 
 /**
- * In this class's instance there will be picture, which belong to an bang.
+ * In this class's instance there will be picture, which belong to an event.
  */
 
 @Entity
-@Table(name = "bandspictures")
-public class BandsImage extends BaseEntity{
+@Table(name = "eventimage")
+public class EventImageEntity extends BaseEntity{
 
     @Basic
     @Column(nullable = false)
@@ -19,22 +19,14 @@ public class BandsImage extends BaseEntity{
     private String filename;
 
     @Basic
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "eventId")
     @Column(nullable = false)
-    private Long bandId;
+    private EventEntity event;
 
     @Basic
     @Column(nullable = false)
     private String caption;
-
-    public BandsImage(String name, String filename, Long bandId, String caption) {
-        this.name = name;
-        this.filename = filename;
-        this.bandId = bandId;
-        this.caption = caption;
-    }
-
-    public BandsImage() {
-    }
 
     public String getName() {
         return name;
@@ -52,12 +44,12 @@ public class BandsImage extends BaseEntity{
         this.filename = filename;
     }
 
-    public Long getBandId() {
-        return bandId;
+    public EventEntity getEvent() {
+        return event;
     }
 
-    public void setBandId(Long bandId) {
-        this.bandId = bandId;
+    public void setEvent(EventEntity event) {
+        this.event = event;
     }
 
     public String getCaption() {
