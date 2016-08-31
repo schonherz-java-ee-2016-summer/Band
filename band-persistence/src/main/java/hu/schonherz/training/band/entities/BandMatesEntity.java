@@ -1,20 +1,19 @@
 package hu.schonherz.training.band.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Mindfield on 2016. 08. 28..
+ *  Entity for band members.
  */
 @Entity
-@Table(name = "bandmates")
-public class BandMember extends BaseEntity {
+@Table(name = "bandmate")
+public class BandMatesEntity extends BaseEntity {
 
     @Basic
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bandId")
     @Column(nullable = false)
-    private Long bandId;
+    private BandEntity band;
 
     @Basic
     @Column(nullable = false)
@@ -26,17 +25,14 @@ public class BandMember extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
-    private String profile;
+    private boolean profile;
 
-    public BandMember() {
+    public BandEntity getBand() {
+        return band;
     }
 
-    public Long getBandId() {
-        return bandId;
-    }
-
-    public void setBandId(Long bandId) {
-        this.bandId = bandId;
+    public void setBand(BandEntity band) {
+        this.band = band;
     }
 
     public String getFirstName() {
@@ -55,11 +51,11 @@ public class BandMember extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public String getProfile() {
+    public boolean isProfile() {
         return profile;
     }
 
-    public void setProfile(String profile) {
+    public void setProfile(boolean profile) {
         this.profile = profile;
     }
 }

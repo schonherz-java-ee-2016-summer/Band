@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
- * Created by Lenovo on 2016.08.25..
+ * Entity for events.
  */
 @Entity
-@Table(name = "events")
-public class Event extends BaseEntity {
+@Table(name = "event")
+public class EventEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
@@ -28,22 +28,23 @@ public class Event extends BaseEntity {
     private LocalDateTime finish;
 
     @Basic
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bandId")
     @Column(nullable = false)
-    private int bandId;
+    private BandEntity band;
 
     @Basic
     @Column(nullable = false)
     private int venueId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "eventId", nullable = false)
-    private Collection<EventsImage> images;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "eventimage")
+    private Collection<EventImageEntity> images;
 
-    public Collection<EventsImage> getImages() {
+    public Collection<EventImageEntity> getImages() {
         return images;
     }
 
-    public void setImages(Collection<EventsImage> images) {
+    public void setImages(Collection<EventImageEntity> images) {
         this.images = images;
     }
 
@@ -79,12 +80,12 @@ public class Event extends BaseEntity {
         this.finish = finish;
     }
 
-    public int getBandId() {
-        return bandId;
+    public BandEntity getBand() {
+        return band;
     }
 
-    public void setBandId(int bandId) {
-        this.bandId = bandId;
+    public void setBand(BandEntity band) {
+        this.band = band;
     }
 
     public int getVenueId() {

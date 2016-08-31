@@ -1,6 +1,6 @@
 package hu.schonherz.training.band.repository;
 
-import hu.schonherz.training.band.entities.Band;
+import hu.schonherz.training.band.entities.BandEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,12 +13,12 @@ import java.util.Collection;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public interface BandRepository extends JpaRepository<Band, Long>{
+public interface BandRepository extends JpaRepository<BandEntity, Long>{
 
-    Band findById(Long id);
+    BandEntity findById(Long id);
 
-    Band findBandByName(String name);
+    BandEntity findByName(String name);
 
-    Collection<Band> findAllBand();
-    
+    Collection<BandEntity> findAllBand();
+
 }

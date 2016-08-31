@@ -7,8 +7,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "bandspictures")
-public class BandsImage extends BaseEntity{
+@Table(name = "bandimage")
+public class BandImageEntity extends BaseEntity{
 
     @Basic
     @Column(nullable = false)
@@ -19,22 +19,14 @@ public class BandsImage extends BaseEntity{
     private String filename;
 
     @Basic
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bandId")
     @Column(nullable = false)
-    private Long bandId;
+    private BandEntity band;
 
     @Basic
     @Column(nullable = false)
     private String caption;
-
-    public BandsImage(String name, String filename, Long bandId, String caption) {
-        this.name = name;
-        this.filename = filename;
-        this.bandId = bandId;
-        this.caption = caption;
-    }
-
-    public BandsImage() {
-    }
 
     public String getName() {
         return name;
@@ -52,12 +44,12 @@ public class BandsImage extends BaseEntity{
         this.filename = filename;
     }
 
-    public Long getBandId() {
-        return bandId;
+    public BandEntity getBand() {
+        return band;
     }
 
-    public void setBandId(Long bandId) {
-        this.bandId = bandId;
+    public void setBand(BandEntity band) {
+        this.band = band;
     }
 
     public String getCaption() {
