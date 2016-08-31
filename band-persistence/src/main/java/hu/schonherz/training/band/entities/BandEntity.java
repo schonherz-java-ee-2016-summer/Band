@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "bands")
-public class Band extends BaseEntity{
+public class BandEntity extends BaseEntity{
 
     @Basic
     @Column(nullable = false)
@@ -22,31 +22,27 @@ public class Band extends BaseEntity{
     @Basic
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "bandId")
-    private Collection<Event> events;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "event")
+    private Collection<EventEntity> events;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "bandId")
-    private Collection<BandsImage> bandsImages;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandimage")
+    private Collection<BandImageEntity> bandsImages;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "eventId")
-    private Collection<EventsImage> eventsImages;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "eventimage")
+    private Collection<EventImageEntity> eventsImages;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "bandId")
-    private Collection<Demo> demos;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "demo")
+    private Collection<DemoEntity> demos;
 
-    public Collection<Demo> getDemos() {
+    public Collection<DemoEntity> getDemos() {
         return demos;
     }
 
-    public void setDemos(Collection<Demo> demos) {
+    public void setDemos(Collection<DemoEntity> demos) {
         this.demos = demos;
     }
 
-    public Band() {
+    public BandEntity() {
     }
 
     public String getName() {
@@ -73,27 +69,27 @@ public class Band extends BaseEntity{
         this.description = description;
     }
 
-    public Collection<Event> getEvents() {
+    public Collection<EventEntity> getEvents() {
         return events;
     }
 
-    public void setEvents(Collection<Event> events) {
+    public void setEvents(Collection<EventEntity> events) {
         this.events = events;
     }
 
-    public Collection<BandsImage> getBandsImages() {
+    public Collection<BandImageEntity> getBandsImages() {
         return bandsImages;
     }
 
-    public void setBandsImages(Collection<BandsImage> bandsImages) {
+    public void setBandsImages(Collection<BandImageEntity> bandsImages) {
         this.bandsImages = bandsImages;
     }
 
-    public Collection<EventsImage> getEventsImages() {
+    public Collection<EventImageEntity> getEventsImages() {
         return eventsImages;
     }
 
-    public void setEventsImages(Collection<EventsImage> eventsImages) {
+    public void setEventsImages(Collection<EventImageEntity> eventsImages) {
         this.eventsImages = eventsImages;
     }
 }

@@ -1,28 +1,33 @@
 package hu.schonherz.training.band.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Lenovo on 2016.08.27..
+ * Entity for demos.
  */
 @Entity
 @Table(name = "demos")
-public class Demo extends BaseEntity {
+public class DemoEntity extends BaseEntity {
 
+    /**
+     * The name of the demo.
+     */
     @Basic
     @Column(nullable = false)
     private String name;
 
+    /**
+     * The full path of the demo file.
+     */
     @Basic
     @Column(nullable = false)
     private String filename;
 
     @Basic
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bandId")
     @Column(nullable = false)
-    private Long bandId;
+    private BandEntity band;
 
     public String getName() {
         return name;
@@ -40,11 +45,11 @@ public class Demo extends BaseEntity {
         this.filename = filename;
     }
 
-    public Long getBandId() {
-        return bandId;
+    public BandEntity getBand() {
+        return band;
     }
 
-    public void setBandId(Long bandId) {
-        this.bandId = bandId;
+    public void setBand(BandEntity band) {
+        this.band = band;
     }
 }

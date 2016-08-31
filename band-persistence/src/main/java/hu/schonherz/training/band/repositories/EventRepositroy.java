@@ -1,6 +1,6 @@
 package hu.schonherz.training.band.repositories;
 
-import hu.schonherz.training.band.entities.Event;
+import hu.schonherz.training.band.entities.EventEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,23 +10,21 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
- * Created by Lenovo on 2016.08.27..
+ * Repository for the EventEntity class.
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public interface EventRepositroy extends JpaRepository<Event, Long> {
+public interface EventRepositroy extends JpaRepository<EventEntity, Long> {
 
-    Collection<Event> findAllEvent();
+    Collection<EventEntity> findByBandId(Long bandId);
 
-    Collection<Event> findEventByBandId(Long bandId);
+    Collection<EventEntity> findByVenueId(Long venueId);
 
-    Collection<Event> findEventByVenueId(Long venueId);
+    Collection<EventEntity> findByStart(LocalDateTime date);
 
-    Collection<Event> findEventByStart(LocalDateTime date);
+    Collection<EventEntity> findEByFinish(LocalDateTime date);
 
-    Collection<Event> findEventByFinish(LocalDateTime date);
+    EventEntity findById(Long id);
 
-    Event findById(Long id);
-
-    Event findEventByName(String name);
+    EventEntity findByName(String name);
 }
