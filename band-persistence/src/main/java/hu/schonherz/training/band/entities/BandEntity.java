@@ -45,9 +45,6 @@ public class BandEntity extends BaseEntity{
         this.demos = demos;
     }
 
-    public BandEntity() {
-    }
-
     public String getName() {
         return name;
     }
@@ -94,5 +91,13 @@ public class BandEntity extends BaseEntity{
 
     public void setEventsImages(Collection<EventImageEntity> eventsImages) {
         this.eventsImages = eventsImages;
+    }
+
+    public Collection<BandMatesEntity> getBandMates() {
+        return bandMates;
+    }
+
+    public void setBandMates(Collection<BandMatesEntity> bandMates) {
+        this.bandMates = bandMates;
     }
 }
