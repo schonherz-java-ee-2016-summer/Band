@@ -8,7 +8,7 @@ import java.util.Collection;
  * Created by Mindfield on 2016. 08. 25..
  */
 @Entity
-@Table(name = "bands")
+@Table(name = "band")
 public class BandEntity extends BaseEntity{
 
     @Basic
