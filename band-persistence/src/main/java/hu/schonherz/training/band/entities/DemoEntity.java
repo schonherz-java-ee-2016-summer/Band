@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Entity for demos.
  */
 @Entity
-@Table(name = "demos")
+@Table(name = "demo")
 public class DemoEntity extends BaseEntity {
 
     /**
