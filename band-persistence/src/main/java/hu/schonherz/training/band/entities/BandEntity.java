@@ -5,7 +5,7 @@ import java.util.Collection;
 
 
 /**
- * Created by Mindfield on 2016. 08. 25..
+ * Entity for bands.
  */
 @Entity
 @Table(name = "band")
@@ -33,6 +33,9 @@ public class BandEntity extends BaseEntity{
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "demo")
     private Collection<DemoEntity> demos;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandmate")
+    private Collection<BandMatesEntity> bandMates;
 
     public Collection<DemoEntity> getDemos() {
         return demos;

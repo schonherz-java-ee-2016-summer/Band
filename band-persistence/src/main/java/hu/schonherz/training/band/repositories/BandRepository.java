@@ -1,4 +1,4 @@
-package hu.schonherz.training.band.repository;
+package hu.schonherz.training.band.repositories;
 
 import hu.schonherz.training.band.entities.BandEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 /**
- * Created by Mindfield on 2016. 08. 28..
+ * Repository for the BandEntity class.
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)

@@ -14,7 +14,7 @@ import java.util.Collection;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public interface EventRepositroy extends JpaRepository<EventEntity, Long> {
+public interface EventRepository extends JpaRepository<EventEntity, Long> {
 
     Collection<EventEntity> findByBandId(Long bandId);
 
