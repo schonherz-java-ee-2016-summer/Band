@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
-public interface EventImageRepository extends JpaRepository<EventImageEntity, Long>{
+public interface EventImageRepository extends JpaRepository<EventImageEntity, Long> {
 
     Collection<EventImageEntity> findByEventId();
 

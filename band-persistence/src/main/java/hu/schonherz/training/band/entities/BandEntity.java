@@ -9,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "band")
-public class BandEntity extends BaseEntity{
+public class BandEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)

@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "bandimage")
-public class BandImageEntity extends BaseEntity{
+public class BandImageEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
