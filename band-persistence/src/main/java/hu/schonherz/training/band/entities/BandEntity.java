@@ -35,7 +35,7 @@ public class BandEntity extends BaseEntity{
     private Collection<DemoEntity> demos;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandmate")
-    private Collection<BandMatesEntity> bandMates;
+    private Collection<BandMateEntity> bandMates;
 
     public Collection<DemoEntity> getDemos() {
         return demos;
@@ -93,11 +93,11 @@ public class BandEntity extends BaseEntity{
         this.eventsImages = eventsImages;
     }
 
-    public Collection<BandMatesEntity> getBandMates() {
+    public Collection<BandMateEntity> getBandMates() {
         return bandMates;
     }
 
-    public void setBandMates(Collection<BandMatesEntity> bandMates) {
+    public void setBandMates(Collection<BandMateEntity> bandMates) {
         this.bandMates = bandMates;
     }
 }
