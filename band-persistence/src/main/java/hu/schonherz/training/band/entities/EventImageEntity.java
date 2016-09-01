@@ -8,15 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "eventimage")
-public class EventImageEntity extends BaseEntity {
-
-    @Basic
-    @Column(nullable = false)
-    private String name;
-
-    @Basic
-    @Column(nullable = false)
-    private String filename;
+public class EventImageEntity extends ResourceEntity {
 
     @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -27,22 +19,6 @@ public class EventImageEntity extends BaseEntity {
     @Basic
     @Column(nullable = false)
     private String caption;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
 
     public EventEntity getEvent() {
         return event;
