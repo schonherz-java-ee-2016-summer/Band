@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "bandmate")
-public class BandMatesEntity extends BaseEntity {
+public class BandMateEntity extends BaseEntity {
 
     @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
