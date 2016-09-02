@@ -24,7 +24,7 @@
             </roles>
         </developer>
         <developer>
-            <name>Barocsi Norbert</name>
+            <name>Barócsi Norbert</name>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -78,11 +78,6 @@
             <artifactId>logback-core</artifactId>
             <version>${logback.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${javadoc.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -100,7 +95,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.2</version>
+                    <version>${maven.compiler.plugin}</version>
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
