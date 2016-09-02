@@ -9,10 +9,8 @@ import javax.persistence.*;
 @Table(name = "demo")
 public class DemoEntity extends BaseAssetEntity {
 
-    @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "bandId")
-    @Column(nullable = false)
+    @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
     public BandEntity getBand() {

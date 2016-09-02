@@ -5,7 +5,7 @@
              version="2.0">
     <persistence-unit name="hu.schonherz.training.band">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:jboss/datasources/Band</jta-data-source>
+        <jta-data-source>java:jboss/datasources/bandDS</jta-data-source>
         <class>hu.schonherz.training.band.entities.BaseEntity</class>
         <class>hu.schonherz.training.band.entities.ResourceEntity</class>
         <class>hu.schonherz.training.band.entities.BandEntity</class>

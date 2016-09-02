@@ -22,16 +22,13 @@ public class BandEntity extends BaseEntity {
     @Basic
     private String description;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "event")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<EventEntity> events;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandimage")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<BandImageEntity> bandsImages;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "eventimage")
-    private Collection<EventImageEntity> eventsImages;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "demo")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<DemoEntity> demos;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandmate")
@@ -83,14 +80,6 @@ public class BandEntity extends BaseEntity {
 
     public void setBandsImages(Collection<BandImageEntity> bandsImages) {
         this.bandsImages = bandsImages;
-    }
-
-    public Collection<EventImageEntity> getEventsImages() {
-        return eventsImages;
-    }
-
-    public void setEventsImages(Collection<EventImageEntity> eventsImages) {
-        this.eventsImages = eventsImages;
     }
 
     public Collection<BandMateEntity> getBandMates() {

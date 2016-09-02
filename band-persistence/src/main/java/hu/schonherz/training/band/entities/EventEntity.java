@@ -27,17 +27,15 @@ public class EventEntity extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime finish;
 
-    @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "bandId")
-    @Column(nullable = false)
+    @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
     @Basic
     @Column(nullable = false)
     private int venueId;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "eventimage")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "event")
     private Collection<EventImageEntity> images;
 
     public Collection<EventImageEntity> getImages() {

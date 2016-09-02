@@ -9,10 +9,8 @@ import javax.persistence.*;
 @Table(name = "bandmate")
 public class BandMateEntity extends BaseEntity {
 
-    @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "bandId")
-    @Column(nullable = false)
+    @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
     @Basic

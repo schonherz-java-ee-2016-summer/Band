@@ -9,10 +9,8 @@ import javax.persistence.*;
 @Table(name = "eventimage")
 public class EventImageEntity extends BaseAssetEntity {
 
-    @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "eventId")
-    @Column(nullable = false)
+    @JoinColumn(name = "eventId", nullable = false)
     private EventEntity event;
 
     @Basic
