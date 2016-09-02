@@ -5,10 +5,9 @@ import javax.persistence.*;
 /**
  * In this class's instance there will be picture, which belong to an event.
  */
-
 @Entity
 @Table(name = "eventimage")
-public class EventImageEntity extends ResourceEntity {
+public class EventImageEntity extends BaseAssetEntity {
 
     @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

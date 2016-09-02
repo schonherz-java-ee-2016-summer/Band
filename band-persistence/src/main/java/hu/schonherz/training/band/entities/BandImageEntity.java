@@ -5,10 +5,9 @@ import javax.persistence.*;
 /**
  * In this class's instance there will be picture, which belong to an bang.
  */
-
 @Entity
 @Table(name = "bandimage")
-public class BandImageEntity extends ResourceEntity {
+public class BandImageEntity extends BaseAssetEntity {
 
     @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

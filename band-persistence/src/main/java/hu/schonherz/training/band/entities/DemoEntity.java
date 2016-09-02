@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "demo")
-public class DemoEntity extends ResourceEntity {
+public class DemoEntity extends BaseAssetEntity {
 
     @Basic
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

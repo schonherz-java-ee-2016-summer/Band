@@ -6,7 +6,6 @@ import java.io.Serializable;
 /**
  * Created by Attila on 2016.08.25..
  */
-
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 

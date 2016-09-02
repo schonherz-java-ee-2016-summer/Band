@@ -7,9 +7,8 @@ import javax.persistence.*;
  * We have some fields, which are the same in resource class (like in picture, demo).
  * In this class we stress these field to a higher level of inheritance.
  */
-
 @MappedSuperclass
-public class ResourceEntity extends BaseEntity {
+public class BaseAssetEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
