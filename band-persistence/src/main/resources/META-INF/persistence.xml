@@ -3,17 +3,20 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-    <persistence-unit name="hu.schonherz.training.band">
+
+    <persistence-unit name="hu.schonherz.training.band" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:jboss/datasources/bandDS</jta-data-source>
         <class>hu.schonherz.training.band.entities.BaseEntity</class>
-        <class>hu.schonherz.training.band.entities.ResourceEntity</class>
+        <class>hu.schonherz.training.band.entities.BaseAssetEntity</class>
         <class>hu.schonherz.training.band.entities.BandEntity</class>
         <class>hu.schonherz.training.band.entities.EventEntity</class>
         <class>hu.schonherz.training.band.entities.DemoEntity</class>
         <class>hu.schonherz.training.band.entities.EventImageEntity</class>
         <class>hu.schonherz.training.band.entities.BandImageEntity</class>
         <class>hu.schonherz.training.band.entities.BandMatesEntity</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
             <property name="hibernate.show_sql" value="true" />
