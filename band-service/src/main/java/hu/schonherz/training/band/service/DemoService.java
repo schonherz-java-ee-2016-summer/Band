@@ -3,7 +3,7 @@ package hu.schonherz.training.band.service;
 import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.vo.DemoVo;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Armin Veress
@@ -14,7 +14,7 @@ public interface DemoService {
 
     DemoVo getDemoById(Long id);
 
-    List<DemoVo> getDemosByBand(BandEntity band);
+    Collection<DemoVo> getDemosByBand(BandEntity band);
 
     DemoVo getDemoByName(String name);
 
@@ -23,4 +23,6 @@ public interface DemoService {
     void createDemo(DemoVo demoVo);
 
     void deleteDemo(DemoVo demoVo);
+
+    void updateDemo(DemoVo demoVo);
 }
