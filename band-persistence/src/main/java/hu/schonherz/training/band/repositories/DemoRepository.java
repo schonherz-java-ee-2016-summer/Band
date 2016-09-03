@@ -22,4 +22,6 @@ public interface DemoRepository extends JpaRepository<DemoEntity, Long> {
     DemoEntity findByName(String name);
 
     DemoEntity findByFilename(String filename);
+
+    DemoEntity save(DemoEntity demoEntity);
 }

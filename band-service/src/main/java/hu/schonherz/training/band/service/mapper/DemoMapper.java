@@ -26,7 +26,7 @@ public final class DemoMapper {
         return mapper.map(demoEntity, DemoVo.class);
     }
 
-    public static DemoEntity toDto(DemoVo demoVo) {
+    public static DemoEntity toEntity(DemoVo demoVo) {
         if (demoVo == null){
             return null;
         }
@@ -41,10 +41,10 @@ public final class DemoMapper {
         return demoVoList;
     }
 
-    public static List<DemoEntity> toDto(List<DemoVo> demoVoList){
+    public static List<DemoEntity> toEntity(List<DemoVo> demoVoList){
         List<DemoEntity> demoEntityList = new ArrayList<>();
         for (DemoVo demoVo : demoVoList){
-            demoEntityList.add(toDto(demoVo));
+            demoEntityList.add(toEntity(demoVo));
         }
         return demoEntityList;
     }

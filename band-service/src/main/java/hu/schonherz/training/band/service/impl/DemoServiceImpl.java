@@ -59,16 +59,16 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
-        demoRepository.save(DemoMapper.toDto(demoVo));
+        demoRepository.save(DemoMapper.toEntity(demoVo));
     }
 
     @Override
     public void deleteDemo(DemoVo demoVo) {
-        demoRepository.delete(DemoMapper.toDto(demoVo));
+        demoRepository.delete(DemoMapper.toEntity(demoVo));
     }
 
     @Override
     public void updateDemo(DemoVo demoVo) {
-
+        demoRepository.save(DemoMapper.toEntity(demoVo));
     }
 }
