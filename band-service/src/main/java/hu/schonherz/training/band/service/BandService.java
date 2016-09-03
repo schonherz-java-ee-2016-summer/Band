@@ -5,6 +5,8 @@ import hu.schonherz.training.band.vo.BandVo;
 import java.util.Collection;
 
 /**
+ * @author Norbert Barocsi.
+ * {@link hu.schonherz.training.band.service.BandService}
  * Service for BandVo class.
  */
 public interface BandService {

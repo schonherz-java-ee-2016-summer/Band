@@ -1,6 +1,8 @@
 package hu.schonherz.training.band.vo;
 
 /**
+ * @author Norbert Barocsi
+ * {@link hu.schonherz.training.band.vo.BandVo}
  *  Value object for band.
  */
 public class BandVo extends BaseVo{

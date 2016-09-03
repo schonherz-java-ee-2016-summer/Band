@@ -3,6 +3,8 @@ package hu.schonherz.training.band.vo;
 import java.io.Serializable;
 
 /**
+ * @author Norbert Barocsi.
+ * {@link hu.schonherz.training.band.vo.BaseVo}
  * Value object for base.
  */
 public class BaseVo implements Serializable{
