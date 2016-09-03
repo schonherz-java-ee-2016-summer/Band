@@ -1,24 +1,27 @@
-package hu.schonherz.training.vo;
+package hu.schonherz.training.band.vo;
+
+import hu.schonherz.training.band.entities.BandEntity;
 
 import java.io.Serializable;
 
 /**
- * Created by Lenovo on 2016.09.03..
+ * @author Armin Veress
+ * The Value Object of Demo.
  */
 public class DemoVo implements Serializable {
 
-    private Long bandId;
+    private BandEntity band;
 
     private String name;
 
     private String filename;
 
-    public Long getBandId() {
-        return bandId;
+    public BandEntity getBand() {
+        return band;
     }
 
-    public void setBandId(Long bandId) {
-        this.bandId = bandId;
+    public void setBand(BandEntity band) {
+        this.band = band;
     }
 
     public String getName() {

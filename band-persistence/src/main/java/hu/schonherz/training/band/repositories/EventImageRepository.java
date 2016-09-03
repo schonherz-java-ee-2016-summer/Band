@@ -21,5 +21,5 @@ public interface EventImageRepository extends JpaRepository<EventImageEntity, Lo
 
     EventImageEntity findByFilename(String filename);
 
-    EventImageEntity finById();
+    EventImageEntity findById();
 }
