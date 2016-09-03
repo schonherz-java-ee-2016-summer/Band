@@ -11,10 +11,9 @@ import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Collection;
-import java.util.List;
 
 /**
- * @author Norbert Barocsi.
+ * @author Norbert Barocsi
  * {@link hu.schonherz.training.band.service.impl.BandServiceImpl}
  *  The implementation of the BandService interface.
  */
@@ -24,45 +23,33 @@ import java.util.List;
 @TransactionManagement(TransactionManagementType.BEAN)
 @Local(BandService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
-public class BandServiceImpl implements BandService{
+public class BandServiceImpl implements BandService {
 
     @Autowired
     private BandRepository bandRepository;
 
     @Override
     public Collection<BandVo> getAllBand() {
-        List<BandEntity> bandEntities = null;
-
-        bandEntities = bandRepository.findAll();
-
-        return BandMapper.toVo(bandEntities);
+        return BandMapper.toVo(bandRepository.findAll());
     }
 
     @Override
     public BandVo getBandById(Long id) {
-        BandEntity bandEntity = null;
-
-        bandEntity = bandRepository.findById(id);
-
-        return BandMapper.toVo(bandEntity);
+        return BandMapper.toVo(bandRepository.findById(id));
     }
 
     @Override
     public BandVo getBandByName(String name) {
-        BandEntity bandEntity = null;
-
-        bandEntity = bandRepository.findByName(name);
-
-        return BandMapper.toVo(bandEntity);
+        return BandMapper.toVo(bandRepository.findByName(name));
     }
 
     @Override
     public void createBand(BandVo bandVo) {
-        bandRepository.save(BandMapper.toDto(bandVo));
+        bandRepository.save(BandMapper.toEntity(bandVo));
     }
 
     @Override
     public void deleteBand(BandVo bandVo) {
-        bandRepository.delete(BandMapper.toDto(bandVo));
+        bandRepository.delete(BandMapper.toEntity(bandVo));
     }
 }

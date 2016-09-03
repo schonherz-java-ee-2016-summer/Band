@@ -9,23 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  @author Norbert Barocsi.
+ *  @author Norbert Barocsi
  * {@link hu.schonherz.training.band.service.mapper.BandMapper}
  * Mapper for BandEntity and BandVo class.
  */
-public class BandMapper  {
+public final class BandMapper {
 
     private static Mapper mapper = new DozerBeanMapper();
 
+    private BandMapper() {
+    }
+
     public static BandVo toVo(BandEntity bandEntity){
-        if(bandEntity == null){
+        if (bandEntity == null) {
             return null;
         }
         return mapper.map(bandEntity, BandVo.class);
     }
 
-    public static BandEntity toDto(BandVo bandVo){
-        if(bandVo == null){
+    public static BandEntity toEntity(BandVo bandVo){
+        if (bandVo == null) {
             return null;
         }
         return mapper.map(bandVo, BandEntity.class);
@@ -39,10 +42,10 @@ public class BandMapper  {
         return bandVos;
     }
 
-    public static List<BandEntity> toDto(List<BandVo> bandVos){
+    public static List<BandEntity> toEntity(List<BandVo> bandVos){
         List<BandEntity> bandEntities = new ArrayList<>();
-        for(BandVo bandVo : bandVos){
-            bandEntities.add(toDto(bandVo));
+        for (BandVo bandVo : bandVos) {
+            bandEntities.add(toEntity(bandVo));
         }
         return bandEntities;
     }
