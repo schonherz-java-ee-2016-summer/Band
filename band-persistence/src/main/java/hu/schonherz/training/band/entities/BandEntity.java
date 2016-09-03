@@ -31,7 +31,7 @@ public class BandEntity extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<DemoEntity> demos;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "bandmate")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<BandMateEntity> bandMates;
 
     public Collection<DemoEntity> getDemos() {

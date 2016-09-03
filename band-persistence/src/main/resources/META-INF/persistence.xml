@@ -14,7 +14,7 @@
         <class>hu.schonherz.training.band.entities.DemoEntity</class>
         <class>hu.schonherz.training.band.entities.EventImageEntity</class>
         <class>hu.schonherz.training.band.entities.BandImageEntity</class>
-        <class>hu.schonherz.training.band.entities.BandMatesEntity</class>
+        <class>hu.schonherz.training.band.entities.BandMateEntity</class>
 
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
