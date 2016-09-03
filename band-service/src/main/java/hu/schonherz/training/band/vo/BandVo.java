@@ -1,4 +1,4 @@
-package hu.schonherz.training.vo;
+package hu.schonherz.training.band.vo;
 
 /**
  *  Value object for band.
