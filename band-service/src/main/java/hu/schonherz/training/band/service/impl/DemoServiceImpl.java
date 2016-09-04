@@ -5,6 +5,7 @@ import hu.schonherz.training.band.entities.DemoEntity;
 import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.service.mapper.DemoMapper;
+import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
@@ -36,7 +37,7 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public Collection<DemoVo> getDemosByBand(BandVo band) {
-        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findByBandId(band.getBandId()));
+        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findByBandId(band.getId()));
     }
 
     @Override

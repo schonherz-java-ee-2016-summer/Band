@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Armin Veress
  * The Value Object of Demo.
  */
-public class DemoVo implements Serializable {
+public class DemoVo extends BaseVo {
 
     private Long bandId;
 
