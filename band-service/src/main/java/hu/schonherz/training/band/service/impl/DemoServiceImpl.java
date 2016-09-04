@@ -31,30 +31,22 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public DemoVo getDemoById(Long id) {
-        DemoEntity demoEntity = demoRepository.findById(id);
-
-        return DemoMapper.toVo(demoEntity);
+        return DemoMapper.toVo(demoRepository.findById(id));
     }
 
     @Override
-    public Collection<DemoVo> getDemosByBand(BandEntity band) {
-        List<DemoEntity> demoEntityList = (List<DemoEntity>) demoRepository.findByBandId(band.getId());
-
-        return DemoMapper.toVo(demoEntityList);
+    public Collection<DemoVo> getDemosByBand(BandVo band) {
+        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findByBandId(band.getBandId()));
     }
 
     @Override
     public DemoVo getDemoByName(String name) {
-        DemoEntity demoEntity = demoRepository.findByName(name);
-
-        return DemoMapper.toVo(demoEntity);
+        return DemoMapper.toVo(demoRepository.findByName(name));
     }
 
     @Override
     public DemoVo getDemoByFilename(String filename) {
-        DemoEntity demoEntity = demoRepository.findByFilename(filename);
-
-        return DemoMapper.toVo(demoEntity);
+        return DemoMapper.toVo(demoRepository.findByFilename(filename));
     }
 
     @Override

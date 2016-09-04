@@ -10,18 +10,18 @@ import java.io.Serializable;
  */
 public class DemoVo implements Serializable {
 
-    private BandEntity band;
+    private Long bandId;
 
     private String name;
 
     private String filename;
 
-    public BandEntity getBand() {
-        return band;
+    public Long getBandId() {
+        return bandId;
     }
 
-    public void setBand(BandEntity band) {
-        this.band = band;
+    public void setBandId(Long bandId) {
+        this.bandId = bandId;
     }
 
     public String getName() {
