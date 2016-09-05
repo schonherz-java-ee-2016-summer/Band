@@ -23,7 +23,7 @@ public class CreateBandMB {
 
     public String doCreate(){
         bandService.createBand(bandMB.getBandVo());
-        return "bandProfile";
+        return "index";
     }
 
     public BandMB getBandMB() {

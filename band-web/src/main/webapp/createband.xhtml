@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/pageTemplate.xhtml">
+        <ui:define name="title">Create new band</ui:define>
+        <ui:define name="body">
+            <h:outputStylesheet name="css/band.css"/>
+            <div class="main">
+                <h:form id="form">
+                    <p:panel header="Band">
+                        <p:messages/>
+                        <h:panelGrid columns="2" cellpadding="5">
+
+                            <h:outputText styleClass="input-label" value="Name"/>
+                            <p:inputText value="#{bandBean.bandVo.name}" required="true"/>
+
+                            <h:outputText styleClass="input-label" value="Genre"/>
+                            <p:inputText value="#{bandBean.bandVo.genre}" required="true"/>
+
+                            <h:outputText styleClass="input-label" value="Description"/>
+                            <p:inputTextarea value="#{bandBean.bandVo.description}" required="true"/>
+                        </h:panelGrid>
+
+                        <p:commandButton value="Submit" action="#{createBandBean.doCreate}"/>
+                    </p:panel>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

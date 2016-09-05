@@ -1,0 +1,10 @@
+.main {
+    width: 90%;
+    margin: 0 auto;
+}
+.input-label{
+    display: inline-block;
+    font-size: 14pt;
+    margin: 20px;
+    color: black;
+}

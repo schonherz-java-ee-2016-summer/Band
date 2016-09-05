@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
- * Created by Mindfield on 2016. 09. 04..
+ *
  */
 @ManagedBean(name = "bandBean")
 @ViewScoped

@@ -9,17 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 /**
- * Repository for the BandImageEntity class.
+ * Repository for the EventImageEntity class.
  */
 @Repository
 @Transactional(propagation = Propagation.REQUIRED)
 public interface EventImageRepository extends JpaRepository<EventImageEntity, Long> {
 
-    Collection<EventImageEntity> findByEventId();
+    Collection<EventImageEntity> findByEventId(Long eventId);
 
     EventImageEntity findByName(String name);
 
     EventImageEntity findByFilename(String filename);
 
-    EventImageEntity findById();
+    EventImageEntity findById(Long id);
 }
