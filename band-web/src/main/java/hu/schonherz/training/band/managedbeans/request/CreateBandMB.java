@@ -19,7 +19,7 @@ public class CreateBandMB {
     private BandMB bandMB;
 
     @EJB
-    BandService bandService;
+    private BandService bandService;
 
     public String doCreate(){
         bandService.createBand(bandMB.getBandVo());

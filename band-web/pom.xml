@@ -47,7 +47,12 @@
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>${javaee.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hu.schonherz.training</groupId>
+            <artifactId>template</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -64,5 +69,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
