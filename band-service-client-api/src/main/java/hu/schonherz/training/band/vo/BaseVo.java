@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author Norbert Barocsi
- * {@link hu.schonherz.training.band.vo.BaseVo}
+ * {@link BaseVo}
  * Value object for base.
  */
 public class BaseVo implements Serializable {

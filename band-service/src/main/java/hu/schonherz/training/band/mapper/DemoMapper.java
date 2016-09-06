@@ -1,4 +1,4 @@
-package hu.schonherz.training.band.service.mapper;
+package hu.schonherz.training.band.mapper;
 
 import hu.schonherz.training.band.entities.DemoEntity;
 import hu.schonherz.training.band.vo.DemoVo;

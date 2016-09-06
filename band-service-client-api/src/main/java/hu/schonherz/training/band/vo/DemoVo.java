@@ -1,9 +1,5 @@
 package hu.schonherz.training.band.vo;
 
-import hu.schonherz.training.band.entities.BandEntity;
-
-import java.io.Serializable;
-
 /**
  * @author Armin Veress
  * The Value Object of Demo.

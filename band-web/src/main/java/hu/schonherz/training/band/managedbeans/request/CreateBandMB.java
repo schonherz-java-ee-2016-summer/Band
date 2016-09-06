@@ -22,6 +22,9 @@ public class CreateBandMB {
     private BandService bandService;
 
     public String doCreate(){
+        System.out.println(bandMB.getBandVo().getName());
+        System.out.println(bandMB.getBandVo().getGenre());
+        System.out.println(bandMB.getBandVo().getDescription());
         bandService.createBand(bandMB.getBandVo());
         return "index";
     }

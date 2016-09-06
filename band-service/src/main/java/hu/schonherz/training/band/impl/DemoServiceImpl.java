@@ -1,10 +1,9 @@
-package hu.schonherz.training.band.service.impl;
+package hu.schonherz.training.band.impl;
 
-import hu.schonherz.training.band.entities.BandEntity;
-import hu.schonherz.training.band.entities.DemoEntity;
-import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.service.DemoService;
-import hu.schonherz.training.band.service.mapper.DemoMapper;
+import hu.schonherz.training.band.entities.DemoEntity;
+import hu.schonherz.training.band.mapper.DemoMapper;
+import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import java.util.List;
 
 /**
  * @author Armin Veress
- * {@link hu.schonherz.training.band.service.DemoService}
+ * {@link DemoService}
  * The implementation of the DemoService interface.
  */
 @Stateless(name = "DemoService", mappedName = "DemoService")

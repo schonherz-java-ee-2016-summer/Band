@@ -1,4 +1,4 @@
-package hu.schonherz.training.band.service.mapper;
+package hu.schonherz.training.band.mapper;
 
 import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.vo.BandVo;
@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *  @author Norbert Barocsi
- * {@link hu.schonherz.training.band.service.mapper.BandMapper}
+ * {@link BandMapper}
  * Mapper for BandEntity and BandVo class.
  */
 public final class BandMapper {

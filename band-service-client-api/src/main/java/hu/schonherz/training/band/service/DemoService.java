@@ -1,6 +1,5 @@
 package hu.schonherz.training.band.service;
 
-import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
 
@@ -8,7 +7,7 @@ import java.util.Collection;
 
 /**
  * @author Armin Veress
- * {@link hu.schonherz.training.band.vo.DemoVo}
+ * {@link DemoVo}
  * The interface containing the methods for saving, updating, querying and removing band demos.
  */
 public interface DemoService {

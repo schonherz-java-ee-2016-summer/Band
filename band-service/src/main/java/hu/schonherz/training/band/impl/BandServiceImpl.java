@@ -1,9 +1,8 @@
-package hu.schonherz.training.band.service.impl;
+package hu.schonherz.training.band.impl;
 
-import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandService;
-import hu.schonherz.training.band.service.mapper.BandMapper;
+import hu.schonherz.training.band.mapper.BandMapper;
 import hu.schonherz.training.band.vo.BandVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
@@ -14,7 +13,7 @@ import java.util.Collection;
 
 /**
  * @author Norbert Barocsi
- * {@link hu.schonherz.training.band.service.impl.BandServiceImpl}
+ * {@link BandServiceImpl}
  *  The implementation of the BandService interface.
  */
 

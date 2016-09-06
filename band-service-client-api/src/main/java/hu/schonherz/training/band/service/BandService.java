@@ -6,7 +6,7 @@ import java.util.Collection;
 
 /**
  * @author Norbert Barocsi
- * {@link hu.schonherz.training.band.service.BandService}
+ * {@link BandService}
  * Service for BandVo class.
  */
 public interface BandService {
