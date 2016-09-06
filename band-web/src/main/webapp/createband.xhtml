@@ -25,9 +25,10 @@
 
                             <h:outputText styleClass="input-label" value="Description"/>
                             <p:inputTextarea value="#{bandBean.bandVo.description}" required="true"/>
+
                         </h:panelGrid>
 
-                        <p:commandButton value="Submit" action="#{createBandBean.doCreate()}"/>
+                        <p:commandButton value="Submit" action="#{createBandBean.doCreate}"/>
                     </p:panel>
                 </h:form>
             </div>

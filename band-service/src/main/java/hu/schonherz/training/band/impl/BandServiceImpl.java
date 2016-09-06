@@ -19,7 +19,7 @@ import java.util.Collection;
 
 @Stateless(name = "BandService", mappedName = "BandService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(BandService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class BandServiceImpl implements BandService {

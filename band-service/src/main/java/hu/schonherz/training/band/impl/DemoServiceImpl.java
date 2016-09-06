@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Stateless(name = "DemoService", mappedName = "DemoService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(DemoService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class DemoServiceImpl implements DemoService {

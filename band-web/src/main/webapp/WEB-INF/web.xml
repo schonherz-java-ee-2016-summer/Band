@@ -9,11 +9,6 @@
         <welcome-file>/pages/index.jsf</welcome-file>
     </welcome-file-list>
 
-    <context-param>
-        <param-name>com.sun.faces.injectionProvider</param-name>
-        <param-value>org.jboss.web.jsf.integration.injection.JBossScanningInjectionProvider</param-value>
-    </context-param>
-
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
     </listener>
@@ -29,7 +24,7 @@
     </servlet-mapping>
 
     <ejb-local-ref>
-        <ejb-ref-name>ejb.VenueService</ejb-ref-name>
+        <ejb-ref-name>ejb.BandService</ejb-ref-name>
         <local>hu.schonherz.training.band.service.BandService</local>
     </ejb-local-ref>
 
