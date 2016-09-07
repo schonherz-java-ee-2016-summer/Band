@@ -4,12 +4,16 @@ import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.service.BandService;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
- *
+ *  @author Norbert Barocsi
+ *  {@link hu.schonherz.training.band.managedbeans.request.CreateBandMB}
+ *  ManagedBean for Band.
  */
 @ManagedBean(name = "createBandBean")
 @RequestScoped

@@ -16,19 +16,20 @@
                     <p:panel header="Band">
                         <p:messages/>
                         <h:panelGrid columns="2" cellpadding="5">
-
                             <h:outputText styleClass="input-label" value="Name"/>
-                            <p:inputText value="#{bandBean.bandVo.name}" required="true"/>
+                            <p:inputText id="name" value="#{bandBean.bandVo.name}" required="true"
+                                         requiredMessage="Validation error: Name is required."/>
 
                             <h:outputText styleClass="input-label" value="Genre"/>
-                            <p:inputText value="#{bandBean.bandVo.genre}" required="true"/>
+                            <p:inputText id="genre" value="#{bandBean.bandVo.genre}" required="true"
+                                         requiredMessage="Validation error: Genre is required."/>
 
                             <h:outputText styleClass="input-label" value="Description"/>
-                            <p:inputTextarea value="#{bandBean.bandVo.description}" required="true"/>
+                            <p:inputTextarea id="description" value="#{bandBean.bandVo.description}" required="true"
+                                             requiredMessage="Validation error: Description is required."/>
 
                         </h:panelGrid>
-
-                        <p:commandButton value="Submit" action="#{createBandBean.doCreate}"/>
+                        <p:commandButton value="Submit" ajax="false" action="#{createBandBean.doCreate}"/>
                     </p:panel>
                 </h:form>
             </div>

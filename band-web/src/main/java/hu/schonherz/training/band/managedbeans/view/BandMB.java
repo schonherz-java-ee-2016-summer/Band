@@ -7,7 +7,9 @@ import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 
 /**
- *
+ *  @author Norbert Barocsi
+ *  {@link hu.schonherz.training.band.managedbeans.view.BandMB}
+ *  ManagedBean for Band.
  */
 @ManagedBean(name = "bandBean")
 @ViewScoped
