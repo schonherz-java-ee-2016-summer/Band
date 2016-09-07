@@ -1,6 +1,5 @@
 package hu.schonherz.training.band.service;
 
-import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
 

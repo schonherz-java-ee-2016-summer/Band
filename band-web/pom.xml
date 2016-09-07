@@ -14,8 +14,9 @@
     <dependencies>
         <dependency>
             <groupId>hu.schonherz.training.band</groupId>
-            <artifactId>band-service</artifactId>
+            <artifactId>band-service-client-api</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -44,6 +45,21 @@
             <artifactId>primefaces</artifactId>
             <version>${primefaces.version}</version>
         </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hu.schonherz.training</groupId>
+            <artifactId>template</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -59,5 +75,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

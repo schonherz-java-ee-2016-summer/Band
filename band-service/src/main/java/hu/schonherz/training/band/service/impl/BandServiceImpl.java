@@ -1,6 +1,5 @@
 package hu.schonherz.training.band.service.impl;
 
-import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.service.mapper.BandMapper;
@@ -44,9 +43,7 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public void createBand(BandVo bandVo) {
-        bandRepository.save(BandMapper.toEntity(bandVo));
-    }
+    public void createBand(BandVo bandVo) { bandRepository.save(BandMapper.toEntity(bandVo)); }
 
     @Override
     public void deleteBand(BandVo bandVo) {

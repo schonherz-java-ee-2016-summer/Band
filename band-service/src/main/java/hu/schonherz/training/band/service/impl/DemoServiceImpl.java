@@ -1,6 +1,5 @@
 package hu.schonherz.training.band.service.impl;
 
-import hu.schonherz.training.band.entities.BandEntity;
 import hu.schonherz.training.band.entities.DemoEntity;
 import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.service.DemoService;
@@ -22,7 +21,7 @@ import java.util.List;
  */
 @Stateless(name = "DemoService", mappedName = "DemoService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(DemoService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class DemoServiceImpl implements DemoService {
@@ -52,7 +51,9 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
+        System.out.println("11111111111111111111111111111111111111111");
         demoRepository.save(DemoMapper.toEntity(demoVo));
+        System.out.println("22222222222222222222222222222222222222222");
     }
 
     @Override

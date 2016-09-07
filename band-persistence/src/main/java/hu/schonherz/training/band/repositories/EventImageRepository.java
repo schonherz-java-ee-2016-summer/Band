@@ -15,11 +15,11 @@ import java.util.Collection;
 @Transactional(propagation = Propagation.REQUIRED)
 public interface EventImageRepository extends JpaRepository<EventImageEntity, Long> {
 
-    Collection<EventImageEntity> findByEventId();
+    Collection<EventImageEntity> findByEventId(Long eventId);
 
     EventImageEntity findByName(String name);
 
     EventImageEntity findByFilename(String filename);
 
-    EventImageEntity findById();
+    EventImageEntity findById(Long id);
 }

@@ -19,6 +19,6 @@ public interface BandRepository extends JpaRepository<BandEntity, Long> {
 
     BandEntity findByName(String name);
 
-    Collection<BandEntity> findAllBand();
+    //Collection<BandEntity> findAllBand();
 
 }

@@ -12,6 +12,7 @@
     <modules>
         <module>band-persistence</module>
         <module>band-service</module>
+        <module>band-service-client-api</module>
         <module>band-web</module>
         <module>band-ear</module>
     </modules>
