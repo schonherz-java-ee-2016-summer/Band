@@ -13,7 +13,7 @@ import java.util.List;
  * {@link hu.schonherz.training.band.service.mapper.BandImageMapper}
  * A mapper class to BandImageVo and BandImageEntity classes.
  */
-public class BandImageMapper {
+public final class BandImageMapper {
 
     private static Mapper mapper = new DozerBeanMapper();
 
