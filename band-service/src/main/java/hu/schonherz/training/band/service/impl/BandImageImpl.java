@@ -20,13 +20,13 @@ import java.util.List;
  */
 @Stateless(name = "BandImageService", mappedName = "BandImageService")
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@TransactionManagement(TransactionManagementType.BEAN)
+@TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(BandImageService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class BandImageImpl implements BandImageService {
 
     @Autowired
-    BandImageRepository bandImageRepository;
+    private BandImageRepository bandImageRepository;
 
     @Override
     public Collection<BandImageVo> getImagesByBand(BandVo bandVo) {

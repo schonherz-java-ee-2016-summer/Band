@@ -17,7 +17,7 @@ public final class BandImageMapper {
 
     private static Mapper mapper = new DozerBeanMapper();
 
-    public BandImageMapper() {
+    private BandImageMapper() {
     }
 
     public static BandImageVo toVo(BandImageEntity bandImageEntity){
