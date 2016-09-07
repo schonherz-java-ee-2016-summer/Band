@@ -1,9 +1,9 @@
-package hu.schonherz.training.band.service.impl;
+package hu.schonherz.training.band.impl;
 
 import hu.schonherz.training.band.entities.BandImageEntity;
 import hu.schonherz.training.band.repositories.BandImageRepository;
 import hu.schonherz.training.band.service.BandImageService;
-import hu.schonherz.training.band.service.mapper.BandImageMapper;
+import hu.schonherz.training.band.mapper.BandImageMapper;
 import hu.schonherz.training.band.vo.BandImageVo;
 import hu.schonherz.training.band.vo.BandVo;
 import org.springframework.beans.factory.annotation.Autowired;
