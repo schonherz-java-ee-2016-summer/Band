@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import hu.schonherz.training.band.managedbeans.view.DemoMB;
 import hu.schonherz.training.band.service.DemoService;
 import org.primefaces.event.FileUploadEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 
@@ -17,6 +19,8 @@ import java.io.*;
  */
 @ManagedBean(name = "fileUploadViewBean")
 public class FileUploadView {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadView.class);
 
     @EJB
     private DemoService demoService;
@@ -38,11 +42,11 @@ public class FileUploadView {
             demoMB.getDemoVo().setName(event.getFile().getFileName());
             demoMB.getDemoVo().setBandId((long) 1);
 
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
+            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
+            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
             demoService.createDemo(demoMB.getDemoVo());
-            System.out.println("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
+            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
+            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
         } catch (IOException e) {
             e.printStackTrace();
         }

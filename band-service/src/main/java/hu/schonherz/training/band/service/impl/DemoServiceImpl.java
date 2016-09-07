@@ -6,6 +6,8 @@ import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.service.mapper.DemoMapper;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
@@ -25,6 +27,8 @@ import java.util.List;
 @Local(DemoService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class DemoServiceImpl implements DemoService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoServiceImpl.class);
 
     @Autowired
     private DemoRepository demoRepository;
@@ -51,9 +55,9 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
-        System.out.println("11111111111111111111111111111111111111111");
+        LOGGER.info("11111111111111111111111111111111111111111");
         demoRepository.save(DemoMapper.toEntity(demoVo));
-        System.out.println("22222222222222222222222222222222222222222");
+        LOGGER.info("22222222222222222222222222222222222222222");
     }
 
     @Override
