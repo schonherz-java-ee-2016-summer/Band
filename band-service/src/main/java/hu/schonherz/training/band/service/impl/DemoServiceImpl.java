@@ -1,6 +1,7 @@
 package hu.schonherz.training.band.service.impl;
 
 import hu.schonherz.training.band.entities.DemoEntity;
+import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.service.mapper.DemoMapper;
@@ -33,6 +34,9 @@ public class DemoServiceImpl implements DemoService {
     @Autowired
     private DemoRepository demoRepository;
 
+    @Autowired
+    private BandRepository bandRepository;
+
     @Override
     public DemoVo getDemoById(Long id) {
         return DemoMapper.toVo(demoRepository.findById(id));
@@ -55,9 +59,14 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
-        LOGGER.info("11111111111111111111111111111111111111111");
-        demoRepository.save(DemoMapper.toEntity(demoVo));
-        LOGGER.info("22222222222222222222222222222222222222222");
+        LOGGER.info(demoVo.toString());
+        DemoEntity demoEntity = DemoMapper.toEntity(demoVo);
+        LOGGER.info(demoEntity.toString());
+        demoEntity.setBand(bandRepository.findById(1L));
+        LOGGER.info(bandRepository.findById(1L).toString());
+        LOGGER.info(demoEntity.toString());
+        LOGGER.info(demoRepository.findByBandId(1L).toString());
+        demoRepository.save(demoEntity);
     }
 
     @Override

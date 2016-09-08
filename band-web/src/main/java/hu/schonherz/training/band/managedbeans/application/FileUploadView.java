@@ -40,7 +40,6 @@ public class FileUploadView {
             System.out.println("WOW: " + event.getFile().getContentType() + "   " + event.getFile().getFileName() + "   " + destination);
             demoMB.getDemoVo().setFilename(destination);
             demoMB.getDemoVo().setName(event.getFile().getFileName());
-            demoMB.getDemoVo().setBandId((long) 1);
 
             LOGGER.info("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
             LOGGER.info("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());

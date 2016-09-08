@@ -39,4 +39,13 @@ public class DemoVo extends BaseVo {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
+    @Override
+    public String toString() {
+        return "DemoVo{" +
+                "bandId=" + bandId +
+                ", name='" + name + '\'' +
+                ", filename='" + filename + '\'' +
+                '}';
+    }
 }
