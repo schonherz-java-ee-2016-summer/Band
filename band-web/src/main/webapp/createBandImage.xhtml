@@ -7,7 +7,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="">
+    <ui:composition template="/templates/pageTemplate.xhtml">
+        <ui:define name="title">Upload band picture</ui:define>
+        <ui:define name="body">
+            <h:outputStylesheet name="css/bandimage.css"/>
+            <div class="main">
+                <h:form id="form" enctype="multipart/form-data">
+                    <p:panel header="Band Image" id="panel">
+                        <p:panelGrid columns="2" id="panelgrid">
+                            <h:outputText value="Name"/>
+                            <p:inputText id="name" value="#{bandImageBean.bandImageVo.name}" required="true" requiredMessage="Picture's name is required"/>
+                            <h:outputText value="Caption"/>
+                            <p:inputTextarea id="caption" value="#{bandImageBean.bandImageVo.caption}" required="true" requiredMessage="Caption is required"/>
+                        </p:panelGrid>
+                        <p:fileUpload value="#{createBandImageBean.uploadedFile}" mode="simple"/>
+                        <h:commandButton value="Upload" ajax="false" action="#{createBandImageBean.create}"></h:commandButton>
+                    </p:panel>
+                </h:form>
+            </div>
+        </ui:define>
     </ui:composition>
 
 </html>
