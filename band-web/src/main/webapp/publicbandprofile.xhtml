@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/templates/pageTemplate.xhtml">
+        <ui:define name="title">Public band profile</ui:define>
+        <ui:define name="body">
+            <h:outputStylesheet name="css/band.css"/>
+            <f:metadata>
+                <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
+                <f:event type="preRenderView" listener="#{publicBandProfileBean.onload}"/>
+            </f:metadata>
+            <p:panel styleClass="main" header="Band profile">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText styleClass="input-label" value="Band name: "/>
+                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.name}"/>
+                    <h:outputText styleClass="input-label" value="Band genre:"/>
+                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.genre}"/>
+                    <h:outputText styleClass="input-label" value="Band description: "/>
+                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.description}"/>
+                </h:panelGrid>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+
+</html>
