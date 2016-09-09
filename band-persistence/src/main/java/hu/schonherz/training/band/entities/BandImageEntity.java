@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "bandimage")
 public class BandImageEntity extends BaseAssetEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
