@@ -13,6 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * @author Armin Veress
@@ -28,7 +32,7 @@ public class FileUploadView {
     @ManagedProperty(value = "#{demoBean}")
     private DemoMB demoMB;
 
-    private String destination = "C:\\1\\";
+    private String destination = System.getProperty("jboss.server.data.dir") + File.separator + "band";
 
     public void upload(FileUploadEvent event) {
 
@@ -37,39 +41,21 @@ public class FileUploadView {
 
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
-            System.out.println("WOW: " + event.getFile().getContentType() + "   " + event.getFile().getFileName() + "   " + destination);
             demoMB.getDemoVo().setFilename(destination);
             demoMB.getDemoVo().setName(event.getFile().getFileName());
-
-            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
-            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
             demoService.createDemo(demoMB.getDemoVo());
-            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBB " + demoMB.getDemoVo().getBandId());
-            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAA " + demoMB.getDemoVo().getFilename());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void copyFile(String fileName, InputStream in) {
-        try {
-            OutputStream out = new FileOutputStream(new File(destination + fileName));
+    public void copyFile(String fileName, InputStream in) throws IOException {
+        File destination = new File(System.getProperty("jboss.server.data.dir") + File.separator +
+                "band");
+        destination.mkdirs();
+        Path absPath = Paths.get(destination + File.separator + fileName);
 
-            int read = 0;
-            byte[] bytes = new byte[1024];
-
-            while ((read = in.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-
-            in.close();
-            out.flush();
-            out.close();
-
-            System.out.println("New file created!");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        Files.copy(in, absPath, StandardCopyOption.REPLACE_EXISTING);
     }
 
     public DemoService getDemoService() {

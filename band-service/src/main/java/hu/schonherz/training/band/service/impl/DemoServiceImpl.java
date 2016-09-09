@@ -59,13 +59,8 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
-        LOGGER.info(demoVo.toString());
         DemoEntity demoEntity = DemoMapper.toEntity(demoVo);
-        LOGGER.info(demoEntity.toString());
         demoEntity.setBand(bandRepository.findById(1L));
-        LOGGER.info(bandRepository.findById(1L).toString());
-        LOGGER.info(demoEntity.toString());
-        LOGGER.info(demoRepository.findByBandId(1L).toString());
         demoRepository.save(demoEntity);
     }
 

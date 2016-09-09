@@ -10,10 +10,14 @@
 <ui:composition template="/templates/pageTemplate.xhtml">
     <ui:define name="title">Upload your demo!</ui:define>
     <ui:define name="body">
+        <h:outputStylesheet name="css/addDemo.css"/>
+        <div class="jumbotron">
+            <p>Upload your demo!</p>
+        </div>
         <div class="main">
             <h:form>
                 <p:fileUpload fileUploadListener="#{fileUploadViewBean.upload}" mode="advanced" dragDropSupport="false"
-                              update="messages" sizeLimit="200000000" fileLimit="3" allowTypes="/(\.|\/)(mp3)$/" />
+                              update="messages" sizeLimit="200000000" fileLimit="1" allowTypes="/(\.|\/)(mp3)$/" />
 
                 <p:growl id="messages" showDetail="true" />
             </h:form>
