@@ -11,8 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * @author Attila Holhós
@@ -45,7 +47,11 @@ public class CreateBandImageMB {
 
     public String create() {
         Path filePath = createPath();
-        storeImage(filePath);
+        try {
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e){
+            LOG.error("IOException");
+        }
         bandImageMB.getBandImageVo().setName(filename);
         bandImageMB.getBandImageVo().setFilename(filePath.toString());
         bandImageMB.getBandImageVo().setBandId(1L);
@@ -62,23 +68,6 @@ public class CreateBandImageMB {
             }
         }
         return Paths.get(folder.toString() + "\\" + filename);
-    }
-
-    public void storeImage(Path filePath){
-        try {
-            OutputStream output = new FileOutputStream(new File(filePath.toString()));
-            int read = 0;
-            byte[] bytes = new byte[1024];
-            while ((read = input.read(bytes)) != -1) {
-                output.write(bytes, 0, read);
-            }
-            input.close();
-            output.flush();
-            output.close();
-            System.out.println("New file created!");
-        } catch (IOException e1) {
-            LOG.error("IOException");
-        }
     }
 
     public String getFilename() {
