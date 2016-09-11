@@ -7,9 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,13 +20,13 @@ import java.nio.file.StandardCopyOption;
 
 /**
  * @author Attila Holhós
- * {@link CreateBandImageMB}
+ * {@link BandImageUploadMB}
  */
-@ManagedBean(name = "createBandImageBean")
+@ManagedBean(name = "bandImageUploadBean")
 @ViewScoped
-public class CreateBandImageMB {
+public class BandImageUploadMB {
 
-    private Logger LOG = LoggerFactory.getLogger(CreateBandImageMB.class);
+    private Logger LOG = LoggerFactory.getLogger(BandImageUploadMB.class);
 
     @ManagedProperty(value = "#{bandImageBean}")
     private BandImageMB bandImageMB;
@@ -46,18 +48,20 @@ public class CreateBandImageMB {
     }
 
     public String create() {
-        Path filePath = createPath();
-        try {
-            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e){
-            LOG.error("IOException");
+        if (input == null){
+            FacesContext saveContext = FacesContext.getCurrentInstance();
+            saveContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload an image!", null));
+            return "createbandimage";
+        } else {
+            Path filePath = createPath();
+            try {
+                Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                LOG.error("IOException");
+            }
+            saveBandImageToDB(filePath);
+            return "index";
         }
-        bandImageMB.getBandImageVo().setName(filename);
-        bandImageMB.getBandImageVo().setFilename(filePath.toString());
-        bandImageMB.getBandImageVo().setBandId(1L);
-        LOG.info(bandImageMB.getBandImageVo().getBandId().toString());
-        bandImageService.saveBandImage(bandImageMB.getBandImageVo());
-        return "index";
     }
 
     public Path createPath(){
@@ -68,6 +72,14 @@ public class CreateBandImageMB {
             }
         }
         return Paths.get(folder.toString() + "\\" + filename);
+    }
+
+    public void saveBandImageToDB(Path filePath){
+        bandImageMB.getBandImageVo().setName(filename);
+        bandImageMB.getBandImageVo().setFilename(filePath.toString());
+        bandImageMB.getBandImageVo().setBandId(1L);
+        LOG.info(bandImageMB.getBandImageVo().getBandId().toString());
+        bandImageService.saveBandImage(bandImageMB.getBandImageVo());
     }
 
     public String getFilename() {
