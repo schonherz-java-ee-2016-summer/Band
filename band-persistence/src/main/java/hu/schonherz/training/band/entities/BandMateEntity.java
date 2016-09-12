@@ -25,6 +25,10 @@ public class BandMateEntity extends BaseEntity {
     @Column(nullable = false)
     private boolean profile;
 
+    @Basic
+    @Column(nullable = false)
+    private String email;
+
     public BandEntity getBand() {
         return band;
     }
@@ -55,5 +59,13 @@ public class BandMateEntity extends BaseEntity {
 
     public void setProfile(boolean profile) {
         this.profile = profile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

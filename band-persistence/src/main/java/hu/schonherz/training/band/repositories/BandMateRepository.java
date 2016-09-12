@@ -23,5 +23,7 @@ public interface BandMateRepository extends JpaRepository<BandMateEntity, Long> 
 
     BandMateEntity findByProfile(boolean profile);
 
+    BandMateEntity findByEmail(String email);
+
     Collection<BandMateEntity> findByBandId(Long bandId);
 }
