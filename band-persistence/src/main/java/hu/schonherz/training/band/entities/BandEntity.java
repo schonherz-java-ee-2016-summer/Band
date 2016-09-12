@@ -28,7 +28,7 @@ public class BandEntity extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
     private Collection<BandImageEntity> bandsImages;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
     private Collection<DemoEntity> demos;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
@@ -88,5 +88,19 @@ public class BandEntity extends BaseEntity {
 
     public void setBandMates(Collection<BandMateEntity> bandMates) {
         this.bandMates = bandMates;
+    }
+
+    @Override
+    public String toString() {
+        return "BandEntity{" +
+                "id='" + super.getId() + " " +
+                "name='" + name + '\'' +
+                ", genre='" + genre + '\'' +
+                ", description='" + description + '\'' +
+                ", events=" + events +
+                ", bandsImages=" + bandsImages +
+                ", demos=" + demos +
+                ", bandMates=" + bandMates +
+                '}';
     }
 }

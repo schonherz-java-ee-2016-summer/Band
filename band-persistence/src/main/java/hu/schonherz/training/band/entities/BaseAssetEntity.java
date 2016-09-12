@@ -33,4 +33,12 @@ public class BaseAssetEntity extends BaseEntity {
     public void setFilename(String filename) {
         this.filename = filename;
     }
+
+    @Override
+    public String toString() {
+        return "BaseAssetEntity{" +
+                "name='" + name + '\'' +
+                ", filename='" + filename + '\'' +
+                '}';
+    }
 }

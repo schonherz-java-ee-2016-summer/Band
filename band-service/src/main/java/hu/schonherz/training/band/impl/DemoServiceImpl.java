@@ -3,9 +3,12 @@ package hu.schonherz.training.band.impl;
 import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.entities.DemoEntity;
 import hu.schonherz.training.band.mapper.DemoMapper;
+import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.repositories.DemoRepository;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.DemoVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
@@ -26,8 +29,13 @@ import java.util.List;
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class DemoServiceImpl implements DemoService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoServiceImpl.class);
+
     @Autowired
     private DemoRepository demoRepository;
+
+    @Autowired
+    private BandRepository bandRepository;
 
     @Override
     public DemoVo getDemoById(Long id) {
@@ -51,7 +59,9 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void createDemo(DemoVo demoVo) {
-        demoRepository.save(DemoMapper.toEntity(demoVo));
+        DemoEntity demoEntity = DemoMapper.toEntity(demoVo);
+        demoEntity.setBand(bandRepository.findById(1L));
+        demoRepository.save(demoEntity);
     }
 
     @Override

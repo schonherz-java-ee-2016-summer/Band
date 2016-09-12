@@ -43,9 +43,7 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public void createBand(BandVo bandVo) {
-        bandRepository.save(BandMapper.toEntity(bandVo));
-    }
+    public void createBand(BandVo bandVo) { bandRepository.save(BandMapper.toEntity(bandVo)); }
 
     @Override
     public void deleteBand(BandVo bandVo) {

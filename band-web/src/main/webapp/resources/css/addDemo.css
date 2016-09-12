@@ -1,0 +1,18 @@
+.jumbotron{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #c5c6f6;
+    color: black;
+}
+
+.jumbotron p{
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.main{
+    text-align: center;
+    display: inline;
+}

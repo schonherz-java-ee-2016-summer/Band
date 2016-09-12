@@ -6,10 +6,8 @@
 
     <context:component-scan base-package="hu.schonherz.training.band.service"/>
 
-
     <bean class="org.springframework.context.support.ClassPathXmlApplicationContext">
         <constructor-arg value="classpath:spring-core.xml"/>
     </bean>
-
 
 </beans>
