@@ -18,7 +18,7 @@ public interface BandMateService {
 
     BandMateVo getBandMateByFirstName(String firstName);
 
-    BandMateVo getBandMateByLastName(String lastname);
+    BandMateVo getBandMateByLastName(String lastName);
 
     BandMateVo getBandMateByProfile(boolean profile);
 
