@@ -2,6 +2,7 @@ package hu.schonherz.training.band.impl;
 
 import hu.schonherz.training.band.entities.BandImageEntity;
 import hu.schonherz.training.band.repositories.BandImageRepository;
+import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandImageService;
 import hu.schonherz.training.band.mapper.BandImageMapper;
 import hu.schonherz.training.band.vo.BandImageVo;
@@ -28,6 +29,9 @@ public class BandImageImpl implements BandImageService {
     @Autowired
     private BandImageRepository bandImageRepository;
 
+    @Autowired
+    private BandRepository bandRepository;
+
     @Override
     public Collection<BandImageVo> getImagesByBand(BandVo bandVo) {
         return BandImageMapper.toVo((List<BandImageEntity>) bandImageRepository.findByBandId(bandVo.getId()));
@@ -40,7 +44,9 @@ public class BandImageImpl implements BandImageService {
 
     @Override
     public void saveBandImage(BandImageVo bandImageVo) {
-        bandImageRepository.save(BandImageMapper.toEntity(bandImageVo));
+        BandImageEntity bandImageEntity = BandImageMapper.toEntity(bandImageVo);
+        bandImageEntity.setBand(bandRepository.findById(bandImageVo.getBandId()));
+        bandImageRepository.save(bandImageEntity);
     }
 
     @Override

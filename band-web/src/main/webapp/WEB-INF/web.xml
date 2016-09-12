@@ -6,7 +6,7 @@
          id="WebApp_ID" version="2.5">
 
     <welcome-file-list>
-        <welcome-file>/pages/index.jsf</welcome-file>
+        <welcome-file>/pages/createBandImage.jsf</welcome-file>
     </welcome-file-list>
 
     <listener>
@@ -22,6 +22,11 @@
         <servlet-name>faces</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
+
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>auto</param-value>
+    </context-param>
 
     <ejb-local-ref>
         <ejb-ref-name>ejb.BandService</ejb-ref-name>
