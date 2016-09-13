@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "bandmate")
 public class BandMateEntity extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
@@ -68,4 +68,5 @@ public class BandMateEntity extends BaseEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

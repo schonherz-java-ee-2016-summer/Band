@@ -4,6 +4,8 @@ import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.mapper.BandMapper;
 import hu.schonherz.training.band.vo.BandVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
@@ -24,6 +26,8 @@ import java.util.Collection;
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class BandServiceImpl implements BandService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(BandServiceImpl.class);
+
     @Autowired
     private BandRepository bandRepository;
 
@@ -43,7 +47,9 @@ public class BandServiceImpl implements BandService {
     }
 
     @Override
-    public void createBand(BandVo bandVo) { bandRepository.save(BandMapper.toEntity(bandVo)); }
+    public void createBand(BandVo bandVo) {
+        bandRepository.save(BandMapper.toEntity(bandVo));
+    }
 
     @Override
     public void deleteBand(BandVo bandVo) {

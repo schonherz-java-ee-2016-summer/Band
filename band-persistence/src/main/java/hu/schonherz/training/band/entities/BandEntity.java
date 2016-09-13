@@ -90,17 +90,4 @@ public class BandEntity extends BaseEntity {
         this.bandMates = bandMates;
     }
 
-    @Override
-    public String toString() {
-        return "BandEntity{" +
-                "id='" + super.getId() + " " +
-                "name='" + name + '\'' +
-                ", genre='" + genre + '\'' +
-                ", description='" + description + '\'' +
-                ", events=" + events +
-                ", bandsImages=" + bandsImages +
-                ", demos=" + demos +
-                ", bandMates=" + bandMates +
-                '}';
-    }
 }

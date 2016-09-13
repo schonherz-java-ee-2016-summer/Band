@@ -1,5 +1,8 @@
 package hu.schonherz.training.band.vo;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 /**
  * @author Norbert Barocsi
  * {@link BandVo}
@@ -19,7 +22,7 @@ public class BandVo extends BaseVo {
 //
 //    private Collection<DemoVo> demos;
 //
-//    private Collection<BandMateVo> bandMates;
+    private Collection<BandMateVo> bandMates;
 
     public String getName() {
         return name;
@@ -68,12 +71,12 @@ public class BandVo extends BaseVo {
 //    public void setDemos(Collection<DemoVo> demos) {
 //        this.demos = demos;
 //    }
-//
-//    public Collection<BandMateVo> getBandMates() {
-//        return bandMates;
-//    }
-//
-//    public void setBandMates(Collection<BandMateVo> bandMates) {
-//        this.bandMates = bandMates;
-//    }
+
+    public Collection<BandMateVo> getBandMates() {
+        return bandMates;
+    }
+
+    public void setBandMates(Collection<BandMateVo> bandMates) {
+        this.bandMates = bandMates;
+    }
 }

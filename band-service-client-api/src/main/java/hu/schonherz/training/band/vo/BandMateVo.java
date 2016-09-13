@@ -5,7 +5,7 @@ package hu.schonherz.training.band.vo;
  * {@link hu.schonherz.training.band.vo.BandMateVo}
  *  Value object for band mate.
  */
-public class BandMateVo {
+public class BandMateVo extends BaseVo{
 
     private Long bandId;
 
@@ -16,6 +16,9 @@ public class BandMateVo {
     private boolean profile;
 
     private String email;
+
+    public BandMateVo() {
+    }
 
     public Long getBandId() {
         return bandId;
@@ -56,4 +59,5 @@ public class BandMateVo {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
