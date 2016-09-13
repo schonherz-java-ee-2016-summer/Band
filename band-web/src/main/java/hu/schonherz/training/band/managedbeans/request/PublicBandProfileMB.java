@@ -23,7 +23,7 @@ import java.nio.file.Paths;
  *
  */
 @ManagedBean(name = "publicBandProfileBean")
-@ViewScoped
+@RequestScoped
 public class PublicBandProfileMB {
 
     @ManagedProperty("#{bandBean}")
@@ -46,23 +46,6 @@ public class PublicBandProfileMB {
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
 
             bandMB.setBandVo(bandVo);
-        }
-    }
-
-    public StreamedContent getDemo() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
-        if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-            return new DefaultStreamedContent();
-
-        } else {
-            String demoId = context.getExternalContext().getRequestParameterMap().get("demoId");
-            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + demoId);
-
-            DemoVo demo = demoService.getDemoById(1L);
-            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" + demo.toString());
-
-            return new DefaultStreamedContent(new FileInputStream(Paths.get(demo.getFullPath()).toFile()),
-                    "audio/mpeg", demo.getName());
         }
     }
 
