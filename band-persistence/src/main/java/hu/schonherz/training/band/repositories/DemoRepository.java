@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.repositories;
 
+import hu.schonherz.training.band.entities.BaseAssetEntity;
 import hu.schonherz.training.band.entities.DemoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

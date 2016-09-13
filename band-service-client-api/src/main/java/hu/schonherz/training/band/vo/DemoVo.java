@@ -12,6 +12,8 @@ public class DemoVo extends BaseVo {
 
     private String filename;
 
+    private String fullPath;
+
     public Long getBandId() {
         return bandId;
     }
@@ -34,6 +36,10 @@ public class DemoVo extends BaseVo {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public String getFullPath() {
+        return this.filename+"\\"+this.name;
     }
 
     @Override
