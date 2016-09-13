@@ -46,7 +46,7 @@ public class CreateBandMB {
     public String doCreate(){
         bandService.createBand(bandMB.getBandVo());
 
-        for(BandMateVo bandMateVo: bandMatesMB.getBandMateVos()){
+        for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {
             bandMateVo.setBandId(bandService.getBandByName(bandMB.getBandVo().getName()).getId());
             bandMateService.createBandMate(bandMateVo);
         }

@@ -16,12 +16,12 @@ import java.util.List;
 
 /**
  *  @author Norbert Barocsi
- *  {@link hu.schonherz.training.band.managedbeans.view.BandMateMB}
+ *  {@link hu.schonherz.training.band.managedbeans.view.BandMatesMB}
  *  ManagedBean for BandMates.
  */
 @ManagedBean(name = "bandMatesBean")
 @ViewScoped
-public class BandMatesMB implements Serializable{
+public class BandMatesMB implements Serializable {
 
     private List<BandMateVo> bandMateVos = new ArrayList<>();
 

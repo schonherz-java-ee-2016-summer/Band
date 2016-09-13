@@ -26,7 +26,7 @@ import java.nio.file.StandardCopyOption;
 @ViewScoped
 public class BandImageUploadMB {
 
-    private Logger LOG = LoggerFactory.getLogger(BandImageUploadMB.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BandImageUploadMB.class);
 
     @ManagedProperty(value = "#{bandImageBean}")
     private BandImageMB bandImageMB;
@@ -43,7 +43,7 @@ public class BandImageUploadMB {
         try {
             input = uploadedFile.getInputstream();
         } catch (IOException e) {
-            LOG.error("IOException");
+            LOGGER.error("IOException");
         }
     }
 
@@ -57,7 +57,7 @@ public class BandImageUploadMB {
             try {
                 Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                LOG.error("IOException");
+                LOGGER.error("IOException");
             }
             saveBandImageToDB(filePath);
             return "index";
@@ -78,7 +78,7 @@ public class BandImageUploadMB {
         bandImageMB.getBandImageVo().setName(filename);
         bandImageMB.getBandImageVo().setFilename(filePath.toString());
         bandImageMB.getBandImageVo().setBandId(1L);
-        LOG.info(bandImageMB.getBandImageVo().getBandId().toString());
+        LOGGER.info(bandImageMB.getBandImageVo().getBandId().toString());
         bandImageService.saveBandImage(bandImageMB.getBandImageVo());
     }
 
