@@ -1,5 +1,7 @@
 package hu.schonherz.training.band.vo;
 
+import java.util.Collection;
+
 /**
  * @author Norbert Barocsi
  * {@link BandVo}
@@ -15,7 +17,7 @@ public class BandVo extends BaseVo {
 
 //    private Collection<EventVo> events;
 //
-//    private Collection<BandImageVo> bandsImages;
+    private Collection<BandImageVo> bandsImages;
 //
 //    private Collection<DemoVo> demos;
 //
@@ -53,13 +55,13 @@ public class BandVo extends BaseVo {
 //        this.events = events;
 //    }
 //
-//    public Collection<BandImageVo> getBandsImages() {
-//        return bandsImages;
-//    }
-//
-//    public void setBandsImages(Collection<BandImageVo> bandsImages) {
-//        this.bandsImages = bandsImages;
-//    }
+    public Collection<BandImageVo> getBandsImages() {
+        return bandsImages;
+    }
+
+    public void setBandsImages(Collection<BandImageVo> bandsImages) {
+        this.bandsImages = bandsImages;
+    }
 //
 //    public Collection<DemoVo> getDemos() {
 //        return demos;
