@@ -3,6 +3,8 @@ package hu.schonherz.training.band.managedbeans.request;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +19,8 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 public class PublicBandProfileMB {
 
+    private Logger LOG = LoggerFactory.getLogger(PublicBandProfileMB.class);
+
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
 
@@ -29,6 +33,7 @@ public class PublicBandProfileMB {
 
             bandMB.setBandVo(bandVo);
         }
+        LOG.info("onLoad completed.");
     }
 
     public BandMB getBandMB() {

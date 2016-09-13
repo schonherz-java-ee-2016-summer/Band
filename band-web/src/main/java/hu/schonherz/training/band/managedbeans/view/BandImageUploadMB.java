@@ -21,6 +21,7 @@ import java.nio.file.StandardCopyOption;
 /**
  * @author Attila Holhós
  * {@link BandImageUploadMB}
+ * This managedBean is responsible for storing image in wildfly.
  */
 @ManagedBean(name = "bandImageUploadBean")
 @ViewScoped
@@ -42,6 +43,7 @@ public class BandImageUploadMB {
         filename = uploadedFile.getFileName();
         try {
             input = uploadedFile.getInputstream();
+            LOG.info("An Image was uploaded.");
         } catch (IOException e) {
             LOG.error("IOException");
         }
@@ -60,6 +62,7 @@ public class BandImageUploadMB {
                 LOG.error("IOException");
             }
             saveBandImageToDB(filePath);
+            LOG.info("Store an image and save entity to database.");
             return "index";
         }
     }
@@ -78,7 +81,6 @@ public class BandImageUploadMB {
         bandImageMB.getBandImageVo().setName(filename);
         bandImageMB.getBandImageVo().setFilename(filePath.toString());
         bandImageMB.getBandImageVo().setBandId(1L);
-        LOG.info(bandImageMB.getBandImageVo().getBandId().toString());
         bandImageService.saveBandImage(bandImageMB.getBandImageVo());
     }
 

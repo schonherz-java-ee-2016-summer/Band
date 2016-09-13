@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Created by Attila on 2016.09.13..
+ * @author Attila Holhós
+ * {@link hu.schonherz.training.band.managedbeans.application.ImageStreamer}
+ * It is needed to display image in gallery of primefaces.
  */
 @ManagedBean(name = "imageStreamerBean")
 @ApplicationScoped
@@ -25,17 +27,13 @@ public class ImageStreamer {
 
     public StreamedContent getImage() throws IOException {
         FacesContext context = FacesContext.getCurrentInstance();
-        System.out.println("Szia");
         if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
             return new DefaultStreamedContent();
         } else {
             String id = context.getExternalContext().getRequestParameterMap().get("imageId");
-            System.out.println(id);
             BandImageVo bandImageVo = bandImageService.getImageById(Long.valueOf(id));
-            System.out.println(bandImageVo.toString());
             return new DefaultStreamedContent(
                     new FileInputStream(bandImageVo.getFilename()));
         }
     }
-
 }
