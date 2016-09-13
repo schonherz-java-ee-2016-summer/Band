@@ -26,7 +26,7 @@
                 </h:panelGrid>
             </p:panel>
             <div id="gallery">
-                <p:galleria styleClass="gallery" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600" panelHeight="400" showCaption="true">
+                <p:galleria styleClass="galleria" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600" panelHeight="400" showCaption="true">
                     <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title="#{image.name}" width="600" height="400">
                         <f:param name="imageId" value="#{image.id}"/>
                     </p:graphicImage>

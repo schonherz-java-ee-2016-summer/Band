@@ -4,6 +4,8 @@ import hu.schonherz.training.band.service.BandImageService;
 import hu.schonherz.training.band.vo.BandImageVo;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.bean.*;
@@ -22,6 +24,8 @@ import java.util.Map;
 @ApplicationScoped
 public class ImageStreamer {
 
+    private Logger LOG = LoggerFactory.getLogger(ImageStreamer.class);
+
     @EJB
     private BandImageService bandImageService;
 
@@ -32,6 +36,7 @@ public class ImageStreamer {
         } else {
             String id = context.getExternalContext().getRequestParameterMap().get("imageId");
             BandImageVo bandImageVo = bandImageService.getImageById(Long.valueOf(id));
+            LOG.info("Display " + bandImageVo.getName() + ".");
             return new DefaultStreamedContent(
                     new FileInputStream(bandImageVo.getFilename()));
         }
