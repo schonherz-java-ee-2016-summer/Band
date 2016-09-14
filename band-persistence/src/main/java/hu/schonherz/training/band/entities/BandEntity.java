@@ -5,6 +5,8 @@ import java.util.Collection;
 
 
 /**
+ * @author Norbert Barocsi
+ * {@link hu.schonherz.training.band.entities.BandEntity}
  * Entity for bands.
  */
 @Entity

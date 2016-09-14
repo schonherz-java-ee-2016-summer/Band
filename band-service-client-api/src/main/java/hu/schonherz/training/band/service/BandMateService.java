@@ -22,6 +22,10 @@ public interface BandMateService {
 
     BandMateVo getBandMateByProfile(boolean profile);
 
+    BandMateVo getBandMateByEmail(String email);
+
+    BandMateVo getBandMateByInstrument(String instrument);
+
     void createBandMate(BandMateVo bandMateVo);
 
     void deleteBandMate(BandMateVo bandMateVo);

@@ -3,6 +3,8 @@ package hu.schonherz.training.band.entities;
 import javax.persistence.*;
 
 /**
+ * @author Norbert Barocsi
+ * {@link hu.schonherz.training.band.entities.BandMateEntity}
  *  Entity for band members.
  */
 @Entity
@@ -28,6 +30,10 @@ public class BandMateEntity extends BaseEntity {
     @Basic
     @Column(nullable = false)
     private String email;
+
+    @Basic
+    @Column(nullable = false)
+    private String instrument;
 
     public BandEntity getBand() {
         return band;
@@ -69,4 +75,11 @@ public class BandMateEntity extends BaseEntity {
         this.email = email;
     }
 
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
+    }
 }

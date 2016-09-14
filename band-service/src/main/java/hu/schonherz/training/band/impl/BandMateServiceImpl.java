@@ -58,6 +58,16 @@ public class BandMateServiceImpl implements BandMateService {
     }
 
     @Override
+    public BandMateVo getBandMateByEmail(String email) {
+        return BandMateMapper.toVo(bandMateRepository.findByEmail(email));
+    }
+
+    @Override
+    public BandMateVo getBandMateByInstrument(String instrument) {
+        return BandMateMapper.toVo(bandMateRepository.findByInstrument(instrument));
+    }
+
+    @Override
     public void createBandMate(BandMateVo bandMateVo) {
         BandMateEntity bandMateEntity = BandMateMapper.toEntity(bandMateVo);
         bandMateEntity.setBand(bandRepository.findById(bandMateVo.getBandId()));

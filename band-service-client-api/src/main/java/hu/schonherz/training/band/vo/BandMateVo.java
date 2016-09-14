@@ -17,6 +17,8 @@ public class BandMateVo extends BaseVo{
 
     private String email;
 
+    private String instrument;
+
     public BandMateVo() {
     }
 
@@ -60,4 +62,11 @@ public class BandMateVo extends BaseVo{
         this.email = email;
     }
 
+    public String getInstrument() {
+        return instrument;
+    }
+
+    public void setInstrument(String instrument) {
+        this.instrument = instrument;
+    }
 }
