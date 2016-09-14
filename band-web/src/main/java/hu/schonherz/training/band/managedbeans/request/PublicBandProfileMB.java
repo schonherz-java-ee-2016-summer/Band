@@ -51,10 +51,16 @@ public class PublicBandProfileMB {
     }
 
     public void editBand(){
-        LOG.info("valami értelmes");
+        BandVo bandVo = new BandVo();
 
-        bandService.createBand(bandMB.getBandVo());
-        LOG.info("Ide is beesek he");
+        bandVo.setId(bandMB.getBandVo().getId());
+        bandVo.setName(bandMB.getBandVo().getName());
+        bandVo.setDescription(bandMB.getBandVo().getDescription());
+        bandVo.setGenre(bandMB.getBandVo().getGenre());
+
+        bandService.createBand(bandVo);
+
+        LOG.info("editBand completed.");
     }
 
     public BandMB getBandMB() {
