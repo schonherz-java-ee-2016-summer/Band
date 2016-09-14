@@ -52,6 +52,10 @@
                                     <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}" required="true"
                                                  requiredMessage="Validation error: Email is required."/>
 
+                                    <h:outputText styleClass="input-label" value="Musical Instrument"/>
+                                    <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}" required="true"
+                                                 requiredMessage="Validation error: Instrument is required."/>
+
                                     <h:outputText styleClass="input-label" value="Profile"/>
                                     <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
 

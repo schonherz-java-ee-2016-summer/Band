@@ -31,12 +31,13 @@ public class CreateBandMateMB {
         bandMate.setFirstName(bandMateMB.getBandMateVo().getFirstName());
         bandMate.setLastName(bandMateMB.getBandMateVo().getLastName());
         bandMate.setEmail(bandMateMB.getBandMateVo().getEmail());
+        bandMate.setInstrument(bandMateMB.getBandMateVo().getInstrument());
         bandMate.setProfile(bandMateMB.getBandMateVo().isProfile());
 
         bandMatesMB.getBandMateVos().add(bandMate);
 
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Save completed: " + bandMateMB.getBandMateVo().getFirstName()
+                new FacesMessage("Save Completed: " + bandMateMB.getBandMateVo().getFirstName()
                         + " " + bandMateMB.getBandMateVo().getLastName()));
     }
 
