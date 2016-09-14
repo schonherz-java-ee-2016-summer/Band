@@ -22,21 +22,16 @@
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.genre}"/>
                     <h:outputText styleClass="input-label" value="Band description: "/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.description}"/>
-                    <audio controls="controls">
-                        Your browser does not support the <code>audio</code> element.
-                        <source src="file:\\C:\Users\Lenovo\Documents\wildfly-10.0.0.Final\standalone\data\band\Resident Evil  - Main Title Theme.mp3" type="audio/mpeg"/>
-                    </audio>
                 </h:panelGrid>
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
                     <p:column headerText="Our demos">
                         <h:outputText value="#{demo.name}" />
                     </p:column>
                     <p:column headerText="Songs">
-                        <p:media value="#{audioStream.demo}" width="400" height="40" player="quicktime">
-                            <f:param name="autostart" value="false"/>
-                            <f:param name="autoplay" value="false" />
-                            <f:param name="demoId" value="#{demo.id}" />
-                        </p:media>
+                    <audio controls="controls">
+                        Your browser does not support the <code>audio</code> element.
+                        <source src="http://localhost:8080/band-web/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                    </audio>
                     </p:column>
                 </p:dataTable>
             </p:panel>

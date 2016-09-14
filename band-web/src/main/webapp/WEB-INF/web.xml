@@ -23,6 +23,14 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>demo</servlet-name>
+        <servlet-class>hu.schonherz.training.band.managedbeans.servlet.DemoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>demo</servlet-name>
+        <url-pattern>/band/demo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>faces</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
