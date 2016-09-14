@@ -1,40 +1,31 @@
-package hu.schonherz.training.band.entities;
-
-import javax.persistence.*;
+package hu.schonherz.training.band.vo;
 
 /**
- *  Entity for band members.
+ * @author Norbert Barocsi
+ * {@link hu.schonherz.training.band.vo.BandMateVo}
+ *  Value object for band mate.
  */
-@Entity
-@Table(name = "bandmate")
-public class BandMateEntity extends BaseEntity {
+public class BandMateVo extends BaseVo{
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bandId", nullable = false)
-    private BandEntity band;
+    private Long bandId;
 
-    @Basic
-    @Column(nullable = false)
     private String firstName;
 
-    @Basic
-    @Column(nullable = false)
     private String lastName;
 
-    @Basic
-    @Column(nullable = false)
     private boolean profile;
 
-    @Basic
-    @Column(nullable = false)
     private String email;
 
-    public BandEntity getBand() {
-        return band;
+    public BandMateVo() {
     }
 
-    public void setBand(BandEntity band) {
-        this.band = band;
+    public Long getBandId() {
+        return bandId;
+    }
+
+    public void setBandId(Long bandId) {
+        this.bandId = bandId;
     }
 
     public String getFirstName() {
