@@ -13,6 +13,7 @@ import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Norbert Barocsi
@@ -34,7 +35,7 @@ public class BandMateServiceImpl implements BandMateService {
 
     @Override
     public Collection<BandMateVo> getBandMateVosByBand(BandVo bandVo) {
-        return BandMateMapper.toVo(bandMateRepository.findAll());
+        return BandMateMapper.toVo((List<BandMateEntity>) bandMateRepository.findByBandId(bandVo.getId()));
     }
 
     @Override
