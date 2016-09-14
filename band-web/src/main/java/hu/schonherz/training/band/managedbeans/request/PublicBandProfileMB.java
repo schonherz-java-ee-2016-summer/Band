@@ -74,11 +74,4 @@ public class PublicBandProfileMB {
         this.bandMatesMB = bandMatesMB;
     }
 
-    public BandMateService getBandMateService() {
-        return bandMateService;
-    }
-
-    public void setBandMateService(BandMateService bandMateService) {
-        this.bandMateService = bandMateService;
-    }
 }
