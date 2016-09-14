@@ -7,6 +7,8 @@ import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
 import org.primefaces.event.FlowEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -21,6 +23,8 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean(name = "createBandBean")
 @RequestScoped
 public class CreateBandMB {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CreateBandMB.class);
 
     @ManagedProperty(value = "#{bandBean}")
     private BandMB bandMB;
@@ -39,7 +43,7 @@ public class CreateBandMB {
 
     public String doCreate(){
         bandService.createBand(bandMB.getBandVo());
-
+        LOGGER.info("itt pukkan el E?");
         for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {
             bandMateVo.setBandId(bandService.getBandByName(bandMB.getBandVo().getName()).getId());
             bandMateService.createBandMate(bandMateVo);

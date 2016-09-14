@@ -50,6 +50,13 @@ public class PublicBandProfileMB {
         LOG.info("onLoad completed.");
     }
 
+    public void editBand(){
+        LOG.info("valami értelmes");
+
+        bandService.createBand(bandMB.getBandVo());
+        LOG.info("Ide is beesek he");
+    }
+
     public BandMB getBandMB() {
         return bandMB;
     }

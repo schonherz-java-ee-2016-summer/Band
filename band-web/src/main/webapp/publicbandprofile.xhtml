@@ -16,14 +16,33 @@
                 <f:event type="preRenderView" listener="#{publicBandProfileBean.onload}"/>
             </f:metadata>
             <p:panel styleClass="main" header="Band profile">
+
+                <p:commandButton value="Edit" type="button" onclick="PF('dlg2').show();" />
+
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText styleClass="input-label" value="Band name: "/>
+                    <h:outputText styleClass="input-label" value="Band name:"/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.name}"/>
                     <h:outputText styleClass="input-label" value="Band genre:"/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.genre}"/>
-                    <h:outputText styleClass="input-label" value="Band description: "/>
+                    <h:outputText styleClass="input-label" value="Band description:"/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.description}"/>
                 </h:panelGrid>
+
+                <p:dialog header="Band Edit" widgetVar="dlg2" modal="true" height="300">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText styleClass="input-label" value="Name"/>
+                            <p:inputText id="name" value="#{bandBean.bandVo.name}"/>
+
+                            <h:outputText styleClass="input-label" value="Genre"/>
+                            <p:inputText id="genre" value="#{bandBean.bandVo.genre}"/>
+
+                            <h:outputText styleClass="input-label" value="Description"/>
+                            <p:inputTextarea id="description" value="#{bandBean.bandVo.description}"/>
+                            <p:commandButton value="Save" ajax="false" action="#{publicBandProfileBean.editBand}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
 
                 <h:panelGrid columns="4" cellpadding="5">
                     <p:dataList value="#{publicBandProfileBean.bandMatesMB.bandMateVos}" var="bandMate">
