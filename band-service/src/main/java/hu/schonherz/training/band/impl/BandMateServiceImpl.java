@@ -1,15 +1,12 @@
 package hu.schonherz.training.band.impl;
 
 import hu.schonherz.training.band.entities.BandMateEntity;
-import hu.schonherz.training.band.mapper.BandMapper;
 import hu.schonherz.training.band.mapper.BandMateMapper;
 import hu.schonherz.training.band.repositories.BandMateRepository;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.vo.BandMateVo;
 import hu.schonherz.training.band.vo.BandVo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
@@ -28,8 +25,6 @@ import java.util.Collection;
 @Local(BandMateService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
 public class BandMateServiceImpl implements BandMateService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(BandMateServiceImpl.class);
 
     @Autowired
     private BandMateRepository bandMateRepository;

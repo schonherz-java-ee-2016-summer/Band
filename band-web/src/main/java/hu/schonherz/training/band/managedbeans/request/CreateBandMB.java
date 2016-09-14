@@ -7,15 +7,11 @@ import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
 import org.primefaces.event.FlowEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *  @author Norbert Barocsi
@@ -25,8 +21,6 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "createBandBean")
 @RequestScoped
 public class CreateBandMB {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CreateBandMB.class);
 
     @ManagedProperty(value = "#{bandBean}")
     private BandMB bandMB;

@@ -1,25 +1,14 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-import hu.schonherz.training.band.managedbeans.application.FileUploadView;
-import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.managedbeans.view.BandMateMB;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
-import hu.schonherz.training.band.service.BandMateService;
-import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
-import hu.schonherz.training.band.vo.BandVo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *  @author Norbert Barocsi
@@ -29,8 +18,6 @@ import java.util.List;
 @ManagedBean(name = "createBandMateBean")
 @RequestScoped
 public class CreateBandMateMB {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(CreateBandMateMB.class);
 
     @ManagedProperty(value = "#{bandMateBean}")
     private BandMateMB bandMateMB;
