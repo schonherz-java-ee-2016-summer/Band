@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.impl;
 
+import hu.schonherz.training.band.ejb.remote.stateless.BandRemoteService;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.mapper.BandMapper;
@@ -21,8 +22,9 @@ import java.util.Collection;
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
 @TransactionManagement(TransactionManagementType.CONTAINER)
 @Local(BandService.class)
+@Remote(BandRemoteService.class)
 @Interceptors({SpringBeanAutowiringInterceptor.class})
-public class BandServiceImpl implements BandService {
+public class BandServiceImpl implements BandService, BandRemoteService {
 
     @Autowired
     private BandRepository bandRepository;
@@ -50,5 +52,10 @@ public class BandServiceImpl implements BandService {
     @Override
     public void deleteBand(BandVo bandVo) {
         bandRepository.delete(BandMapper.toEntity(bandVo));
+    }
+
+    @Override
+    public String getAllBands() {
+        return "Valami tök mindegy!";
     }
 }
