@@ -30,7 +30,7 @@
                     <p:column headerText="Songs">
                     <audio controls="controls">
                         Your browser does not support the <code>audio</code> element.
-                        <source src="http://localhost:8080/band-web/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                        <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
                     </audio>
                     </p:column>
                 </p:dataTable>
