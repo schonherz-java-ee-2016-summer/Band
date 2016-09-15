@@ -41,6 +41,27 @@
                         </p:graphicImage>
                     </p:galleria>
                 </div>
+
+                <p:commandButton value="Add" type="button" onclick="PF('add').show();" />
+                <p:commandButton value="Edit" type="button" onclick="PF('edit').show();" />
+
+                <p:dialog modal="true" header="Imageeditor" widgetVar="edit">
+                    <p:dataTable value="#{bandBean.bandVo.bandsImages}" var="image">
+                        <p:column headerText="Image">
+                            <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
+                                <f:param name="imageId" value="#{image.id}"/>
+                            </p:graphicImage>
+                        </p:column>
+                        <p:column headerText="Name">
+                            <h:outputText value="#{image.name}"/>
+                        </p:column>
+                        <p:column headerText="Caption">
+                            <h:outputText value="#{image.caption}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                </p:dialog>
+
             </p:panel>
         </ui:define>
     </ui:composition>
