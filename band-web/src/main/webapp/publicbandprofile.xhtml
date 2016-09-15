@@ -43,12 +43,8 @@
                     <h:form>
                         <p:growl id="messages" showDetail="true" />
                         <h:panelGrid columnClasses="value">
-                            <h3 style="margin-top: 0">Editable Schedule</h3>
+                            <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s demos</h3>
                             <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
-                                <p:ajax event="dateSelect" listener="#{scheduleViewMB.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                                <p:ajax event="eventSelect" listener="#{scheduleViewMB.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-                                <p:ajax event="eventMove" listener="#{scheduleViewMB.onEventMove}" update="messages" />
-                                <p:ajax event="eventResize" listener="#{scheduleViewMB.onEventResize}" update="messages" />
                             </p:schedule>
                         </h:panelGrid>
                         <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
@@ -65,11 +61,8 @@
                                 <p:outputLabel for="description" value="Description:" />
                                 <p:inputText id="description" value="#{scheduleViewMB.event.description}" required="true" />
 
-                                <p:outputLabel for="allDay" value="All Day:" />
-                                <h:selectBooleanCheckbox id="allDay" value="#{scheduleViewMB.event.allDay}" />
-
                                 <p:commandButton type="reset" value="Reset" />
-                                <p:commandButton id="addButton" value="Save" actionListener="#{scheduleViewMB.addEvent}" oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+                                <p:commandButton id="addButton" value="Save" />
                             </h:panelGrid>
                         </p:dialog>
                     </h:form>
