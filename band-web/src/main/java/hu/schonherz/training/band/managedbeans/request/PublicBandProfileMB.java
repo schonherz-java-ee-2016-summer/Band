@@ -30,21 +30,15 @@ public class PublicBandProfileMB {
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
 
-    @ManagedProperty("#{bandMatesBean}")
-    private BandMatesMB bandMatesMB;
-
     @EJB
     private BandService bandService;
-
-    @EJB
-    private BandMateService bandMateService;
 
     public void onload() {
         if (!FacesContext.getCurrentInstance().isPostback()) {
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
             bandMB.setBandVo(bandVo);
 
-            bandMB.getBandVo().setBandMates(bandMateService.getBandMateVosByBand(bandVo));
+            bandMB.getBandVo().getBandMates();
         }
 
         LOGGER.info("onLoad completed.");
@@ -70,14 +64,6 @@ public class PublicBandProfileMB {
 
     public void setBandService(BandService bandService) {
         this.bandService = bandService;
-    }
-
-    public BandMatesMB getBandMatesMB() {
-        return bandMatesMB;
-    }
-
-    public void setBandMatesMB(BandMatesMB bandMatesMB) {
-        this.bandMatesMB = bandMatesMB;
     }
 
 }
