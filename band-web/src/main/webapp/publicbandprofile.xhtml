@@ -50,7 +50,6 @@
                                 <p:ajax event="eventMove" listener="#{scheduleViewMB.onEventMove}" update="messages" />
                                 <p:ajax event="eventResize" listener="#{scheduleViewMB.onEventResize}" update="messages" />
                             </p:schedule>
-                            <p:schedule value="#{scheduleViewMB.lazyEventModel}" />
                         </h:panelGrid>
                         <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
                             <h:panelGrid id="eventDetails" columns="2">
