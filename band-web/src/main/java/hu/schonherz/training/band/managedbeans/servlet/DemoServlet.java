@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.managedbeans.servlet;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,37 +22,29 @@ public class DemoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ServletOutputStream stream = null;
-        BufferedInputStream buf = null;
-        try {
-            stream = resp.getOutputStream();
+        try (ServletOutputStream stream = resp.getOutputStream()){
             String query = req.getQueryString();
-            String filename = query.substring(query.indexOf("filename=") + 9);
-            String[] strings = filename.split("&");
-            filename = strings[0];
-            filename = URLDecoder.decode(filename, "UTF-8");
-            LOGGER.info(filename);
-            File mp3 = new File(System.getProperty("jboss.server.data.dir") + File.separator + "band" + File.separator + filename);
-
-            resp.setContentType("audio/mpeg");
-
-            resp.addHeader("Content-Disposition", "attachment; filename=" + filename);
-
-            resp.setContentLength((int) mp3.length());
-            FileInputStream input = new FileInputStream(mp3);
-            buf = new BufferedInputStream(input);
-            int readBytes = 0;
-            while ((readBytes = buf.read()) != -1)
-                stream.write(readBytes);
+            if(query.indexOf("filename=") == -1){
+                resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            } else {
+                String filename = query.substring(query.indexOf("filename=") + 9);
+                String[] strings = filename.split("&");
+                filename = strings[0];
+                filename = URLDecoder.decode(filename, "UTF-8");
+                LOGGER.info(filename);
+                File mp3 = new File(System.getProperty("jboss.server.data.dir") + File.separator + "band" + File.separator + filename);
+                FileUtils.copyFile(mp3,stream);
+                resp.setContentType("audio/mpeg");
+                resp.addHeader("Content-Disposition", "attachment; filename=" + filename);
+                resp.setContentLength((int) mp3.length());
+            }
         } catch (UnsupportedEncodingException e){
             LOGGER.error("This coding is not support!");
+        } catch (FileNotFoundException e) {
+            LOGGER.error("No file with this filename!");
+            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         } catch (IOException ioe) {
             throw new ServletException(ioe.getMessage());
-        } finally {
-            if (stream != null)
-                stream.close();
-            if (buf != null)
-                buf.close();
         }
     }
 }
