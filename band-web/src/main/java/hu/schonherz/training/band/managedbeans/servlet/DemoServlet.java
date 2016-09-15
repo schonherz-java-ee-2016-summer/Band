@@ -24,7 +24,7 @@ public class DemoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (ServletOutputStream stream = resp.getOutputStream()){
             String query = req.getQueryString();
-            if(query.indexOf("filename=") == -1){
+            if (query.indexOf("filename=") == -1){
                 resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             } else {
                 String filename = query.substring(query.indexOf("filename=") + 9);
@@ -33,7 +33,7 @@ public class DemoServlet extends HttpServlet {
                 filename = URLDecoder.decode(filename, "UTF-8");
                 LOGGER.info(filename);
                 File mp3 = new File(System.getProperty("jboss.server.data.dir") + File.separator + "band" + File.separator + filename);
-                FileUtils.copyFile(mp3,stream);
+                FileUtils.copyFile(mp3, stream);
                 resp.setContentType("audio/mpeg");
                 resp.addHeader("Content-Disposition", "attachment; filename=" + filename);
                 resp.setContentLength((int) mp3.length());
