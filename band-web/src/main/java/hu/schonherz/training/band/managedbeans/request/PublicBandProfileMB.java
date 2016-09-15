@@ -1,21 +1,18 @@
 package hu.schonherz.training.band.managedbeans.request;
 
 import hu.schonherz.training.band.managedbeans.view.BandMB;
-import hu.schonherz.training.band.managedbeans.view.BandMateMB;
+
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
 import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
 import hu.schonherz.training.band.vo.BandVo;
+import hu.schonherz.training.band.service.DemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,8 +36,14 @@ public class PublicBandProfileMB {
     @EJB
     private BandMateService bandMateService;
 
+    @EJB
+    private DemoService demoService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PublicBandProfileMB.class);
+
     public void onload() {
         if (!FacesContext.getCurrentInstance().isPostback()) {
+
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
             bandMB.setBandVo(bandVo);
 
@@ -72,6 +75,14 @@ public class PublicBandProfileMB {
 
     public void setBandMatesMB(BandMatesMB bandMatesMB) {
         this.bandMatesMB = bandMatesMB;
+    }
+
+    public DemoService getDemoService() {
+        return demoService;
+    }
+
+    public void setDemoService(DemoService demoService) {
+        this.demoService = demoService;
     }
 
 }

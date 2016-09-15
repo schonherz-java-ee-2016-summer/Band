@@ -2,12 +2,18 @@
     width: 90%;
     margin: 0 auto;
 }
-.input-label{
+
+.input-label {
     display: inline-block;
     font-size: 14pt;
     margin: 20px;
     color: black;
 }
-.gallery{
+
+.gallery {
     margin: 0 auto;
+}
+
+.demotext {
+    text-align: center;
 }
