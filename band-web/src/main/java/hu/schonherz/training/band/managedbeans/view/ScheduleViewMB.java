@@ -36,8 +36,8 @@ public class ScheduleViewMB implements Serializable {
     @PostConstruct
     public void init() {
         eventModel = new DefaultScheduleModel();
-        /*eventModel.addEvent(new DefaultScheduleEvent("Champions League Match", previousDay8Pm(), previousDay11Pm()));
-        eventModel.addEvent(new DefaultScheduleEvent("Birthday Party", today1Pm(), today6Pm()));
+        eventModel.addEvent(new DefaultScheduleEvent("Hungary's got talent", previousDay8Pm(), previousDay11Pm()));
+        /*eventModel.addEvent(new DefaultScheduleEvent("Birthday Party", today1Pm(), today6Pm()));
         eventModel.addEvent(new DefaultScheduleEvent("Breakfast at Tiffanys", nextDay9Am(), nextDay11Am()));
         eventModel.addEvent(new DefaultScheduleEvent("Plant the new garden stuff", theDayAfter3Pm(), fourDaysLater3pm()));*/
 
@@ -46,10 +46,10 @@ public class ScheduleViewMB implements Serializable {
             @Override
             public void loadEvents(Date start, Date end) {
                 Date random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 1", random, random));
+                addEvent(new DefaultScheduleEvent("Lazy Band Event 1", random, random));
 
                 random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 2", random, random));
+                addEvent(new DefaultScheduleEvent("Lazy Band Event 2", random, random));
             }
         };
     }
