@@ -25,7 +25,7 @@ import java.util.List;
 @RequestScoped
 public class PublicBandProfileMB {
 
-    private Logger LOG = LoggerFactory.getLogger(PublicBandProfileMB.class);
+    private Logger LOGGER = LoggerFactory.getLogger(PublicBandProfileMB.class);
 
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
@@ -44,23 +44,16 @@ public class PublicBandProfileMB {
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
             bandMB.setBandVo(bandVo);
 
-            bandMatesMB.setBandMateVos((List<BandMateVo>) bandMateService.getBandMateVosByBand(bandVo));
+            bandMB.getBandVo().setBandMates(bandMateService.getBandMateVosByBand(bandVo));
         }
 
-        LOG.info("onLoad completed.");
+        LOGGER.info("onLoad completed.");
     }
 
     public void editBand(){
-        BandVo bandVo = new BandVo();
+        bandService.createBand(bandMB.getBandVo());
 
-        bandVo.setId(bandMB.getBandVo().getId());
-        bandVo.setName(bandMB.getBandVo().getName());
-        bandVo.setDescription(bandMB.getBandVo().getDescription());
-        bandVo.setGenre(bandMB.getBandVo().getGenre());
-
-        bandService.createBand(bandVo);
-
-        LOG.info("editBand completed.");
+        LOGGER.info("editBand completed.");
     }
 
     public BandMB getBandMB() {

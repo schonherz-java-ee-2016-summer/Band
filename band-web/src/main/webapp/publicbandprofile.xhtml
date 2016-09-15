@@ -31,21 +31,21 @@
                 <p:dialog header="Band Edit" widgetVar="dlg2" modal="true" height="300">
                     <h:form>
                         <h:panelGrid columns="2" cellpadding="5">
-                            <h:outputText styleClass="input-label" value="Name"/>
+                            <h:outputText for="name" styleClass="input-label" value="Name"/>
                             <p:inputText id="name" value="#{bandBean.bandVo.name}"/>
 
-                            <h:outputText styleClass="input-label" value="Genre"/>
+                            <h:outputText for="genre" styleClass="input-label" value="Genre"/>
                             <p:inputText id="genre" value="#{bandBean.bandVo.genre}"/>
 
-                            <h:outputText styleClass="input-label" value="Description"/>
+                            <h:outputText for="description" styleClass="input-label" value="Description"/>
                             <p:inputTextarea id="description" value="#{bandBean.bandVo.description}"/>
-                            <p:commandButton value="Save" ajax="false" action="#{publicBandProfileBean.editBand}"/>
+                            <p:commandButton value="Save" ajax="false" actionListener="#{publicBandProfileBean.editBand}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:dialog>
 
                 <h:panelGrid columns="4" cellpadding="5">
-                    <p:dataList value="#{publicBandProfileBean.bandMatesMB.bandMateVos}" var="bandMate">
+                    <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
                         <f:facet name="header">
                             Band Mates
                         </f:facet>

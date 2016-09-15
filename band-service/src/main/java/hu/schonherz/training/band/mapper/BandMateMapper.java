@@ -14,6 +14,7 @@ import java.util.List;
  * Mapper for BandMateEntity and BandMateVo class.
  */
 public final class BandMateMapper {
+
     private static Mapper mapper = new DozerBeanMapper();
 
     private BandMateMapper() {

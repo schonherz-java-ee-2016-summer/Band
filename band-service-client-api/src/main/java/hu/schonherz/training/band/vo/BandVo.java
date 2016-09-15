@@ -79,4 +79,5 @@ public class BandVo extends BaseVo {
     public void setBandMates(Collection<BandMateVo> bandMates) {
         this.bandMates = bandMates;
     }
+
 }
