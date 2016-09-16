@@ -37,8 +37,6 @@ public class PublicBandProfileMB {
         if (!FacesContext.getCurrentInstance().isPostback()) {
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
             bandMB.setBandVo(bandVo);
-
-            bandMB.getBandVo().getBandMates();
         }
 
         LOGGER.info("onLoad completed.");
