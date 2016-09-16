@@ -16,7 +16,7 @@ public class EventEntity extends BaseEntity {
     private String name;
 
     @Basic
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String description;
 
     @Basic
@@ -27,13 +27,13 @@ public class EventEntity extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime finish;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "bandId", nullable = false)
     private BandEntity band;
 
     @Basic
     @Column(nullable = false)
-    private int venueId;
+    private Long venueId;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "event")
     private Collection<EventImageEntity> images;
@@ -86,11 +86,11 @@ public class EventEntity extends BaseEntity {
         this.band = band;
     }
 
-    public int getVenueId() {
+    public Long getVenueId() {
         return venueId;
     }
 
-    public void setVenueId(int venueId) {
+    public void setVenueId(Long venueId) {
         this.venueId = venueId;
     }
 }

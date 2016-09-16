@@ -70,6 +70,7 @@
                         <h:panelGrid columnClasses="value">
                             <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
                             <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
+                                <p:ajax event="dateSelect" listener="#{scheduleViewMB.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
                             </p:schedule>
                         </h:panelGrid>
                         <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
@@ -83,11 +84,11 @@
                                 <p:outputLabel for="to" value="To:" />
                                 <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
-                                <p:outputLabel for="description" value="Description:" />
-                                <p:inputText id="description" value="#{scheduleViewMB.event.description}" required="true" />
+                                <!--p:outputLabel for="description" value="Description:" />
+                                <p:inputText id="description1" value="#{scheduleViewMB.event.description}" required="true" /-->
 
                                 <p:commandButton type="reset" value="Reset" />
-                                <p:commandButton id="addButton" value="Save" />
+                                <p:commandButton ajax="false" id="addButton" value="Save" actionListener="#{scheduleViewMB.addEvent}" oncomplete="PF('eventDialog').hide();addEvent(); PF('myschedule').update();" />
                             </h:panelGrid>
                         </p:dialog>
                     </h:form>

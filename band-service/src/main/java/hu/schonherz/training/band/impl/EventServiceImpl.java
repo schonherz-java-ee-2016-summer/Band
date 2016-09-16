@@ -1,6 +1,8 @@
 package hu.schonherz.training.band.impl;
 
+import hu.schonherz.training.band.entities.EventEntity;
 import hu.schonherz.training.band.mapper.EventMapper;
+import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.repositories.EventRepository;
 import hu.schonherz.training.band.service.EventService;
 import hu.schonherz.training.band.vo.EventVo;
@@ -24,8 +26,14 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private BandRepository bandRepository;
+
     @Override
     public void createEvent(EventVo eventVo) {
-        eventRepository.save(EventMapper.toEntity(eventVo));
+        EventEntity eventEntity = EventMapper.toEntity(eventVo);
+        eventEntity.setBand(bandRepository.findById(1L));
+        eventEntity.setVenueId(1L);
+        eventRepository.save(eventEntity);
     }
 }

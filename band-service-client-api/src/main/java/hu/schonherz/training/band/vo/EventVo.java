@@ -67,4 +67,17 @@ public class EventVo extends BaseVo {
     public void setFinish(LocalDateTime finish) {
         this.finish = finish;
     }
+
+    @Override
+    public String toString() {
+        return "EventVo{" +
+                "id=" + super.getId() +
+                "bandId=" + bandId +
+                ", venueId=" + venueId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", start=" + start +
+                ", finish=" + finish +
+                '}';
+    }
 }
