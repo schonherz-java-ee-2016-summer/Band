@@ -12,6 +12,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import java.io.IOException;
 
 /**
  *  @author Norbert Barocsi
@@ -37,7 +40,7 @@ public class CreateBandMB {
     @EJB
     private BandMateService bandMateService;
 
-    public String doCreate(){
+    public void doCreate() throws IOException {
         bandService.createBand(bandMB.getBandVo());
 
         for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {
@@ -45,7 +48,8 @@ public class CreateBandMB {
             bandMateService.createBandMate(bandMateVo);
         }
 
-        return "createband";
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.redirect("publicbandprofile.xhtml?id=" + bandService.getBandByName(bandMB.getBandVo().getName()).getId());
     }
 
     public String onFlowProcess(FlowEvent event) {
