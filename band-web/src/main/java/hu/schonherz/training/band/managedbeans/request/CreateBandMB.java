@@ -40,7 +40,7 @@ public class CreateBandMB {
     @EJB
     private BandMateService bandMateService;
 
-    public String doCreate(String navigationUrl) {
+    public String doCreate() {
         bandService.createBand(bandMB.getBandVo());
 
         for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {
@@ -48,7 +48,7 @@ public class CreateBandMB {
             bandMateService.createBandMate(bandMateVo);
         }
 
-        return navigationUrl + "?faces-redirect=true&id=" + bandService.getBandByName(bandMB.getBandVo().getName()).getId();
+        return  "publicbandprofile?faces-redirect=true&id=" + bandService.getBandByName(bandMB.getBandVo().getName()).getId();
     }
 
     public String onFlowProcess(FlowEvent event) {
