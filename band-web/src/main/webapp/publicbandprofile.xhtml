@@ -65,6 +65,32 @@
                             <f:param name="imageId" value="#{image.id}"/>
                         </p:graphicImage>
                     </p:galleria>
+                    <h:form>
+                        <p:growl id="messages" showDetail="true" />
+                        <h:panelGrid columnClasses="value">
+                            <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
+                            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
+                            </p:schedule>
+                        </h:panelGrid>
+                        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                            <h:panelGrid id="eventDetails" columns="2">
+                                <p:outputLabel for="title" value="Titles:" />
+                                <p:inputText id="title" value="#{scheduleViewMB.event.title}" required="true" />
+
+                                <p:outputLabel for="from" value="From:" />
+                                <p:calendar id="from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                                <p:outputLabel for="to" value="To:" />
+                                <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                                <p:outputLabel for="description" value="Description:" />
+                                <p:inputText id="description" value="#{scheduleViewMB.event.description}" required="true" />
+
+                                <p:commandButton type="reset" value="Reset" />
+                                <p:commandButton id="addButton" value="Save" />
+                            </h:panelGrid>
+                        </p:dialog>
+                    </h:form>
                 </div>
 
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
