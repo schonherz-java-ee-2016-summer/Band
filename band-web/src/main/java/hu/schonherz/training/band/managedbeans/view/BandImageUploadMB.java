@@ -45,25 +45,24 @@ public class BandImageUploadMB {
             input = uploadedFile.getInputstream();
             LOGGING.info("An Image was uploaded.");
         } catch (IOException e) {
-            LOGGING.error("IOException");
+            LOGGING.error("Uploaded file can't put into inputstream!");
         }
     }
 
-    public String create() {
+    public void create() {
         if (input == null){
             FacesContext saveContext = FacesContext.getCurrentInstance();
             saveContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload an image!", null));
-            return "createbandimage";
+            LOGGING.info("Image success!");
         } else {
             Path filePath = createPath();
             try {
                 Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
-                LOGGING.error("IOException");
+                LOGGING.error("Can't save image!");
             }
             saveBandImageToDB(filePath);
             LOGGING.info("Store an image and save entity to database.");
-            return "index";
         }
     }
 

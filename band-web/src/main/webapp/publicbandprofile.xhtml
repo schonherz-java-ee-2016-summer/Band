@@ -34,20 +34,35 @@
                     </p:dataList>
                 </h:panelGrid>
 
-                <div id="gallery">
-                    <p:galleria styleClass="galleria" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600" panelHeight="400" showCaption="true">
-                        <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title="#{image.name}" width="600" height="400">
-                            <f:param name="imageId" value="#{image.id}"/>
-                        </p:graphicImage>
-                    </p:galleria>
-                </div>
+                <p:galleria styleClass="galleria" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600" panelHeight="400" showCaption="true">
+                    <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title="#{image.name}" width="600" height="400">
+                        <f:param name="imageId" value="#{image.id}"/>
+                    </p:graphicImage>
+                </p:galleria>
 
                 <p:commandButton value="Add" type="button" onclick="PF('add').show();" />
-                <p:commandButton value="Edit" type="button" onclick="PF('edit').show();" />
+                <p:commandButton value="Edit or remove" type="button" onclick="PF('edit').show();" />
 
-                <p:dialog modal="true" header="Imageeditor" widgetVar="edit">
-                    <p:dataTable value="#{bandBean.bandVo.bandsImages}" var="image">
-                        <p:column headerText="Image">
+                <p:dialog modal="true" header="Add new image" widgetVar="add">
+                    <div class="add">
+                        <h:form enctype="multipart/form-data">
+                            <p:panel header="Band Image" id="panel">
+                                <p:messages/>
+                                <p:panelGrid columns="2" id="panelgrid">
+                                    <h:outputText value="Caption"/>
+                                    <p:inputTextarea id="caption" value="#{bandImageBean.bandImageVo.caption}" required="true" requiredMessage="Caption is required"/>
+                                </p:panelGrid>
+                                <p:fileUpload fileUploadListener="#{bandImageUploadBean.upload}" mode="advanced" dragDropSupport="false"
+                                              sizeLimit="10000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                <h:commandButton value="submit" ajax="false" action="#{bandImageUploadBean.create}"/>
+                            </p:panel>
+                        </h:form>
+                    </div>
+                </p:dialog>
+
+                <p:dialog modal="true" header="Image editor" widgetVar="edit">
+                    <p:dataTable styleClass="editor" value="#{bandBean.bandVo.bandsImages}" var="image">
+                        <p:column headerText="Image" >
                             <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
                                 <f:param name="imageId" value="#{image.id}"/>
                             </p:graphicImage>
@@ -58,7 +73,15 @@
                         <p:column headerText="Caption">
                             <h:outputText value="#{image.caption}"/>
                         </p:column>
-
+                        <p:column headerText="Caption">
+                            <h:outputText value="#{image.caption}"/>
+                        </p:column>
+                        <p:column headerText="Edit">
+                            <p:commandButton value="Edit" type="button" />
+                        </p:column>
+                        <p:column headerText="Remove">
+                            <p:commandButton value="Remove" type="button" />
+                        </p:column>
                     </p:dataTable>
                 </p:dialog>
 

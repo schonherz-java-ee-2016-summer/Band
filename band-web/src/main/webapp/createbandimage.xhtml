@@ -20,7 +20,7 @@
                             <p:inputTextarea id="caption" value="#{bandImageBean.bandImageVo.caption}" required="true" requiredMessage="Caption is required"/>
                         </p:panelGrid>
                         <p:fileUpload fileUploadListener="#{bandImageUploadBean.upload}" mode="advanced" dragDropSupport="false"
-                        sizeLimit="10000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                      sizeLimit="10000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                         <h:commandButton value="submit" action="#{bandImageUploadBean.create}"/>
                     </p:panel>
                 </h:form>

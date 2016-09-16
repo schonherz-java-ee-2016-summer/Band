@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.managedbeans.request;
 
+import hu.schonherz.training.band.managedbeans.view.BandImageUploadMB;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.managedbeans.view.BandMateMB;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
