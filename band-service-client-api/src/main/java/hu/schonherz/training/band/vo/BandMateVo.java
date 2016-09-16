@@ -69,4 +69,5 @@ public class BandMateVo extends BaseVo{
     public void setInstrument(String instrument) {
         this.instrument = instrument;
     }
+
 }

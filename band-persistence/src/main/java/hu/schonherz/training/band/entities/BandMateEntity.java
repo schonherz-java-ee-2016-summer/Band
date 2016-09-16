@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Table(name = "bandmate")
 public class BandMateEntity extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "bandId", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "bandId")
     private BandEntity band;
 
     @Basic
@@ -82,4 +82,5 @@ public class BandMateEntity extends BaseEntity {
     public void setInstrument(String instrument) {
         this.instrument = instrument;
     }
+
 }

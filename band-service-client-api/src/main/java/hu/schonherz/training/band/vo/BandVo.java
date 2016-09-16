@@ -69,6 +69,7 @@ public class BandVo extends BaseVo {
     public Collection<DemoVo> getDemos() {
         return demos;
     }
+
     public void setDemos(Collection<DemoVo> demos) {
         this.demos = demos;
     }
