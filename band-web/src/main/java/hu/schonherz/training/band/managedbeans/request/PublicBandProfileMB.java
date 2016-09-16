@@ -1,9 +1,9 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-import hu.schonherz.training.band.managedbeans.view.BandImageUploadMB;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.managedbeans.view.BandMateMB;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
+import hu.schonherz.training.band.service.BandImageService;
 import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
@@ -35,6 +35,9 @@ public class PublicBandProfileMB {
     private BandMatesMB bandMatesMB;
 
     @EJB
+    private BandImageService bandImageService;
+
+    @EJB
     private BandService bandService;
 
     @EJB
@@ -57,6 +60,14 @@ public class PublicBandProfileMB {
 
     public void setBandMB(BandMB bandMB) {
         this.bandMB = bandMB;
+    }
+
+    public BandImageService getBandImageService() {
+        return bandImageService;
+    }
+
+    public void setBandImageService(BandImageService bandImageService) {
+        this.bandImageService = bandImageService;
     }
 
     public BandService getBandService() {

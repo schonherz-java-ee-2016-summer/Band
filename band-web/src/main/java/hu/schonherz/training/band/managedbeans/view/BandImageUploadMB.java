@@ -32,6 +32,9 @@ public class BandImageUploadMB {
     @ManagedProperty(value = "#{bandImageBean}")
     private BandImageMB bandImageMB;
 
+    @ManagedProperty(value = "#{bandBean}")
+    private BandMB bandMB;
+
     @EJB
     private BandImageService bandImageService;
 
@@ -79,7 +82,7 @@ public class BandImageUploadMB {
     public void saveBandImageToDB(Path filePath){
         bandImageMB.getBandImageVo().setName(filename);
         bandImageMB.getBandImageVo().setFilename(filePath.toString());
-        bandImageMB.getBandImageVo().setBandId(1L);
+        bandImageMB.getBandImageVo().setBandId(bandMB.getBandVo().getId());
         LOGGING.info(bandImageMB.getBandImageVo().getBandId().toString());
         bandImageService.saveBandImage(bandImageMB.getBandImageVo());
     }
@@ -90,6 +93,14 @@ public class BandImageUploadMB {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public BandMB getBandMB() {
+        return bandMB;
+    }
+
+    public void setBandMB(BandMB bandMB) {
+        this.bandMB = bandMB;
     }
 
     public BandImageMB getBandImageMB() {

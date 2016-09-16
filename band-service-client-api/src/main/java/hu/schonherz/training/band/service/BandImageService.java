@@ -18,5 +18,5 @@ public interface BandImageService {
 
     void saveBandImage(BandImageVo bandImageVo);
 
-    void deleteBanImage(BandImageVo bandImageVo);
+    void deleteBandImage(BandImageVo bandImageVo);
 }

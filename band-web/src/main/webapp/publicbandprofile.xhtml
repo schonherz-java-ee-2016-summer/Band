@@ -13,7 +13,7 @@
             <h:outputStylesheet name="css/band.css"/>
             <f:metadata>
                 <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
-                <f:event type="preRenderView" listener="#{publicBandProfileBean.onload}"/>
+                <f:viewAction action="#{publicBandProfileBean.onload}"/>
             </f:metadata>
             <p:panel styleClass="main" header="Band profile">
                 <h:panelGrid columns="2" cellpadding="5">
@@ -35,13 +35,13 @@
                 </h:panelGrid>
 
                 <p:galleria styleClass="galleria" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600" panelHeight="400" showCaption="true">
-                    <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title="#{image.name}" width="600" height="400">
+                    <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="600" height="400">
                         <f:param name="imageId" value="#{image.id}"/>
                     </p:graphicImage>
                 </p:galleria>
 
                 <p:commandButton value="Add" type="button" onclick="PF('add').show();" />
-                <p:commandButton value="Edit or remove" type="button" onclick="PF('edit').show();" />
+                <p:commandButton value="Edit or remove" type="button" onclick="PF('editAndRemove').show();" />
 
                 <p:dialog modal="true" header="Add new image" widgetVar="add">
                     <div class="add">
@@ -54,13 +54,13 @@
                                 </p:panelGrid>
                                 <p:fileUpload fileUploadListener="#{bandImageUploadBean.upload}" mode="advanced" dragDropSupport="false"
                                               sizeLimit="10000000" fileLimit="1" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                                <h:commandButton value="submit" ajax="false" action="#{bandImageUploadBean.create}"/>
+                                <h:commandButton value="submit" actionListener="#{bandImageUploadBean.create}"/>
                             </p:panel>
                         </h:form>
                     </div>
                 </p:dialog>
 
-                <p:dialog modal="true" header="Image editor" widgetVar="edit">
+                <p:dialog modal="true" header="Image editor" widgetVar="editAndRemove">
                     <p:dataTable styleClass="editor" value="#{bandBean.bandVo.bandsImages}" var="image">
                         <p:column headerText="Image" >
                             <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
@@ -73,16 +73,32 @@
                         <p:column headerText="Caption">
                             <h:outputText value="#{image.caption}"/>
                         </p:column>
-                        <p:column headerText="Caption">
-                            <h:outputText value="#{image.caption}"/>
-                        </p:column>
                         <p:column headerText="Edit">
-                            <p:commandButton value="Edit" type="button" />
+                            <h:form>
+                                <p:remoteCommand name="editImageRemoteCommand"
+                                                 actionListener="#{editBandImageBean.startEdit(image.id)}"
+                                                 update="editImage"
+                                                 oncomplete="PF('edit').show()" />
+                                <p:commandButton value="Edit" type="button" onclick="editImageRemoteCommand()"/>
+                            </h:form>
                         </p:column>
                         <p:column headerText="Remove">
-                            <p:commandButton value="Remove" type="button" />
+                            <h:form>
+                                <p:commandButton value="Remove" ajax="false"
+                                                 actionListener="#{editBandImageBean.removeImage(image.id)}"/>
+                            </h:form>
                         </p:column>
                     </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Edit image" id="editImage" widgetVar="edit" modal="true">
+                    <h:form>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText for="editcaption" styleClass="input-label" value="Caption"/>
+                            <p:inputTextarea id="editcaption" value="#{bandImageBean.bandImageVo.caption}"/>
+                            <p:commandButton value="Save" ajax="false" actionListener="#{editBandImageBean.executeEdit}"/>
+                        </h:panelGrid>
+                    </h:form>
                 </p:dialog>
 
             </p:panel>
