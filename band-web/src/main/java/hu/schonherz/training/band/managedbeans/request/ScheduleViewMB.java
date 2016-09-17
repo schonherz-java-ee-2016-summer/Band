@@ -1,17 +1,19 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import hu.schonherz.training.band.managedbeans.view.EventMB;
 import hu.schonherz.training.band.service.EventService;
+import hu.schonherz.training.band.vo.EventVo;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
@@ -24,10 +26,8 @@ import org.slf4j.LoggerFactory;
  * @author Armin Veress
  */
 @ManagedBean(name = "scheduleViewMB")
-@RequestScoped
+@ViewScoped
 public class ScheduleViewMB implements Serializable {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ScheduleViewMB.class);
 
     private ScheduleModel eventModel;
 
@@ -45,19 +45,23 @@ public class ScheduleViewMB implements Serializable {
     }
 
     public void addEvent(ActionEvent actionEvent) {
-        LOGGER.info("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
         if (event.getId() == null) {
             eventModel.addEvent(event);
         } else {
             eventModel.updateEvent(event);
         }
 
-        LOGGER.info("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        eventService.createEvent(eventMB.getEventVo());
-        LOGGER.info(eventMB.getEventVo().toString());
-        //event = new DefaultScheduleEvent();
-    }
+        eventMB.getEventVo().setName(event.getTitle());
+        eventMB.getEventVo().setStart(LocalDateTime.ofInstant
+                (event.getStartDate().toInstant(), ZoneId.systemDefault()));
+        eventMB.getEventVo().setFinish(LocalDateTime.ofInstant
+                (event.getEndDate().toInstant(), ZoneId.systemDefault()));
+        eventMB.getEventVo().setDescription(event.getDescription());
 
+        eventService.createEvent(eventMB.getEventVo());
+
+        event = new DefaultScheduleEvent();
+    }
 
     public void onDateSelect(SelectEvent selectEvent) {
         event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());

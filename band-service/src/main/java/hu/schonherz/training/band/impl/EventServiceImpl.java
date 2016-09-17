@@ -31,7 +31,11 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public void createEvent(EventVo eventVo) {
-        EventEntity eventEntity = EventMapper.toEntity(eventVo);
+        EventEntity eventEntity = new EventEntity();
+        eventEntity.setName(eventVo.getName());
+        eventEntity.setStart(eventVo.getStart());
+        eventEntity.setFinish(eventVo.getFinish());
+        eventEntity.setDescription(eventVo.getDescription());
         eventEntity.setBand(bandRepository.findById(1L));
         eventEntity.setVenueId(1L);
         eventRepository.save(eventEntity);

@@ -23,6 +23,9 @@ public class PublicBandProfileMB {
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
 
+    @ManagedProperty("#{scheduleViewMB}")
+    private ScheduleViewMB scheduleViewMB;
+
     @EJB
     private BandService bandService;
 
@@ -53,4 +56,11 @@ public class PublicBandProfileMB {
         this.bandMB = bandMB;
     }
 
+    public ScheduleViewMB getScheduleViewMB() {
+        return scheduleViewMB;
+    }
+
+    public void setScheduleViewMB(ScheduleViewMB scheduleViewMB) {
+        this.scheduleViewMB = scheduleViewMB;
+    }
 }
