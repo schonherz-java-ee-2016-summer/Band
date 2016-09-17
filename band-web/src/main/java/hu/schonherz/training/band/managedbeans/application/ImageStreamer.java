@@ -24,7 +24,7 @@ import java.util.Map;
 @ApplicationScoped
 public class ImageStreamer {
 
-    private Logger LOG = LoggerFactory.getLogger(ImageStreamer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ImageStreamer.class);
 
     @EJB
     private BandImageService bandImageService;

@@ -14,7 +14,7 @@ import java.util.List;
  */
 @ManagedBean(name = "bandsBean")
 @ViewScoped
-public class BandsMB implements Serializable{
+public class BandsMB implements Serializable {
 
     List<BandVo> bandVos = new ArrayList<>();
 
