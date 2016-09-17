@@ -2,14 +2,19 @@ package hu.schonherz.training.band.managedbeans.request;
 
 import hu.schonherz.training.band.managedbeans.view.BandImageMB;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
+import hu.schonherz.training.band.managedbeans.wrapper.BandImageVoWrapper;
 import hu.schonherz.training.band.service.BandImageService;
+import hu.schonherz.training.band.vo.BandImageVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by Attila on 2016.09.16..
@@ -25,17 +30,24 @@ public class EditBandImageMB {
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
 
+    @ManagedProperty("#{bandImageWrapper}")
+    private BandImageVoWrapper bandImageVoWrapper;
+
     @EJB
     private BandImageService bandImageService;
 
-    public void startEdit(Long id){
-        bandImageMB.setBandImageVo(bandImageService.getImageById(id));
-        LOGGER.info("Loading bandimage to edit!");
-    }
-
-    public void executeEdit(){
-        bandImageService.saveBandImage(bandImageMB.getBandImageVo());
-        LOGGER.info("Caption of " + bandImageMB.getBandImageVo().getName() + " was modified");
+    public String executeEdit(Long id){
+        BandImageVo bandImageVo = null;
+        for (BandImageVo bandImage : bandImageVoWrapper.getBandImageVoList()){
+            if (id == bandImage.getId()){
+                bandImageVo = bandImage;
+                break;
+            }
+        }
+        bandImageVo.setBandId(bandMB.getBandVo().getId());
+        bandImageService.saveBandImage(bandImageVo);
+        LOGGER.info("Caption of " + bandImageVo.getName() + " was modified");
+        return "/publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public String removeImage(Long id){
@@ -60,5 +72,13 @@ public class EditBandImageMB {
 
     public void setBandMB(BandMB bandMB) {
         this.bandMB = bandMB;
+    }
+
+    public BandImageVoWrapper getBandImageVoWrapper() {
+        return bandImageVoWrapper;
+    }
+
+    public void setBandImageVoWrapper(BandImageVoWrapper bandImageVoWrapper) {
+        this.bandImageVoWrapper = bandImageVoWrapper;
     }
 }

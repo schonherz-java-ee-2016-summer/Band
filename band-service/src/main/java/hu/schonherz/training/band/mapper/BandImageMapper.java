@@ -24,7 +24,9 @@ public final class BandImageMapper {
         if (bandImageEntity == null){
             return null;
         }
-        return mapper.map(bandImageEntity, BandImageVo.class);
+        BandImageVo bandImageVo = mapper.map(bandImageEntity, BandImageVo.class);
+        bandImageVo.setBandId(bandImageEntity.getBand().getId());
+        return bandImageVo;
     }
 
     public static BandImageEntity toEntity(BandImageVo bandImageVo){

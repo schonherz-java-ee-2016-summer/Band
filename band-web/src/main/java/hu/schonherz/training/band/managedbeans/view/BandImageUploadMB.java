@@ -2,6 +2,7 @@ package hu.schonherz.training.band.managedbeans.view;
 
 import hu.schonherz.training.band.service.BandImageService;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.*;
 import java.nio.file.Files;
@@ -50,22 +52,19 @@ public class BandImageUploadMB {
         } catch (IOException e) {
             LOGGING.error("Uploaded file can't put into inputstream!");
         }
-    }
-
-    public void create() {
-        if (input == null){
-            FacesContext saveContext = FacesContext.getCurrentInstance();
-            saveContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload an image!", null));
-            LOGGING.info("Image success!");
-        } else {
-            Path filePath = createPath();
-            try {
-                Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                LOGGING.error("Can't save image!");
-            }
-            saveBandImageToDB(filePath);
-            LOGGING.info("Store an image and save entity to database.");
+        Path filePath = createPath();
+        try {
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            LOGGING.error("Can't save image!");
+        }
+        saveBandImageToDB(filePath);
+        LOGGING.info("Store an image and save entity to database.");
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/publicbandprofile.xhtml?faces-redirect=true&id=" + bandMB.getBandVo().getId());
+        } catch (IOException e) {
+            LOGGING.error("Bad redirect.");
         }
     }
 
@@ -85,6 +84,10 @@ public class BandImageUploadMB {
         bandImageMB.getBandImageVo().setBandId(bandMB.getBandVo().getId());
         LOGGING.info(bandImageMB.getBandImageVo().getBandId().toString());
         bandImageService.saveBandImage(bandImageMB.getBandImageVo());
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
     }
 
     public String getFilename() {
