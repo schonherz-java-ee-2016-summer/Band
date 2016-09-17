@@ -12,7 +12,7 @@ public class BandVo extends BaseVo {
     private String name;
     private String genre;
     private String description;
-
+    private boolean disabled;
 //  private Collection<EventVo> events;
     private Collection<BandImageVo> bandsImages;
     private Collection<DemoVo> demos;
@@ -42,7 +42,15 @@ public class BandVo extends BaseVo {
         this.description = description;
     }
 
-//    public Collection<EventVo> getEvents() {
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
+
+    //    public Collection<EventVo> getEvents() {
 //        return events;
 //    }
 //

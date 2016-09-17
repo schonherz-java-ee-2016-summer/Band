@@ -2,6 +2,7 @@ package hu.schonherz.training.band.managedbeans.request;
 
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 
+import hu.schonherz.training.band.managedbeans.view.ScheduleViewMB;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.service.DemoService;
@@ -23,13 +24,16 @@ public class PublicBandProfileMB {
     @ManagedProperty("#{bandBean}")
     private BandMB bandMB;
 
+    @ManagedProperty("#{scheduleViewMB}")
+    private ScheduleViewMB scheduleViewMB;
+
     @EJB
     private BandService bandService;
 
     @EJB
     private DemoService demoService;
 
-    public void onload() {
+    public void onLoad() {
         if (!FacesContext.getCurrentInstance().isPostback()) {
 
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
@@ -39,10 +43,12 @@ public class PublicBandProfileMB {
         LOGGER.info("onLoad completed.");
     }
 
-    public void editBand(){
+    public String editBand(){
         bandService.createBand(bandMB.getBandVo());
 
         LOGGER.info("editBand completed.");
+
+        return "publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public BandMB getBandMB() {
@@ -53,4 +59,11 @@ public class PublicBandProfileMB {
         this.bandMB = bandMB;
     }
 
+    public ScheduleViewMB getScheduleViewMB() {
+        return scheduleViewMB;
+    }
+
+    public void setScheduleViewMB(ScheduleViewMB scheduleViewMB) {
+        this.scheduleViewMB = scheduleViewMB;
+    }
 }

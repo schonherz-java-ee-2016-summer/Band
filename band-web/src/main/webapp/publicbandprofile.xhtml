@@ -8,15 +8,20 @@
 
     <ui:composition template="/templates/pageTemplate.xhtml">
         <ui:define name="title">Public band profile</ui:define>
-        <ui:define name="body">
+        <ui:define name="body" >
             <h:outputStylesheet name="css/band.css"/>
             <f:metadata>
                 <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
-                <f:event type="preRenderView" listener="#{publicBandProfileBean.onload}"/>
+                <f:viewAction action="#{publicBandProfileBean.onLoad}"/>
             </f:metadata>
-            <p:panel styleClass="main" header="Band profile">
+            <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
+            <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
 
-                <p:commandButton value="Edit" type="button" onclick="PF('dlg2').show();" />
+                <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                        type="button"
+                        onclick="PF('dlg2').show();">
+                    <span class="ui-button-text ui-c">Edit</span>
+                </button>
 
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputText styleClass="input-label" value="Band name:"/>
@@ -29,16 +34,16 @@
 
                 <p:dialog header="Band Edit" widgetVar="dlg2" modal="true" height="300">
                     <h:form>
-                        <h:panelGrid columns="2" cellpadding="5">
+                        <h:panelGrid id="panel" columns="2" cellpadding="5">
                             <h:outputText for="name" styleClass="input-label" value="Name"/>
                             <p:inputText id="name" value="#{bandBean.bandVo.name}"/>
 
                             <h:outputText for="genre" styleClass="input-label" value="Genre"/>
                             <p:inputText id="genre" value="#{bandBean.bandVo.genre}"/>
 
-                            <h:outputText for="description" styleClass="input-label" value="Description"/>
-                            <p:inputTextarea id="description" value="#{bandBean.bandVo.description}"/>
-                            <p:commandButton value="Save" ajax="false" actionListener="#{publicBandProfileBean.editBand}"/>
+                            <h:outputText for="description1" styleClass="input-label" value="Description"/>
+                            <p:inputTextarea id="description1" value="#{bandBean.bandVo.description}"/>
+                            <p:commandButton value="Save" ajax="false"  action="#{publicBandProfileBean.editBand()}"/>
                         </h:panelGrid>
                     </h:form>
                 </p:dialog>
@@ -65,17 +70,18 @@
                             <f:param name="imageId" value="#{image.id}"/>
                         </p:graphicImage>
                     </p:galleria>
-                    <h:form>
-                        <p:growl id="messages" showDetail="true" />
-                        <h:panelGrid columnClasses="value">
-                            <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
-                            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">
-                            </p:schedule>
-                        </h:panelGrid>
-                        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-                            <h:panelGrid id="eventDetails" columns="2">
+
+                    <p:growl id="messages" showDetail="true" />
+                    <h:panelGrid columnClasses="value">
+                        <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
+                        <!--<p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">-->
+                        <!--</p:schedule>-->
+                    </h:panelGrid>
+                    <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                        <h:panelGrid id="eventDetails" columns="2">
+                            <h:form>
                                 <p:outputLabel for="title" value="Titles:" />
-                                <p:inputText id="title" value="#{scheduleViewMB.event.title}" required="true" />
+                                <p:inputText id="title" value="#{scheduleViewMB.event.title}"/>
 
                                 <p:outputLabel for="from" value="From:" />
                                 <p:calendar id="from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
@@ -84,13 +90,13 @@
                                 <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
                                 <p:outputLabel for="description" value="Description:" />
-                                <p:inputText id="description" value="#{scheduleViewMB.event.description}" required="true" />
+                                <p:inputText id="description" value="#{scheduleViewMB.event.description}"/>
 
                                 <p:commandButton type="reset" value="Reset" />
                                 <p:commandButton id="addButton" value="Save" />
-                            </h:panelGrid>
-                        </p:dialog>
-                    </h:form>
+                            </h:form>
+                        </h:panelGrid>
+                    </p:dialog>
                 </div>
 
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">

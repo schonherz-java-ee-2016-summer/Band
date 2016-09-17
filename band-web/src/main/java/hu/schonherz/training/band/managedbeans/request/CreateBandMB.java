@@ -41,6 +41,7 @@ public class CreateBandMB {
     private BandMateService bandMateService;
 
     public String doCreate() {
+        bandMB.getBandVo().setDisabled(false);
         bandService.createBand(bandMB.getBandVo());
 
         for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {

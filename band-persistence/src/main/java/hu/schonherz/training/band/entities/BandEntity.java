@@ -24,6 +24,10 @@ public class BandEntity extends BaseEntity {
     @Basic
     private String description;
 
+    @Basic
+    @Column(nullable = false)
+    private boolean disabled;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
     private Collection<EventEntity> events;
 
@@ -92,4 +96,11 @@ public class BandEntity extends BaseEntity {
         this.bandMates = bandMates;
     }
 
+    public boolean isDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
 }

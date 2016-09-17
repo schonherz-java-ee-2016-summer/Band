@@ -17,6 +17,10 @@ public interface BandService {
 
     BandVo getBandByName(String name);
 
+    BandVo getBandByDisabled(boolean disabled);
+
+    void updateDisabledAttribute(BandVo bandVo);
+
     void createBand(BandVo bandVo);
 
     void deleteBand(BandVo bandVo);

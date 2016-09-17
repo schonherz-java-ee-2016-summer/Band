@@ -45,6 +45,16 @@ public class BandServiceImpl implements BandService, BandRemoteService {
     }
 
     @Override
+    public BandVo getBandByDisabled(boolean disabled) {
+        return BandMapper.toVo(bandRepository.findByDisabled(disabled));
+    }
+
+    @Override
+    public void updateDisabledAttribute(BandVo bandVo) {
+        bandRepository.updateDisabledAttribute(bandVo.isDisabled(), bandVo.getId());
+    }
+
+    @Override
     public void createBand(BandVo bandVo) {
         bandRepository.save(BandMapper.toEntity(bandVo));
     }

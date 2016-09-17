@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+
+    <ui:composition template="/templates/pageTemplate.xhtml">
+    <ui:define name="title">Admin Page</ui:define>
+        <ui:define name="body">
+            <f:metadata>
+                <f:viewAction action="#{adminBandBean.listBand}"/>
+            </f:metadata>
+            <h:form>
+                <h:panelGrid columns="4" cellpadding="5">
+                    <p:dataList value="#{adminBandBean.bandsMB.bandVos}" var="band">
+                        <f:facet name="header">Bands</f:facet>
+                        <p:link outcome="publicbandprofile" value="#{band.name}" target="_blank">
+                            <f:param name="id" value="#{band.id}"/>
+                        </p:link>
+                        <p:commandButton action="#{adminBandBean.blockingBand}" value="Enable" rendered="#{band.disabled eq true}">
+                            <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
+                        </p:commandButton>
+                        <p:commandButton action="#{adminBandBean.blockingBand}" value="Disable" rendered="#{band.disabled eq false}">
+                            <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
+                        </p:commandButton>
+                    </p:dataList>
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

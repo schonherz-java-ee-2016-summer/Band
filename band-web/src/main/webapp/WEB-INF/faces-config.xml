@@ -5,10 +5,10 @@
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
     <navigation-rule>
-        <from-view-id>/createband.xhtml</from-view-id>
+        <from-view-id>/adminband.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>createband</from-outcome>
-            <to-view-id>/createband.xhtml</to-view-id>
+            <from-outcome>adminband</from-outcome>
+            <to-view-id>/adminband.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
