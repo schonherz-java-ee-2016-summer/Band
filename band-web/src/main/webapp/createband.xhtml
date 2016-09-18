@@ -12,55 +12,63 @@
         <ui:define name="body">
             <h:outputStylesheet name="css/band.css"/>
 
-            <div class="main">
+            <div class="createBand-main">
                 <h:form id="form">
-
-                    <p:growl id="growl" sticky="true" showDetail="true"/>
 
                     <p:wizard flowListener="#{createBandBean.onFlowProcess}">
                         <p:tab id="band" title="Band">
                             <p:panel header="Band Registration">
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText styleClass="input-label" value="Name"/>
-                                    <p:inputText id="name" value="#{bandBean.bandVo.name}" required="true"
-                                                 requiredMessage="Validation error: Name is required."/>
+                                <h:panelGrid columns="2" cellspacing="20" columnClasses="label, value">
+                                    <h:outputText styleClass="output-text" value="Name: *"/>
+                                    <p:inputText id="name" styleClass="input-text" value="#{bandBean.bandVo.name}"
+                                                 label="Name"
+                                                 required="true">
+                                        <f:validateRequired/>
+                                    </p:inputText>
 
-                                    <h:outputText styleClass="input-label" value="Genre"/>
-                                    <p:inputText id="genre" value="#{bandBean.bandVo.genre}" required="true"
-                                                 requiredMessage="Validation error: Genre is required."/>
+                                    <h:outputText styleClass="output-text" value="Genre: *"/>
+                                    <p:inputText id="genre" styleClass="input-text" value="#{bandBean.bandVo.genre}"
+                                                 label="Genre"
+                                                 required="true"/>
 
-                                    <h:outputText styleClass="input-label" value="Description"/>
-                                    <p:inputTextarea id="description" value="#{bandBean.bandVo.description}" required="true"
-                                                     requiredMessage="Validation error: Description is required."/>
+                                    <h:outputText styleClass="output-text" value="Description: *"/>
+                                    <p:inputTextarea id="description" rows="6" styleClass="input-textArea"
+                                                     value="#{bandBean.bandVo.description}"
+                                                     label="Description"
+                                                     required="true"/>
 
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
 
                         <p:tab id="bandMate" title="Band Mate">
-                            <p:panel header="Band Mate Registration">
-                                <h:panelGrid columns="2" cellpadding="5">
-                                    <h:outputText styleClass="input-label" value="Mate First Name"/>
-                                    <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}" required="true"
-                                                 requiredMessage="Validation error: First name is required."/>
+                            <p:panel id="bandMateSave" header="Band Mate Registration">
+                                <h:panelGrid columns="2" cellspacing="20" columnClasses="label, value">
+                                    <h:outputText styleClass="output-text" value="First Name:"/>
+                                    <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
+                                                 styleClass="input-text"
+                                                 required="true"/>
 
-                                    <h:outputText styleClass="input-label" value="Mate Last Name"/>
-                                    <p:inputText id="lastName" value="#{bandMateBean.bandMateVo.lastName}" required="true"
-                                                 requiredMessage="Validation error: Last name is required."/>
+                                    <h:outputText styleClass="output-text" value="Last Name:"/>
+                                    <p:inputText id="lastName" value="#{bandMateBean.bandMateVo.lastName}"
+                                                 styleClass="input-text"
+                                                 required="true"/>
 
-                                    <h:outputText styleClass="input-label" value="Email Address"/>
-                                    <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}" required="true"
-                                                 requiredMessage="Validation error: Email is required."/>
+                                    <h:outputText styleClass="output-text" value="Email Address:"/>
+                                    <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
+                                                 styleClass="input-text"
+                                                 required="true"/>
 
-                                    <h:outputText styleClass="input-label" value="Musical Instrument"/>
-                                    <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}" required="true"
-                                                 requiredMessage="Validation error: Instrument is required."/>
+                                    <h:outputText styleClass="output-text" value="Musical Instrument:"/>
+                                    <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
+                                                 styleClass="input-text"
+                                                 required="true"/>
 
-                                    <h:outputText styleClass="input-label" value="Profile"/>
+                                    <h:outputText styleClass="output-text" value="Profile:"/>
                                     <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
 
                                 </h:panelGrid>
-                                <p:commandButton value="Save Band Mate" ajax="false" action="#{createBandMateBean.save}"/>
+                                <p:commandButton value="Save Band Mate" ajax="false"  action="#{createBandMateBean.save}"/>
 
                                 <p:commandButton value="Complete Registration" ajax="false" action="#{createBandBean.doCreate}"/>
                             </p:panel>

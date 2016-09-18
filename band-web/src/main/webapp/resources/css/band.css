@@ -3,11 +3,30 @@
     margin: 0 auto;
 }
 
-.input-label {
+.createBand-main {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.output-text {
     display: inline-block;
-    font-size: 14pt;
+    font-size: 15pt;
     margin: 20px;
     color: black;
+}
+
+.input-text {
+    width: 300px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+}
+
+.input-textArea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
 }
 
 .gallery {
