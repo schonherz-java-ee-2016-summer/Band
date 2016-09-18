@@ -8,11 +8,20 @@
     margin: 20px;
     color: black;
 }
-.galleria{
+.centered{
+    display: block;
     margin: 0 auto;
 }
 
-#editAndRemoveDialog{
+.centered-text{
+    text-align: center;
+}
+
+.sizetoeditor{
+    width: 120px;
+}
+
+.editor{
     width: 80%;
     margin: 0 auto;
 }
