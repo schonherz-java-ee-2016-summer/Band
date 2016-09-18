@@ -13,22 +13,24 @@
             <f:metadata>
                 <f:viewAction action="#{adminBandBean.listBand}"/>
             </f:metadata>
-            <h:form>
-                <h:panelGrid columns="4" cellpadding="5">
-                    <p:dataList value="#{adminBandBean.bandsMB.bandVos}" var="band">
-                        <f:facet name="header">Bands</f:facet>
-                        <p:link outcome="publicbandprofile" value="#{band.name}" target="_blank">
-                            <f:param name="id" value="#{band.id}"/>
-                        </p:link>
-                        <p:commandButton action="#{adminBandBean.blockingBand}" value="Enable" rendered="#{band.disabled eq true}">
-                            <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
-                        </p:commandButton>
-                        <p:commandButton action="#{adminBandBean.blockingBand}" value="Disable" rendered="#{band.disabled eq false}">
-                            <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
-                        </p:commandButton>
-                    </p:dataList>
-                </h:panelGrid>
-            </h:form>
+            <div class="createBand-main">
+                <h:form>
+                    <h:panelGrid columns="4" cellpadding="5">
+                        <p:dataList value="#{adminBandBean.bandsMB.bandVos}" var="band">
+                            <f:facet name="header">Bands</f:facet>
+                            <p:link outcome="publicbandprofile" value="#{band.name}" target="_blank">
+                                <f:param name="id" value="#{band.id}"/>
+                            </p:link>
+                            <p:commandButton action="#{adminBandBean.blockingBand}" value="Enable" rendered="#{band.disabled eq true}">
+                                <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
+                            </p:commandButton>
+                            <p:commandButton action="#{adminBandBean.blockingBand}" value="Disable" rendered="#{band.disabled eq false}">
+                                <f:setPropertyActionListener value="#{band}" target="#{adminBandBean.selectedBand}"/>
+                            </p:commandButton>
+                        </p:dataList>
+                    </h:panelGrid>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
 
