@@ -50,7 +50,7 @@ public class BandImageImpl implements BandImageService {
     }
 
     @Override
-    public void deleteBanImage(BandImageVo bandImageVo) {
+    public void deleteBandImage(BandImageVo bandImageVo) {
         bandImageRepository.delete(BandImageMapper.toEntity(bandImageVo));
     }
 }

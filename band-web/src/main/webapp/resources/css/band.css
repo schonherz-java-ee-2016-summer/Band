@@ -29,7 +29,21 @@
     display: inline-block;
 }
 
-.gallery {
+.centered{
+    display: block;
+    margin: 0 auto;
+}
+
+.centered-text{
+    text-align: center;
+}
+
+.sizetoeditor{
+    width: 120px;
+}
+
+.editor{
+    width: 80%;
     margin: 0 auto;
 }
 

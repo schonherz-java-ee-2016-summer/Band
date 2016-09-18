@@ -3,6 +3,10 @@ package hu.schonherz.training.band.managedbeans.request;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 
 import hu.schonherz.training.band.managedbeans.view.ScheduleViewMB;
+import hu.schonherz.training.band.managedbeans.view.BandMateMB;
+import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
+import hu.schonherz.training.band.service.BandImageService;
+import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.service.DemoService;
@@ -28,6 +32,9 @@ public class PublicBandProfileMB {
     private ScheduleViewMB scheduleViewMB;
 
     @EJB
+    private BandImageService bandImageService;
+
+    @EJB
     private BandService bandService;
 
     @EJB
@@ -45,9 +52,7 @@ public class PublicBandProfileMB {
 
     public String editBand(){
         bandService.createBand(bandMB.getBandVo());
-
         LOGGER.info("editBand completed.");
-
         return "publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 

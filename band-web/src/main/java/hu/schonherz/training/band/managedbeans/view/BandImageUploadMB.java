@@ -2,6 +2,7 @@ package hu.schonherz.training.band.managedbeans.view;
 
 import hu.schonherz.training.band.service.BandImageService;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.io.*;
 import java.nio.file.Files;
@@ -32,6 +34,9 @@ public class BandImageUploadMB {
     @ManagedProperty(value = "#{bandImageBean}")
     private BandImageMB bandImageMB;
 
+    @ManagedProperty(value = "#{bandBean}")
+    private BandMB bandMB;
+
     @EJB
     private BandImageService bandImageService;
 
@@ -45,25 +50,21 @@ public class BandImageUploadMB {
             input = uploadedFile.getInputstream();
             LOGGING.info("An Image was uploaded.");
         } catch (IOException e) {
-            LOGGING.error("IOException");
+            LOGGING.error("Uploaded file can't put into inputstream!");
         }
-    }
-
-    public String create() {
-        if (input == null){
-            FacesContext saveContext = FacesContext.getCurrentInstance();
-            saveContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Upload an image!", null));
-            return "createbandimage";
-        } else {
-            Path filePath = createPath();
-            try {
-                Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                LOGGING.error("IOException");
-            }
-            saveBandImageToDB(filePath);
-            LOGGING.info("Store an image and save entity to database.");
-            return "index";
+        Path filePath = createPath();
+        try {
+            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            LOGGING.error("Can't save image!");
+        }
+        saveBandImageToDB(filePath);
+        LOGGING.info("Store an image and save entity to database.");
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/publicbandprofile.xhtml?faces-redirect=true&id=" + bandMB.getBandVo().getId());
+        } catch (IOException e) {
+            LOGGING.error("Bad redirect.");
         }
     }
 
@@ -80,9 +81,13 @@ public class BandImageUploadMB {
     public void saveBandImageToDB(Path filePath){
         bandImageMB.getBandImageVo().setName(filename);
         bandImageMB.getBandImageVo().setFilename(filePath.toString());
-        bandImageMB.getBandImageVo().setBandId(1L);
+        bandImageMB.getBandImageVo().setBandId(bandMB.getBandVo().getId());
         LOGGING.info(bandImageMB.getBandImageVo().getBandId().toString());
         bandImageService.saveBandImage(bandImageMB.getBandImageVo());
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        return event.getNewStep();
     }
 
     public String getFilename() {
@@ -91,6 +96,14 @@ public class BandImageUploadMB {
 
     public void setFilename(String filename) {
         this.filename = filename;
+    }
+
+    public BandMB getBandMB() {
+        return bandMB;
+    }
+
+    public void setBandMB(BandMB bandMB) {
+        this.bandMB = bandMB;
     }
 
     public BandImageMB getBandImageMB() {

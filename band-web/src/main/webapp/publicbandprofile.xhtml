@@ -35,14 +35,14 @@
                 <p:dialog header="Band Edit" widgetVar="dlg2" modal="true" height="300">
                     <h:form>
                         <h:panelGrid id="panel" columns="2" cellpadding="5">
-                            <h:outputText for="name" styleClass="input-label" value="Name"/>
-                            <p:inputText id="name" value="#{bandBean.bandVo.name}"/>
+                            <h:outputText for="band-name" styleClass="input-label" value="Name"/>
+                            <p:inputText id="band-name" value="#{bandBean.bandVo.name}"/>
 
-                            <h:outputText for="genre" styleClass="input-label" value="Genre"/>
-                            <p:inputText id="genre" value="#{bandBean.bandVo.genre}"/>
+                            <h:outputText for="band-genre" styleClass="input-label" value="Genre"/>
+                            <p:inputText id="band-genre" value="#{bandBean.bandVo.genre}"/>
 
-                            <h:outputText for="description1" styleClass="input-label" value="Description"/>
-                            <p:inputTextarea id="description1" value="#{bandBean.bandVo.description}"/>
+                            <h:outputText for="band-description1" styleClass="input-label" value="Description"/>
+                            <p:inputTextarea id="band-description1" value="#{bandBean.bandVo.description}"/>
                             <p:commandButton value="Save" ajax="false"  action="#{publicBandProfileBean.editBand()}"/>
                         </h:panelGrid>
                     </h:form>
@@ -56,48 +56,104 @@
                 </h:panelGrid>
 
                 <div id="gallery">
-                    <p:galleria styleClass="galleria"
-                                value="#{bandBean.bandVo.bandsImages}"
-                                var="image"
-                                panelWidth="600"
-                                panelHeight="400"
-                                showCaption="true">
-                        <p:graphicImage value="#{imageStreamerBean.image}"
-                                        alt="#{image.caption}"
-                                        title="#{image.name}"
-                                        width="600"
+                    <p:galleria styleClass="centered" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600"
+                                panelHeight="400" showCaption="true" rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
+                        <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="600"
                                         height="400">
                             <f:param name="imageId" value="#{image.id}"/>
                         </p:graphicImage>
                     </p:galleria>
 
-                    <p:growl id="messages" showDetail="true" />
-                    <h:panelGrid columnClasses="value">
-                        <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
-                        <!--<p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">-->
-                        <!--</p:schedule>-->
-                    </h:panelGrid>
-                    <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-                        <h:panelGrid id="eventDetails" columns="2">
-                            <h:form>
-                                <p:outputLabel for="title" value="Titles:" />
-                                <p:inputText id="title" value="#{scheduleViewMB.event.title}"/>
+                    <div class="centered-text">
+                        <p:commandButton value="Add image" type="button" onclick="PF('add').show();"/>
+                        <p:commandButton value="Edit or remove images" type="button" onclick="PF('editAndRemove').show();"
+                                         rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}"/>
+                    </div>
 
-                                <p:outputLabel for="from" value="From:" />
-                                <p:calendar id="from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+                    <p:dialog modal="true" header="Add new image" widgetVar="add">
+                        <h:form>
+                            <p:wizard flowListener="#{bandImageUploadBean.onFlowProcess}">
+                                <p:tab id="caption">
+                                    <p:panel header="Give caption to image">
+                                        <p:messages/>
+                                        <h:panelGrid columns="2" cellpadding="5">
+                                            <h:outputText styleClass="input-label" value="Caption"/>
+                                            <p:inputText id="name" value="#{bandImageBean.bandImageVo.caption}" required="true"
+                                                         requiredMessage="Validation error: Caption is required." styleClass="centered-block centered-text"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:tab>
 
-                                <p:outputLabel for="to" value="To:" />
-                                <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+                                <p:tab id="uploadImage">
+                                    <p:panel header="Upload the image">
+                                        <p:messages/>
+                                        <h:panelGrid>
+                                            <p:fileUpload fileUploadListener="#{bandImageUploadBean.upload}" mode="advanced"
+                                                          dragDropSupport="false"
+                                                          sizeLimit="10000000" fileLimit="1"
+                                                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                        </h:panelGrid>
+                                    </p:panel>
+                                </p:tab>
+                            </p:wizard>
+                        </h:form>
+                    </p:dialog>
 
-                                <p:outputLabel for="description" value="Description:" />
-                                <p:inputText id="description" value="#{scheduleViewMB.event.description}"/>
-
-                                <p:commandButton type="reset" value="Reset" />
-                                <p:commandButton id="addButton" value="Save" />
-                            </h:form>
-                        </h:panelGrid>
+                    <p:dialog styleClass="editor" modal="true" header="Image editor" widgetVar="editAndRemove">
+                        <h:form>
+                            <p:dataTable id="editorTable" styleClass="editor" value="#{editBandImageBean.bandImageVoWrapper.bandImageVoList}"
+                                         var="image" rowStyleClass="centered-text">
+                                <p:column headerText="Image" style="width: 80px">
+                                    <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
+                                        <f:param name="imageId" value="#{image.id}"/>
+                                    </p:graphicImage>
+                                </p:column>
+                                <p:column headerText="Name">
+                                    <h:outputText value="#{image.name}"/>
+                                </p:column>
+                                <p:column headerText="Caption">
+                                    <h:inputTextarea value="#{image.caption}" styleClass="centered-block sizetoeditor" required="true"
+                                                     requiredMessage="Caption is required!"/>
+                                </p:column>
+                                <p:column headerText="Edit" styleClass="sizetoeditor">
+                                    <p:commandButton value="Edit" ajax="false"
+                                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
+                                </p:column>
+                                <p:column headerText="Remove" styleClass="sizetoeditor">
+                                    <p:commandButton value="Remove" ajax="false"
+                                                     action="#{editBandImageBean.removeImage(image.id)}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
                     </p:dialog>
                 </div>
+
+                <p:growl id="messages" showDetail="true" />
+                <h:panelGrid columnClasses="value">
+                    <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
+                    <!--<p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">-->
+                    <!--</p:schedule>-->
+                </h:panelGrid>
+                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+                    <h:panelGrid id="eventDetails" columns="2">
+                        <h:form>
+                            <p:outputLabel for="title" value="Titles:" />
+                            <p:inputText id="title" value="#{scheduleViewMB.event.title}"/>
+
+                            <p:outputLabel for="from" value="From:" />
+                            <p:calendar id="from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                            <p:outputLabel for="to" value="To:" />
+                            <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+
+                            <p:outputLabel for="description" value="Description:" />
+                            <p:inputText id="description" value="#{scheduleViewMB.event.description}"/>
+
+                            <p:commandButton type="reset" value="Reset" />
+                            <p:commandButton id="addButton" value="Save" />
+                        </h:form>
+                    </h:panelGrid>
+                </p:dialog>
 
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
                     <p:column headerText="Our demos">
@@ -112,5 +168,4 @@
             </p:panel>
         </ui:define>
     </ui:composition>
-
 </html>
