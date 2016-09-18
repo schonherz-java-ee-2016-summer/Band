@@ -14,9 +14,10 @@
                 <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
                 <f:viewAction action="#{publicBandProfileBean.onLoad}"/>
             </f:metadata>
-            <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
-            <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
 
+            <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
+
+            <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
                 <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
                         type="button"
                         onclick="PF('dlg2').show();">
@@ -128,32 +129,7 @@
                     </p:dialog>
                 </div>
 
-                <p:growl id="messages" showDetail="true" />
-                <h:panelGrid columnClasses="value">
-                    <h3 style="margin-top: 0">#{bandBean.bandVo.name}'s events</h3>
-                    <!--<p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="myschedule" timeZone="GMT+2">-->
-                    <!--</p:schedule>-->
-                </h:panelGrid>
-                <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
-                    <h:panelGrid id="eventDetails" columns="2">
-                        <h:form>
-                            <p:outputLabel for="title" value="Titles:" />
-                            <p:inputText id="title" value="#{scheduleViewMB.event.title}"/>
-
-                            <p:outputLabel for="from" value="From:" />
-                            <p:calendar id="from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
-
-                            <p:outputLabel for="to" value="To:" />
-                            <p:calendar id="to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
-
-                            <p:outputLabel for="description" value="Description:" />
-                            <p:inputText id="description" value="#{scheduleViewMB.event.description}"/>
-
-                            <p:commandButton type="reset" value="Reset" />
-                            <p:commandButton id="addButton" value="Save" />
-                        </h:form>
-                    </h:panelGrid>
-                </p:dialog>
+                <ui:include src="IsolatedSchedule.xhtml" />
 
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
                     <p:column headerText="Our demos">

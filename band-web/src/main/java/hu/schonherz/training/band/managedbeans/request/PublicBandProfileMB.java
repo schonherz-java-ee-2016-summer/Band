@@ -2,11 +2,7 @@ package hu.schonherz.training.band.managedbeans.request;
 
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 
-import hu.schonherz.training.band.managedbeans.view.ScheduleViewMB;
-import hu.schonherz.training.band.managedbeans.view.BandMateMB;
-import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
 import hu.schonherz.training.band.service.BandImageService;
-import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.service.DemoService;
@@ -22,7 +18,6 @@ import javax.faces.context.FacesContext;
 @ManagedBean(name = "publicBandProfileBean")
 @RequestScoped
 public class PublicBandProfileMB {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(PublicBandProfileMB.class);
 
     @ManagedProperty("#{bandBean}")
