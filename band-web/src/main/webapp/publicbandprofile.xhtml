@@ -26,31 +26,34 @@
 
                 <p:dialog header="Band Edit" widgetVar="edit-band-dialog" modal="true" height="300">
                     <h:form>
-                        <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5">
-                            <h:outputText for="band-name" styleClass="input-label" value="Name"/>
-                            <p:inputText id="band-name" value="#{bandBean.bandVo.name}"/>
+                        <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+                            <h:outputText for="band-name" styleClass="output-text" value="Name:"/>
+                            <p:inputText id="band-name" styleClass="input-text" value="#{bandBean.bandVo.name}"/>
 
-                            <h:outputText for="band-genre" styleClass="input-label" value="Genre"/>
-                            <p:inputText id="band-genre" value="#{bandBean.bandVo.genre}"/>
+                            <h:outputText for="band-genre" styleClass="output-text" value="Genre:"/>
+                            <p:inputText id="band-genre" styleClass="input-text" value="#{bandBean.bandVo.genre}"/>
 
-                            <h:outputText for="band-description" styleClass="input-label" value="Description"/>
-                            <p:inputTextarea id="band-description" value="#{bandBean.bandVo.description}"/>
-                            <p:remoteCommand name="editBandCommand" actionListener="#{publicBandProfileBean.editBand}" oncomplete="PF('edit-band-dialog').hide()"/>
-                            <p:commandButton type="button"
+                            <h:outputText for="band-description" styleClass="output-text" value="Description:"/>
+                            <p:inputTextarea id="band-description" styleClass="input-text" value="#{bandBean.bandVo.description}"/>
+                            <p:commandButton type="submit"
                                              value="Save"
+                                             update="band-panel"
                                              icon="ui-icon-check"
-                                             onclick="editBandCommand()"/>
+                                             oncomplete="PF('edit-band-dialog').hide()"
+                                             actionListener="#{publicBandProfileBean.editBand}">
+                                <f:param name="id" value="#{bandBean.bandVo.id}"/>
+                            </p:commandButton>
                         </h:panelGrid>
                     </h:form>
                 </p:dialog>
 
-                <h:panelGrid id="band-panel" columns="2" cellpadding="5">
-                    <h:outputText styleClass="input-label" value="Band name:"/>
-                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.name}"/>
-                    <h:outputText styleClass="input-label" value="Band genre:"/>
-                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.genre}"/>
-                    <h:outputText styleClass="input-label" value="Band description:"/>
-                    <h:outputText styleClass="input-label" value="#{bandBean.bandVo.description}"/>
+                <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+                    <h:outputText styleClass="output-band-text" value="Band name:"/>
+                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.name}"/>
+                    <h:outputText styleClass="output-band-text" value="Band genre:"/>
+                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.genre}"/>
+                    <h:outputText styleClass="output-band-text" value="Band description:"/>
+                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.description}"/>
                 </h:panelGrid>
 
                 <h:panelGrid columns="4" cellpadding="5">
