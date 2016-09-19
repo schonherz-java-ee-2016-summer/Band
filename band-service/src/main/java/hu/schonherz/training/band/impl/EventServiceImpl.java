@@ -1,7 +1,6 @@
 package hu.schonherz.training.band.impl;
 
 import hu.schonherz.training.band.entities.EventEntity;
-import hu.schonherz.training.band.mapper.EventMapper;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.repositories.EventRepository;
 import hu.schonherz.training.band.service.EventService;
@@ -11,6 +10,9 @@ import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Armin Veress
@@ -39,5 +41,23 @@ public class EventServiceImpl implements EventService {
         eventEntity.setBand(bandRepository.findById(1L));
         eventEntity.setVenueId(1L);
         eventRepository.save(eventEntity);
+    }
+
+    @Override
+    public Collection<EventVo> getEventsByBand() {
+        Collection<EventVo> eventVos = new ArrayList<>();
+        List<EventEntity> eventEntities = (List<EventEntity>) eventRepository.findByBandId(1L);
+        for (EventEntity i : eventEntities) {
+            EventVo eventVo = new EventVo();
+            eventVo.setId(i.getId());
+            eventVo.setVenueId(i.getVenueId());
+            eventVo.setBandId(i.getBand().getId());
+            eventVo.setName(i.getName());
+            eventVo.setStart(i.getStart());
+            eventVo.setFinish(i.getFinish());
+            eventVo.setDescription(i.getDescription());
+            eventVos.add(eventVo);
+        }
+        return eventVos;
     }
 }
