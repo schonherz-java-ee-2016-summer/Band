@@ -1,0 +1,27 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <p:dialog header="Band Edit" widgetVar="edit-band-dialog" modal="true" height="300">
+        <h:form>
+            <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5">
+                <h:outputText for="band-name" styleClass="input-label" value="Name"/>
+                <p:inputText id="band-name" value="#{bandBean.bandVo.name}"/>
+
+                <h:outputText for="band-genre" styleClass="input-label" value="Genre"/>
+                <p:inputText id="band-genre" value="#{bandBean.bandVo.genre}"/>
+
+                <h:outputText for="band-description" styleClass="input-label" value="Description"/>
+                <p:inputTextarea id="band-description" value="#{bandBean.bandVo.description}"/>
+                <p:remoteCommand name="editBandCommand" actionListener="#{publicBandProfileBean.editBand}"
+                                 oncomplete="PF('edit-band-dialog').hide()"/>
+                <p:commandButton type="button"
+                                 value="Save"
+                                 icon="ui-icon-check"
+                                 onclick="editBandCommand()"/>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</ui:composition>
