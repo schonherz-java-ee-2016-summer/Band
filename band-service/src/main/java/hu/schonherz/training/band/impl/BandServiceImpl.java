@@ -6,11 +6,14 @@ import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.mapper.BandMapper;
 import hu.schonherz.training.band.vo.BandVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
 
 import javax.ejb.*;
 import javax.interceptor.Interceptors;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Norbert Barocsi
@@ -65,7 +68,13 @@ public class BandServiceImpl implements BandService, BandRemoteService {
     }
 
     @Override
-    public String getAllBands() {
-        return "Valami tök mindegy!";
+    public List<BandVo> getAllBands() {
+        return BandMapper.toVo(bandRepository.findAll());
+    }
+
+    @Override
+    public List<BandVo> getBandsWithPaging(int page, int pageSize) {
+        Pageable pageable = new PageRequest(page, pageSize);
+        return BandMapper.toVo(bandRepository.findAll(pageable).getContent());
     }
 }
