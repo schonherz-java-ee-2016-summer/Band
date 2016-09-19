@@ -3,6 +3,7 @@ package hu.schonherz.training.band.managedbeans.request;
 import hu.schonherz.training.band.managedbeans.view.BandMateMB;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
 import hu.schonherz.training.band.vo.BandMateVo;
+import org.primefaces.context.RequestContext;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -37,8 +38,8 @@ public class CreateBandMateMB {
         bandMatesMB.getBandMateVos().add(bandMate);
 
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Save Completed: " + bandMateMB.getBandMateVo().getFirstName()
-                        + " " + bandMateMB.getBandMateVo().getLastName()));
+                new FacesMessage("Save Completed: " + bandMate.getFirstName()
+                        + " " + bandMate.getLastName()));
     }
 
     public BandMateMB getBandMateMB() {
