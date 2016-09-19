@@ -37,7 +37,6 @@ public class PublicBandProfileMB {
 
     public void onLoad() {
         if (!FacesContext.getCurrentInstance().isPostback()) {
-
             BandVo bandVo = bandService.getBandById(bandMB.getBandVo().getId());
             bandMB.setBandVo(bandVo);
         }
@@ -45,10 +44,9 @@ public class PublicBandProfileMB {
         LOGGER.info("onLoad completed.");
     }
 
-    public String editBand(){
+    public void editBand(){
         bandService.createBand(bandMB.getBandVo());
-        LOGGER.info("editBand completed.");
-        return "publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
+        LOGGER.info("Modified band with id {} successfully.", bandMB.getBandVo().getId());
     }
 
     public BandMB getBandMB() {

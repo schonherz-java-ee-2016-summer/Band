@@ -18,13 +18,33 @@
             <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
 
             <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
-                <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                <button class="btn btn-primary"
                         type="button"
-                        onclick="PF('dlg2').show();">
-                    <span class="ui-button-text ui-c">Edit</span>
+                        onclick="PF('edit-band-dialog').show();">
+                    Edit Details
                 </button>
 
-                <h:panelGrid columns="2" cellpadding="5">
+                <p:dialog header="Band Edit" widgetVar="edit-band-dialog" modal="true" height="300">
+                    <h:form>
+                        <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5">
+                            <h:outputText for="band-name" styleClass="input-label" value="Name"/>
+                            <p:inputText id="band-name" value="#{bandBean.bandVo.name}"/>
+
+                            <h:outputText for="band-genre" styleClass="input-label" value="Genre"/>
+                            <p:inputText id="band-genre" value="#{bandBean.bandVo.genre}"/>
+
+                            <h:outputText for="band-description" styleClass="input-label" value="Description"/>
+                            <p:inputTextarea id="band-description" value="#{bandBean.bandVo.description}"/>
+                            <p:remoteCommand name="editBandCommand" actionListener="#{publicBandProfileBean.editBand}" oncomplete="PF('edit-band-dialog').hide()"/>
+                            <p:commandButton type="button"
+                                             value="Save"
+                                             icon="ui-icon-check"
+                                             onclick="editBandCommand()"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:dialog>
+
+                <h:panelGrid id="band-panel" columns="2" cellpadding="5">
                     <h:outputText styleClass="input-label" value="Band name:"/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.name}"/>
                     <h:outputText styleClass="input-label" value="Band genre:"/>
@@ -32,22 +52,6 @@
                     <h:outputText styleClass="input-label" value="Band description:"/>
                     <h:outputText styleClass="input-label" value="#{bandBean.bandVo.description}"/>
                 </h:panelGrid>
-
-                <p:dialog header="Band Edit" widgetVar="dlg2" modal="true" height="300">
-                    <h:form>
-                        <h:panelGrid id="panel" columns="2" cellpadding="5">
-                            <h:outputText for="band-name" styleClass="input-label" value="Name"/>
-                            <p:inputText id="band-name" value="#{bandBean.bandVo.name}"/>
-
-                            <h:outputText for="band-genre" styleClass="input-label" value="Genre"/>
-                            <p:inputText id="band-genre" value="#{bandBean.bandVo.genre}"/>
-
-                            <h:outputText for="band-description1" styleClass="input-label" value="Description"/>
-                            <p:inputTextarea id="band-description1" value="#{bandBean.bandVo.description}"/>
-                            <p:commandButton value="Save" ajax="false"  action="#{publicBandProfileBean.editBand()}"/>
-                        </h:panelGrid>
-                    </h:form>
-                </p:dialog>
 
                 <h:panelGrid columns="4" cellpadding="5">
                     <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
@@ -66,9 +70,12 @@
                     </p:galleria>
 
                     <div class="centered-text">
-                        <p:commandButton value="Add image" type="button" onclick="PF('add').show();"/>
-                        <p:commandButton value="Edit or remove images" type="button" onclick="PF('editAndRemove').show();"
-                                         rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}"/>
+                        <button type="button" onclick="PF('add').show();">Add Image</button>
+                        <button type="button"
+                                onclick="PF('editAndRemove').show();"
+                                rendered="#{not empty bandBean.bandVo.bandsImages}">
+                            Add / Remove Images
+                        </button>
                     </div>
 
                     <p:dialog modal="true" header="Add new image" widgetVar="add">
@@ -129,7 +136,9 @@
                     </p:dialog>
                 </div>
 
-                <ui:include src="IsolatedSchedule.xhtml" />
+                <ui:fragment>
+                    <ui:include src="WEB-INF/fragments/band-events.xhtml" />
+                </ui:fragment>
 
                 <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
                     <p:column headerText="Our demos">
