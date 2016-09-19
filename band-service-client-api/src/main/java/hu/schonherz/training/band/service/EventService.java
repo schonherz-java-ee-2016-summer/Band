@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.service;
 
+import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.EventVo;
 
 import java.util.Collection;
@@ -12,5 +13,5 @@ public interface EventService {
 
     void createEvent(EventVo eventVo);
 
-    Collection<EventVo> getEventsByBand();
+    Collection<EventVo> getEventsByBand(BandVo bandVo);
 }

@@ -4,6 +4,7 @@ import hu.schonherz.training.band.entities.EventEntity;
 import hu.schonherz.training.band.repositories.BandRepository;
 import hu.schonherz.training.band.repositories.EventRepository;
 import hu.schonherz.training.band.service.EventService;
+import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.vo.EventVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ejb.interceptor.SpringBeanAutowiringInterceptor;
@@ -38,15 +39,15 @@ public class EventServiceImpl implements EventService {
         eventEntity.setStart(eventVo.getStart());
         eventEntity.setFinish(eventVo.getFinish());
         eventEntity.setDescription(eventVo.getDescription());
-        eventEntity.setBand(bandRepository.findById(1L));
+        eventEntity.setBand(bandRepository.findById(eventVo.getBandId()));
         eventEntity.setVenueId(1L);
         eventRepository.save(eventEntity);
     }
 
     @Override
-    public Collection<EventVo> getEventsByBand() {
+    public Collection<EventVo> getEventsByBand(BandVo bandVo) {
         Collection<EventVo> eventVos = new ArrayList<>();
-        List<EventEntity> eventEntities = (List<EventEntity>) eventRepository.findByBandId(1L);
+        List<EventEntity> eventEntities = (List<EventEntity>) eventRepository.findByBandId(bandVo.getId());
         for (EventEntity i : eventEntities) {
             EventVo eventVo = new EventVo();
             eventVo.setId(i.getId());

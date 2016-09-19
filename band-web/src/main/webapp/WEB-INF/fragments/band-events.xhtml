@@ -11,10 +11,11 @@
             <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="gigs" timeZone="GMT+2">
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
-                        update="eventDetails"
+                        update="@widgetVar(eventDialog)"
                         oncomplete="PF('eventDialog').show();" />
-                <p:ajax event="eventSelect" listener="#{scheduleViewMB.onEventSelect}"
-                        update="eventDetails"
+                <p:ajax event="eventSelect"
+                        listener="#{scheduleViewMB.onEventSelect}"
+                        update="@widgetVar(eventDialog)"
                         oncomplete="PF('eventDialog').show();" />
             </p:schedule>
         </h:panelGrid>
@@ -32,9 +33,6 @@
 
                 <p:outputLabel for="event-description" value="Description:" />
                 <p:inputText id="event-description" value="#{scheduleViewMB.event.description}" required="true" />
-
-                <p:outputLabel for="event-allDay" value="All Day:" />
-                <h:selectBooleanCheckbox id="event-allDay" value="#{scheduleViewMB.event.allDay}" />
 
                 <p:commandButton type="reset" value="Reset" />
                 <p:commandButton id="event-add"
