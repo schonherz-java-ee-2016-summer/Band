@@ -7,15 +7,25 @@
     width: 35%;
     margin: 0 auto;
 }
+
 .datalist-noborder .ui-widget-content {
     border: none;
     color: black;
 }
+
 .output-text {
     display: inline-block;
     font-size: 13pt;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: black;
+}
+
+.output-band-text {
+    display: inline-block;
+    font-size: 13pt;
+    margin-top: 10px;
+    margin-bottom: 10px;
     color: black;
 }
 
