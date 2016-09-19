@@ -1,0 +1,36 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog styleClass="editor" modal="true" header="Image editor" widgetVar="editAndRemove">
+        <h:form>
+            <p:dataTable id="editorTable" styleClass="editor"
+                         value="#{editBandImageBean.bandImageVoWrapper.bandImageVoList}"
+                         var="image" rowStyleClass="centered-text">
+                <p:column headerText="Image" style="width: 80px">
+                    <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
+                        <f:param name="imageId" value="#{image.id}"/>
+                    </p:graphicImage>
+                </p:column>
+                <p:column headerText="Name">
+                    <h:outputText value="#{image.name}"/>
+                </p:column>
+                <p:column headerText="Caption">
+                    <h:inputTextarea value="#{image.caption}" styleClass="centered-block sizetoeditor" required="true"
+                                     requiredMessage="Caption is required!"/>
+                </p:column>
+                <p:column headerText="Edit" styleClass="sizetoeditor">
+                    <p:commandButton value="Edit" ajax="false"
+                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
+                </p:column>
+                <p:column headerText="Remove" styleClass="sizetoeditor">
+                    <p:commandButton value="Remove" ajax="false"
+                                     action="#{editBandImageBean.removeImage(image.id)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </p:dialog>
+</ui:composition>

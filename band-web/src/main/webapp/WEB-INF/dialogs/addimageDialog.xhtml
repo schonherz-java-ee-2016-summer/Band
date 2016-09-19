@@ -1,0 +1,36 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    <p:dialog modal="true" header="Add new image" widgetVar="add">
+        <h:form>
+            <p:wizard flowListener="#{bandImageUploadBean.onFlowProcess}">
+                <p:tab id="caption">
+                    <p:panel header="Give caption to image">
+                        <p:messages/>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputText styleClass="input-label" value="Caption"/>
+                            <p:inputText id="name" value="#{bandImageBean.bandImageVo.caption}" required="true"
+                                         requiredMessage="Validation error: Caption is required."
+                                         styleClass="centered-block centered-text"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+
+                <p:tab id="uploadImage">
+                    <p:panel header="Upload the image">
+                        <p:messages/>
+                        <h:panelGrid>
+                            <p:fileUpload fileUploadListener="#{bandImageUploadBean.upload}" mode="advanced"
+                                          dragDropSupport="false"
+                                          sizeLimit="10000000" fileLimit="1"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </p:tab>
+            </p:wizard>
+        </h:form>
+    </p:dialog>
+</ui:composition>
