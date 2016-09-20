@@ -43,6 +43,7 @@ public class FileUploadView {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             demoMB.getDemoVo().setFilename(destination);
             demoMB.getDemoVo().setName(event.getFile().getFileName());
+            demoMB.getDemoVo().setBandId(1L);
             demoService.createDemo(demoMB.getDemoVo());
         } catch (IOException e) {
             e.printStackTrace();
