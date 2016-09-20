@@ -73,14 +73,14 @@ public class ScheduleViewMB implements Serializable {
     }
 
     public static EventVo EventVoMapper(ScheduleEvent event){
-        EventMB eventMB = new EventMB();
-        eventMB.getEventVo().setName(event.getTitle());
-        eventMB.getEventVo().setStart(LocalDateTime.ofInstant
+        EventVo eventVo = new EventVo();
+        eventVo.setName(event.getTitle());
+        eventVo.setStart(LocalDateTime.ofInstant
                 (event.getStartDate().toInstant(), ZoneId.systemDefault()));
-        eventMB.getEventVo().setFinish(LocalDateTime.ofInstant
+        eventVo.setFinish(LocalDateTime.ofInstant
                 (event.getEndDate().toInstant(), ZoneId.systemDefault()));
-        eventMB.getEventVo().setDescription(event.getDescription());
-        return  eventMB.getEventVo();
+        eventVo.setDescription(event.getDescription());
+        return  eventVo;
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
