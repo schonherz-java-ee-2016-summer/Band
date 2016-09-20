@@ -6,68 +6,50 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/templates/pageTemplate.xhtml">
-        <ui:define name="title">Public band profile</ui:define>
-        <ui:define name="body" >
-            <h:outputStylesheet name="css/band.css"/>
-            <f:metadata>
-                <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
-                <f:viewAction action="#{publicBandProfileBean.onLoad}"/>
-            </f:metadata>
+<ui:composition template="/templates/pageTemplate.xhtml">
+    <ui:define name="title">Public band profile</ui:define>
+    <ui:define name="body">
+        <h:outputStylesheet name="css/band.css"/>
+        <f:metadata>
+            <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
+            <f:viewAction action="#{publicBandProfileBean.onLoad}"/>
+        </f:metadata>
 
-            <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
 
-            <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
-                <button class="btn btn-primary"
-                        type="button"
-                        onclick="PF('edit-band-dialog').show();">
-                    Edit Details
-                </button>
+        <h:outputText value="Band profile is disabled" rendered="#{bandBean.bandVo.disabled eq true}"/>
 
-                <p:dialog header="Band Edit" widgetVar="edit-band-dialog" modal="true" height="300">
-                    <h:form>
-                        <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
-                            <h:outputText for="band-name" styleClass="output-text" value="Name:"/>
-                            <p:inputText id="band-name" styleClass="input-text" value="#{bandBean.bandVo.name}"/>
+        <p:panel styleClass="main" header="Band profile" rendered="#{bandBean.bandVo.disabled eq false}">
 
-                            <h:outputText for="band-genre" styleClass="output-text" value="Genre:"/>
-                            <p:inputText id="band-genre" styleClass="input-text" value="#{bandBean.bandVo.genre}"/>
+            <div class="container-fluid">
+                <div class="col-xs-12 col-md-4">
+                    <button class="btn btn-primary"
+                            type="button"
+                            onclick="PF('edit-band-dialog').show();">
+                        Edit Details
+                    </button>
+                    <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+                        <h:outputText styleClass="output-band-text" value="Band name:"/>
+                        <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.name}"/>
+                        <h:outputText styleClass="output-band-text" value="Band genre:"/>
+                        <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.genre}"/>
+                        <h:outputText styleClass="output-band-text" value="Band description:"/>
+                        <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.description}"/>
+                    </h:panelGrid>
 
-                            <h:outputText for="band-description" styleClass="output-text" value="Description:"/>
-                            <p:inputTextarea id="band-description" styleClass="input-text" value="#{bandBean.bandVo.description}"/>
-                            <p:commandButton type="submit"
-                                             value="Save"
-                                             update="band-panel"
-                                             icon="ui-icon-check"
-                                             oncomplete="PF('edit-band-dialog').hide()"
-                                             actionListener="#{publicBandProfileBean.editBand}">
-                                <f:param name="id" value="#{bandBean.bandVo.id}"/>
-                            </p:commandButton>
-                        </h:panelGrid>
-                    </h:form>
-                </p:dialog>
+                    <h:panelGrid columns="4" cellpadding="5">
+                        <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
+                            <f:facet name="header">Band Mates</f:facet>
+                            #{bandMate.firstName} #{bandMate.lastName}, #{bandMate.instrument}, #{bandMate.email}
+                        </p:dataList>
+                    </h:panelGrid>
+                </div>
 
-                <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
-                    <h:outputText styleClass="output-band-text" value="Band name:"/>
-                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.name}"/>
-                    <h:outputText styleClass="output-band-text" value="Band genre:"/>
-                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.genre}"/>
-                    <h:outputText styleClass="output-band-text" value="Band description:"/>
-                    <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.description}"/>
-                </h:panelGrid>
-
-                <h:panelGrid columns="4" cellpadding="5">
-                    <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
-                        <f:facet name="header">Band Mates</f:facet>
-                        #{bandMate.firstName} #{bandMate.lastName}, #{bandMate.instrument}, #{bandMate.email}
-                    </p:dataList>
-                </h:panelGrid>
-
-                <div id="gallery">
-                    <p:galleria styleClass="centered" value="#{bandBean.bandVo.bandsImages}" var="image" panelWidth="600"
-                                panelHeight="400" showCaption="true" rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
-                        <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="600"
-                                        height="400">
+                <div id="gallery" class="col-xs-12 col-md-8">
+                    <p:galleria styleClass="centered" value="#{bandBean.bandVo.bandsImages}" var="image"
+                                panelWidth="600"
+                                panelHeight="400" showCaption="true"
+                                rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
+                        <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="60%">
                             <f:param name="imageId" value="#{image.id}"/>
                         </p:graphicImage>
                     </p:galleria>
@@ -80,27 +62,33 @@
                             Edit / Remove Images
                         </button>
                     </div>
-
-                    <ui:include src="WEB-INF/dialogs/addImageDialog.xhtml"/>
-                    <ui:include src="WEB-INF/dialogs/editImageDialog.xhtml"/>
-                    <ui:include src="WEB-INF/dialogs/bandEditDialog.xhtml"/>
                 </div>
 
-                <ui:fragment>
-                    <ui:include src="WEB-INF/fragments/band-events.xhtml" />
-                </ui:fragment>
+                <div class="col-xs-12 col-md-12">
+                    <ui:fragment>
+                        <ui:include src="WEB-INF/fragments/band-events.xhtml"/>
+                    </ui:fragment>
 
-                <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
-                    <p:column headerText="Our demos">
-                        <h:outputText value="#{demo.name}" />
-                    </p:column>
-                    <p:column headerText="Songs">
-                    <audio controls="controls">
-                        <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
-                    </audio>
-                    </p:column>
-                </p:dataTable>
-            </p:panel>
-        </ui:define>
-    </ui:composition>
+                    <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
+                        <p:column headerText="Our demos">
+                            <h:outputText value="#{demo.name}"/>
+                        </p:column>
+                        <p:column headerText="Songs">
+                            <audio controls="controls">
+                                <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                            </audio>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </p:panel>
+
+
+        <div id="dialogs">
+            <ui:include src="WEB-INF/dialogs/addImageDialog.xhtml"/>
+            <ui:include src="WEB-INF/dialogs/editImageDialog.xhtml"/>
+            <ui:include src="WEB-INF/dialogs/bandEditDialog.xhtml"/>
+        </div>
+    </ui:define>
+</ui:composition>
 </html>

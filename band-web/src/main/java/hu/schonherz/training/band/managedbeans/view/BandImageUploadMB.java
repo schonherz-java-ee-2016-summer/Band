@@ -43,7 +43,7 @@ public class BandImageUploadMB {
     private InputStream input;
     private String filename;
 
-    public void upload(FileUploadEvent event) {
+    public void create(FileUploadEvent event){
         UploadedFile uploadedFile = event.getFile();
         filename = uploadedFile.getFileName();
         try {
@@ -51,6 +51,13 @@ public class BandImageUploadMB {
             LOGGING.info("An Image was uploaded.");
         } catch (IOException e) {
             LOGGING.error("Uploaded file can't put into inputstream!");
+        }
+    }
+
+    public void upload() {
+        if (input == null){
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Image was not uploaded!", null);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
         Path filePath = createPath();
         try {
