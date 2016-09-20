@@ -66,6 +66,7 @@ public class ScheduleViewMB implements Serializable {
         } else {
             eventModel.updateEvent(event);
         }
+        
         EventVo eventVo = EventVoMapper(event);
         eventVo.setBandId(bandMB.getBandVo().getId());
         eventService.createEvent(eventVo);
