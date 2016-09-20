@@ -10,18 +10,18 @@
 
 .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.redButtonColor{
     color: white;
-    background-color: red;
+    background: red;
     text-shadow: none;
-    border: 1px solid #7096ab;
+    border: none;
     box-shadow: 0 0 8px #cb9c98;
 }
 
 
 .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.greenButtonColor{
     color: white;
-    background-color: green;
+    background: green;
     text-shadow: none;
-    border: 1px solid #7096ab;
+    border: none;
     box-shadow: 0 0 8px #94cb96;
 }
 
