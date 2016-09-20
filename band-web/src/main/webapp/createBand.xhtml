@@ -16,11 +16,12 @@
             <div class="createBand-main">
                 <h:form id="form">
 
-                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:growl id="growl" life="4000" showDetail="false"/>
 
                     <p:wizard flowListener="#{createBandBean.onFlowProcess}" style="margin-top: 30px;">
                         <p:tab id="band" title="Band">
                             <p:panel header="Band Registration">
+                                <p:messages/>
                                 <h:panelGrid columns="2" cellspacing="20" width="100%" columnClasses="label, value">
                                     <h:outputText styleClass="output-text" value="Name: *"/>
                                     <p:inputText id="name" styleClass="input-text"
@@ -45,31 +46,36 @@
 
                         <p:tab id="bandMate" title="Band Mate">
                             <p:panel id="bandMateSave" header="Band Mate Registration">
+                                <p:messages/>
                                 <h:panelGrid columns="2" cellspacing="20" width="100%" columnClasses="label, value">
                                     <h:outputText styleClass="output-text" value="First Name: *"/>
                                     <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
                                                  styleClass="input-text"
+                                                 label="First Name"
                                                  required="true"/>
 
                                     <h:outputText styleClass="output-text" value="Last Name: *"/>
                                     <p:inputText id="lastName" value="#{bandMateBean.bandMateVo.lastName}"
                                                  styleClass="input-text"
+                                                 label="Last Name"
                                                  required="true"/>
 
                                     <h:outputText styleClass="output-text" value="Email Address: *"/>
                                     <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
                                                  styleClass="input-text"
+                                                 label="Email Adress"
                                                  required="true"/>
 
                                     <h:outputText styleClass="output-text" value="Musical Instrument: *"/>
                                     <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
                                                  styleClass="input-text"
+                                                 label="Musical Instrument"
                                                  required="true"/>
 
                                     <h:outputText styleClass="output-text" value="Profile:"/>
                                     <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
                                 </h:panelGrid>
-                                <p:commandButton value="Save Band Mate" update="growl" ajax="false" action="#{createBandMateBean.save}"/>
+                                <p:commandButton value="Save Band Mate" update="growl" actionListener="#{createBandMateBean.save}"/>
                             </p:panel>
                         </p:tab>
 

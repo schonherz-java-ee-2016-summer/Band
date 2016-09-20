@@ -15,12 +15,14 @@
 
                 <h:outputText for="band-description" styleClass="input-label" value="Description"/>
                 <p:inputTextarea id="band-description" value="#{bandBean.bandVo.description}"/>
-                <p:remoteCommand name="editBandCommand" actionListener="#{publicBandProfileBean.editBand}"
-                                 oncomplete="PF('edit-band-dialog').hide()"/>
-                <p:commandButton type="button"
+                <p:commandButton type="submit"
                                  value="Save"
+                                 update="band-panel"
                                  icon="ui-icon-check"
-                                 onclick="editBandCommand()"/>
+                                 oncomplete="PF('edit-band-dialog').hide()"
+                                 actionListener="#{publicBandProfileBean.editBand}">
+                    <f:param name="id" value="#{bandBean.bandVo.id}"/>
+                </p:commandButton>
             </h:panelGrid>
         </h:form>
     </p:dialog>

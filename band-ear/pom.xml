@@ -44,7 +44,7 @@
                         <webModule>
                             <groupId>hu.schonherz.training.band</groupId>
                             <artifactId>band-web</artifactId>
-                            <contextRoot>band-web</contextRoot>
+                            <contextRoot>band</contextRoot>
                         </webModule>
                     </modules>
                 </configuration>

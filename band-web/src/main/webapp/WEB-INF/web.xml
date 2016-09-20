@@ -5,8 +5,11 @@
 	                         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          id="WebApp_ID" version="2.5">
 
+    <display-name>Band</display-name>
+
+
     <welcome-file-list>
-        <welcome-file>/pages/createBandImage.jsf</welcome-file>
+        <welcome-file>createBand.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
