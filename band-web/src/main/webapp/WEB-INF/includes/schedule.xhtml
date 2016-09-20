@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <p:panel>
+        <ui:fragment>
+            <ui:include src="fragments/band-events.xhtml"/>
+        </ui:fragment>
+
+        <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
+            <p:column headerText="Our demos">
+                <h:outputText value="#{demo.name}"/>
+            </p:column>
+            <p:column headerText="Songs">
+                <audio controls="controls">
+                    <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                </audio>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+</ui:composition>

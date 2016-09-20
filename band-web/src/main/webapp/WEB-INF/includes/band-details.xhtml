@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <p:panel>
+        <button class="btn btn-primary"
+                type="button"
+                onclick="PF('edit-band-dialog').show();">
+            Edit Details
+        </button>
+        <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+            <h:outputText styleClass="output-band-text" value="Band name:"/>
+            <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.name}"/>
+            <h:outputText styleClass="output-band-text" value="Band genre:"/>
+            <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.genre}"/>
+            <h:outputText styleClass="output-band-text" value="Band description:"/>
+            <h:outputText styleClass="output-band-text" value="#{bandBean.bandVo.description}"/>
+        </h:panelGrid>
+
+        <h:panelGrid columns="4" cellpadding="5">
+            <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
+                <f:facet name="header">Band Mates</f:facet>
+                #{bandMate.firstName} #{bandMate.lastName}, #{bandMate.instrument}, #{bandMate.email}
+            </p:dataList>
+        </h:panelGrid>
+    </p:panel>
+
+    <ui:include src="dialogs/bandEditDialog.xhtml"/>
+
+</ui:composition>
