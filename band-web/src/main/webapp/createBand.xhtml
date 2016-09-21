@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/templates/pageTemplate.xhtml">
-        <ui:define name="title">Create new band</ui:define>
+        <ui:define name="title">#{msg['create.new.band']}</ui:define>
         <ui:define name="body">
 
             <h:outputStylesheet name="css/band.css"/>
@@ -19,81 +19,81 @@
                     <p:growl id="growl" life="4000" showDetail="false"/>
 
                     <p:wizard flowListener="#{createBandBean.onFlowProcess}" style="margin-top: 30px;">
-                        <p:tab id="band" title="Band">
-                            <p:panel header="Band Registration">
+                        <p:tab id="band" title="#{msg['band']}">
+                            <p:panel header="#{msg['band.registration']}">
                                 <p:messages/>
                                 <h:panelGrid columns="2" cellspacing="20" width="100%" columnClasses="label, value">
-                                    <h:outputText styleClass="output-text" value="Name: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.name']}: *"/>
                                     <p:inputText id="name" styleClass="input-text"
                                                  value="#{bandBean.bandVo.name}"
-                                                 label="Name"
+                                                 requiredMessage="#{msg['band.name']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Genre: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.genre']}: *"/>
                                     <p:inputText id="genre" styleClass="input-text"
                                                  value="#{bandBean.bandVo.genre}"
-                                                 label="Genre"
+                                                 requiredMessage="#{msg['band.genre']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Description: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.description']}: *"/>
                                     <p:inputTextarea id="description" rows="6" styleClass="input-textArea"
                                                      value="#{bandBean.bandVo.description}"
-                                                     label="Description"
+                                                     requiredMessage="#{msg['band.description']} #{msg['band.required.message']}"
                                                      required="true"/>
                                 </h:panelGrid>
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="bandMate" title="Band Mate">
-                            <p:panel id="bandMateSave" header="Band Mate Registration">
+                        <p:tab id="bandMate" title="#{msg['band.mate']}">
+                            <p:panel id="bandMateSave" header="#{msg['band.mate.registration']}">
                                 <p:messages/>
                                 <h:panelGrid columns="2" cellspacing="20" width="100%" columnClasses="label, value">
-                                    <h:outputText styleClass="output-text" value="First Name: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate.first.name']}: *"/>
                                     <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
                                                  styleClass="input-text"
-                                                 label="First Name"
+                                                 requiredMessage="#{msg['band.mate.first.name']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Last Name: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate.last.name']}: *"/>
                                     <p:inputText id="lastName" value="#{bandMateBean.bandMateVo.lastName}"
                                                  styleClass="input-text"
-                                                 label="Last Name"
+                                                 requiredMessage="#{msg['band.mate.last.name']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Email Address: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate.email.address']}: *"/>
                                     <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
                                                  styleClass="input-text"
-                                                 label="Email Adress"
+                                                 requiredMessage="#{msg['band.mate.email.address']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Musical Instrument: *"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate.musical.instrument']}: *"/>
                                     <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
                                                  styleClass="input-text"
-                                                 label="Musical Instrument"
+                                                 requiredMessage="#{msg['band.mate.musical.instrument']} #{msg['band.required.message']}"
                                                  required="true"/>
 
-                                    <h:outputText styleClass="output-text" value="Profile:"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate.profile']}:"/>
                                     <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
                                 </h:panelGrid>
-                                <p:commandButton value="Save Band Mate" update="growl" actionListener="#{createBandMateBean.save}"/>
+                                <p:commandButton value="#{msg['band.mate.save.button']}" update="growl" actionListener="#{createBandMateBean.save}"/>
                             </p:panel>
                         </p:tab>
 
-                        <p:tab id="confirm" title="Band's Confirmation">
-                            <p:panel header="Confirmation">
+                        <p:tab id="confirm" title="#{msg['band.confirmation']}">
+                            <p:panel header="#{msg['band.confimation.header']}">
                                 <h:panelGrid columns="2" cellspacing="20" columnClasses="label, value">
-                                    <h:outputText styleClass="output-text" value="Name:"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.name']}:"/>
                                     <h:outputText styleClass="output-text" value="#{bandBean.bandVo.name}"/>
-                                    <h:outputText styleClass="output-text" value="Genre:"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.genre']}:"/>
                                     <h:outputText styleClass="output-text" value="#{bandBean.bandVo.genre}"/>
-                                    <h:outputText styleClass="output-text" value="Description:"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.description']}:"/>
                                     <h:outputText styleClass="output-text" value="#{bandBean.bandVo.description}"/>
-                                    <h:outputText styleClass="output-text" value="Mates:"/>
+                                    <h:outputText styleClass="output-text" value="#{msg['band.mate']}:"/>
                                     <p:dataList value="#{bandMatesBean.bandMateVos}" var="bandMate" styleClass="datalist-noborder">
                                         #{bandMate.firstName} #{bandMate.lastName}
                                     </p:dataList>
                                 </h:panelGrid>
-                                <p:commandButton value="Complete Registration" ajax="false" action="#{createBandBean.doCreate}"/>
+                                <p:commandButton value="#{msg['band.complete.registration']}" ajax="false" action="#{createBandBean.doCreate}"/>
                             </p:panel>
                         </p:tab>
 
