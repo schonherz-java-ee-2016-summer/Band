@@ -60,7 +60,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public void createDemo(DemoVo demoVo) {
         DemoEntity demoEntity = DemoMapper.toEntity(demoVo);
-        demoEntity.setBand(bandRepository.findById(1L));
+        demoEntity.setBand(bandRepository.findById(demoVo.getBandId()));
         demoRepository.save(demoEntity);
     }
 

@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
+import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.managedbeans.view.DemoMB;
 import hu.schonherz.training.band.service.DemoService;
 import org.primefaces.event.FileUploadEvent;
@@ -32,18 +33,22 @@ public class FileUploadView {
     @ManagedProperty(value = "#{demoBean}")
     private DemoMB demoMB;
 
+    @ManagedProperty(value = "#{bandBean}")
+    private BandMB bandMB;
+
     private String destination = System.getProperty("jboss.server.data.dir") + File.separator + "band";
 
     public void upload(FileUploadEvent event) {
 
-        FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        Object bandId = event.getComponent().getAttributes().get("identity");
+
+        LOGGER.info(String.valueOf(bandId) + "<---------- ITT A BAND ID");
 
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
             demoMB.getDemoVo().setFilename(destination);
             demoMB.getDemoVo().setName(event.getFile().getFileName());
-            demoMB.getDemoVo().setBandId(1L);
+            demoMB.getDemoVo().setBandId((Long) bandId);
             demoService.createDemo(demoMB.getDemoVo());
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,5 +78,13 @@ public class FileUploadView {
 
     public void setDemoMB(DemoMB demoMB) {
         this.demoMB = demoMB;
+    }
+
+    public BandMB getBandMB() {
+        return bandMB;
+    }
+
+    public void setBandMB(BandMB bandMB) {
+        this.bandMB = bandMB;
     }
 }

@@ -2,12 +2,13 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+
     <p:panel>
-        <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
-            <p:column headerText="Demo Title">
+        <p:dataTable id="demo-table" var="demo" value="#{bandBean.bandVo.demos}">
+            <p:column headerText="#{msg['band.demo.title']}">
                 <h:outputText value="#{demo.name}"/>
             </p:column>
-            <p:column headerText="Player">
+            <p:column headerText="#{msg['band.demo.player']}">
                 <audio controls="controls">
                     <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
                 </audio>

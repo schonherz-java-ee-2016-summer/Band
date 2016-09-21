@@ -8,14 +8,15 @@
 
         <h:panelGrid columnClasses="value">
             <h3 style="margin-top: 0">Band Gigs</h3>
-            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" widgetVar="gigs" timeZone="GMT+2">
+            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
+                <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
-                        update="@widgetVar(eventDialog)"
+                        update="@widgetVar(eventDialog), messages"
                         oncomplete="PF('eventDialog').show();" />
                 <p:ajax event="eventSelect"
                         listener="#{scheduleViewMB.onEventSelect}"
-                        update="@widgetVar(eventDialog)"
+                        update="@widgetVar(eventDialog), messages"
                         oncomplete="PF('eventDialog').show();" />
             </p:schedule>
         </h:panelGrid>
