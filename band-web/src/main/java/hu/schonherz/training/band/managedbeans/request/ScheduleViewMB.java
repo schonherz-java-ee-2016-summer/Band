@@ -1,17 +1,5 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Collection;
-import java.util.Date;
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
-
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.managedbeans.view.EventMB;
 import hu.schonherz.training.band.managedbeans.view.SchemaMB;
@@ -24,6 +12,18 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * @author Armin Veress
@@ -112,13 +112,6 @@ public class ScheduleViewMB implements Serializable {
         this.eventMB = eventMB;
     }
 
-    public EventService getEventService() {
-        return eventService;
-    }
-
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
-    }
 
     public BandMB getBandMB() {
         return bandMB;

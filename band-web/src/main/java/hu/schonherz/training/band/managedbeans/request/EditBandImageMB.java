@@ -11,10 +11,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by Attila on 2016.09.16..
@@ -47,7 +44,7 @@ public class EditBandImageMB {
         bandImageVo.setBandId(bandMB.getBandVo().getId());
         bandImageService.saveBandImage(bandImageVo);
         LOGGER.info("Caption of " + bandImageVo.getName() + " was modified");
-        return "/publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
+        return "/profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public String removeImage(Long id){
@@ -55,7 +52,7 @@ public class EditBandImageMB {
         File image = new File((bandImageService.getImageById(id).getFilename()));
         bandImageService.deleteBandImage(bandImageService.getImageById(id));
         image.delete();
-        return "/publicbandprofile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
+        return "/profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public BandImageMB getBandImageMB() {

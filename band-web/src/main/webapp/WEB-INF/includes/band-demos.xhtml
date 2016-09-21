@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <p:panel>
+        <p:dataTable var="demo" value="#{bandBean.bandVo.demos}">
+            <p:column headerText="Demo Title">
+                <h:outputText value="#{demo.name}"/>
+            </p:column>
+            <p:column headerText="Player">
+                <audio controls="controls">
+                    <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                </audio>
+            </p:column>
+        </p:dataTable>
+    </p:panel>
+</ui:composition>

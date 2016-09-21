@@ -16,11 +16,4 @@ public class CreateDemoMB {
     @EJB
     private DemoService demoService;
 
-    public DemoService getDemoService() {
-        return demoService;
-    }
-
-    public void setDemoService(DemoService demoService) {
-        this.demoService = demoService;
-    }
 }

@@ -46,7 +46,7 @@ public class CreateBandMB {
             bandMateService.createBandMate(bandMateVo);
         }
 
-        return  "publicbandprofile?faces-redirect=true&id=" + bandService.getBandByName(bandMB.getBandVo().getName()).getId();
+        return "profile?faces-redirect=true&id=" + bandService.getBandByName(bandMB.getBandVo().getName()).getId();
     }
 
     public String onFlowProcess(FlowEvent event) {
@@ -59,14 +59,6 @@ public class CreateBandMB {
 
     public void setBandMB(BandMB bandMB) {
         this.bandMB = bandMB;
-    }
-
-    public BandService getBandService() {
-        return bandService;
-    }
-
-    public void setBandService(BandService bandService) {
-        this.bandService = bandService;
     }
 
     public BandMateMB getBandMateMB() {
@@ -85,11 +77,4 @@ public class CreateBandMB {
         this.bandMatesMB = bandMatesMB;
     }
 
-    public BandMateService getBandMateService() {
-        return bandMateService;
-    }
-
-    public void setBandMateService(BandMateService bandMateService) {
-        this.bandMateService = bandMateService;
-    }
 }

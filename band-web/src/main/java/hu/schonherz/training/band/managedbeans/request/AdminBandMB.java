@@ -36,7 +36,7 @@ public class AdminBandMB {
     public String blockingBand(){
         selectedBand.setDisabled(!selectedBand.isDisabled());
         bandService.updateDisabledAttribute(selectedBand);
-        return "adminband";
+        return "admin";
     }
 
     public BandsMB getBandsMB() {

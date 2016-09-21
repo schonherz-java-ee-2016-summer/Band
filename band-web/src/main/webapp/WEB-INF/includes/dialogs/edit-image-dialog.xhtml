@@ -24,11 +24,15 @@
                 </p:column>
                 <p:column headerText="Edit" styleClass="sizetoeditor">
                     <p:commandButton value="Edit" ajax="false"
-                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
+                                     action="#{editBandImageBean.executeEdit(image.id)}">
+                        <f:param name="id" value="#{bandBean.bandVo.id}"/>
+                    </p:commandButton>
                 </p:column>
                 <p:column headerText="Remove" styleClass="sizetoeditor">
                     <p:commandButton value="Remove" ajax="false"
-                                     action="#{editBandImageBean.removeImage(image.id)}"/>
+                                     action="#{editBandImageBean.removeImage(image.id)}">
+                        <f:param name="id" value="#{bandBean.bandVo.id}"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
         </h:form>
