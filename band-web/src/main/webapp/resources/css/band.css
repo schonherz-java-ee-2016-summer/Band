@@ -8,6 +8,27 @@
     margin: 0 auto;
 }
 
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.redButtonColor{
+    color: white;
+    background: red;
+    text-shadow: none;
+    border: none;
+    box-shadow: 0 0 8px #cb9c98;
+}
+
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only.greenButtonColor{
+    color: white;
+    background: green;
+    text-shadow: none;
+    border: none;
+    box-shadow: 0 0 8px #94cb96;
+}
+
+.centeredColumn {
+    text-align:center !important;
+}
+
 .datalist-noborder .ui-widget-content {
     border: none;
     color: black;
