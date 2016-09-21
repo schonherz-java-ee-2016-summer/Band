@@ -4,25 +4,26 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <p:panel>
-        <p:galleria value="#{bandBean.bandVo.bandsImages}" var="image"
-                    panelWidth="500" panelHeight="330"
-                    style="margin: 0 auto;" showCaption="true"
-                    rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
-            <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="100%">
-                <f:param name="imageId" value="#{image.id}"/>
-            </p:graphicImage>
-        </p:galleria>
+    <div id="band-gallery">
+        <p:panel>
+            <p:galleria value="#{bandBean.bandVo.bandsImages}" var="image"
+                        showCaption="true"
+                        rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
+                <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="100%">
+                    <f:param name="imageId" value="#{image.id}"/>
+                </p:graphicImage>
+            </p:galleria>
 
-        <div class="centered-text">
-            <button type="button" onclick="PF('add').show();">Add Image</button>
-            <button type="button"
-                    onclick="PF('editAndRemove').show();"
-                    rendered="#{not empty bandBean.bandVo.bandsImages}">
-                Edit / Remove Images
-            </button>
-        </div>
-    </p:panel>
+            <div class="centered-text">
+                <button type="button" onclick="PF('add').show();">Add Image</button>
+                <button type="button"
+                        onclick="PF('editAndRemove').show();"
+                        rendered="#{not empty bandBean.bandVo.bandsImages}">
+                    Edit / Remove Images
+                </button>
+            </div>
+        </p:panel>
+    </div>
 
     <ui:include src="dialogs/addImageDialog.xhtml"/>
     <ui:include src="dialogs/editImageDialog.xhtml"/>

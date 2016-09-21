@@ -64,3 +64,31 @@
 .demotext {
     text-align: center;
 }
+
+#band-gallery .ui-galleria{
+    width: 100%; !important;
+}
+
+#band-gallery .ui-widget{
+    width: 100% !important;
+}
+
+#band-gallery .ui-widget-content{
+    width: 100% !important;
+}
+
+#band-gallery .ui-corner-all{
+    width: 100% !important;
+}
+
+#band-gallery .ui-galleria-caption{
+    width: 100% !important;
+}
+
+#band-gallery .ui-galleria-panel-wrapper{
+    width: 100% !important;
+}
+
+#band-gallery .ui-galleria-panel{
+    width: 100% !important;
+}
