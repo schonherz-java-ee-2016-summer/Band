@@ -4,11 +4,13 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <p:panel>
-        <button class="btn btn-primary"
-                type="button"
-                onclick="PF('edit-band-dialog').show();">
-            #{msg['band.edit.button']}
-        </button>
+        <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
+            <button class="btn btn-primary"
+                    type="button"
+                    onclick="PF('edit-band-dialog').show();">
+                #{msg['band.edit.button']}
+            </button>
+        </ui:fragment>
 
         <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
             <h:outputText styleClass="output-band-text" value="#{msg['band.name']}:"/>

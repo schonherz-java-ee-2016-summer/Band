@@ -22,7 +22,7 @@ public interface BandRepository extends JpaRepository<BandEntity, Long> {
 
     BandEntity findByName(String name);
 
-    BandEntity findByUserId(Long userId);
+    BandEntity findByOwnerid(Long id);
 
     BandEntity findByDisabled(boolean disabled);
 

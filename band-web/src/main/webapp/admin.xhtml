@@ -10,6 +10,9 @@
     <ui:composition template="/templates/pageTemplate.xhtml">
         <ui:define name="title">Admin Page</ui:define>
         <ui:define name="body">
+            <f:metadata>
+                <f:viewAction action="#{adminBandBean.onLoad}"/>
+            </f:metadata>
             <h:outputStylesheet name="css/band.css"/>
             <p:panel>
                 <p:dataTable var="band" value="#{bandBean.bands}"

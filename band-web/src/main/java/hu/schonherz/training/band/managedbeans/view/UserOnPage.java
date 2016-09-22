@@ -13,7 +13,8 @@ import java.io.Serializable;
 @ViewScoped
 public class UserOnPage implements Serializable {
 
-    private Boolean isAdmin;
+    private Boolean isAdmin = Boolean.FALSE;
+    private Boolean isBandOwner = Boolean.FALSE;
 
     public Boolean getAdmin() {
         return isAdmin;
@@ -21,5 +22,13 @@ public class UserOnPage implements Serializable {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    public Boolean getBandOwner() {
+        return isBandOwner;
+    }
+
+    public void setBandOwner(Boolean bandOwner) {
+        isBandOwner = bandOwner;
     }
 }

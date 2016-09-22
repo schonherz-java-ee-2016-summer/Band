@@ -4,21 +4,26 @@
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
-    <p:dialog modal="true" header="Add new image" widgetVar="add">
+    <p:dialog modal="true" header="#{msg['band.image.dialog.header']}" widgetVar="add">
         <h:form>
-            <p:panel header="Give caption to image">
+            <p:panel>
                 <p:messages/>
-                <h:panelGrid columns="2" cellpadding="5" cellspacing="10">
-                    <h:outputText styleClass="input-label" value="Caption:"/>
+                <h:panelGrid columns="2" cellspacing="20" cellpadding="5" columnClasses="label, value">
+                    <h:outputText styleClass="output-text" value="#{msg['band.image.caption']}:"/>
                     <p:inputText id="name" value="#{bandImageBean.bandImageVo.caption}" required="true"
-                                 requiredMessage="Validation error: Caption is required."
-                                 styleClass="centered-block centered-text"/>
+                                 requiredMessage="#{msg['band.image.dialog.validation.error']}."
+                                 styleClass="input-textArea"/>
                 </h:panelGrid>
                 <p:fileUpload fileUploadListener="#{bandImageUploadBean.create}" mode="advanced"
                               dragDropSupport="false"
                               sizeLimit="10000000" fileLimit="1"
-                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
-                <p:commandButton value="Complete uploaded"
+                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                              label="#{msg['band.image.fileupload.choose']}"
+                              uploadLabel="#{msg['band.image.fileupload.upload']}"
+                              cancelLabel="#{msg['band.image.fileupload.cancel']}"
+                              invalidFileMessage="#{msg['band.image.fileupload.invalid.file.type']}"
+                              invalidSizeMessage="#{msg['band.image.fileupload.invalid.file.size']}"/>
+                <p:commandButton value="#{msg['band.image.fileupload.submit']}"
                                  action="#{bandImageUploadBean.upload}"/>
             </p:panel>
         </h:form>

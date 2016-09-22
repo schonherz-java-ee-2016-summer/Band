@@ -20,7 +20,8 @@
             </p:schedule>
         </h:panelGrid>
 
-        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
+        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip"
+                  rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
             <h:panelGrid id="eventDetails" columns="2">
                 <p:outputLabel for="event-title" value="Title:" />
                 <p:inputText id="event-title" value="#{scheduleViewMB.event.title}" required="true" />

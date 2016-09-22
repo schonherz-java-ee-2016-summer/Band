@@ -13,14 +13,18 @@
                 </p:graphicImage>
             </p:galleria>
 
-            <div class="centered-text">
-                <button type="button" class="btn-primary" onclick="PF('add').show();">Add Image</button>
-                <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
-                    <button type="button" onclick="PF('editAndRemove').show();">
-                        Edit / Remove Images
+            <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
+                <div class="centered-text">
+                    <button type="button" class="btn-primary" onclick="PF('add').show();">
+                        #{msg['band.image.add.button']}
                     </button>
-                </ui:fragment>
-            </div>
+                    <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
+                        <button type="button" onclick="PF('editAndRemove').show();">
+                            #{msg['band.image.edit.button']}
+                        </button>
+                    </ui:fragment>
+                </div>
+            </ui:fragment>
         </p:panel>
     </div>
 

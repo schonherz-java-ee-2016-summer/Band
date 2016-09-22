@@ -17,7 +17,7 @@ public interface BandService {
 
     BandVo getBandByName(String name);
 
-    BandVo getBandbyUserId(Long UserId);
+    BandVo getBandbyOwnerid(Long Ownerid);
 
     BandVo getBandByDisabled(boolean disabled);
 

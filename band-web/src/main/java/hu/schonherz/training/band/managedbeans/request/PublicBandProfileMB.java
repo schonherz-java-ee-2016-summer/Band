@@ -18,6 +18,7 @@ import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import hu.schonherz.training.band.vo.DemoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.ejb.EJB;
 import javax.faces.bean.*;
 import javax.faces.event.ActionEvent;
@@ -68,14 +69,14 @@ public class PublicBandProfileMB {
     public void onLoad() {
 
         BandVo bandVo;
-        LOGGER.info(userVo.getId().toString());
         checkAdminRole();
         if (bandMB.getBandVo().getId() != null) {
             bandVo = bandService.getBandById(bandMB.getBandVo().getId());
         } else {
-            bandVo = bandService.getBandbyUserId(userVo.getId());
+            bandVo = bandService.getBandbyOwnerid(userVo.getId());
         }
         if (bandVo != null) {
+            checkBandOwner(bandVo);
 
             List<BandMateVo> bandMateVos = (List<BandMateVo>) bandMateService.getBandMateVosByBand(bandVo);
             bandMatesMB.setBandMateVos(bandMateVos);
@@ -90,12 +91,19 @@ public class PublicBandProfileMB {
         LOGGER.info("onLoad completed.");
     }
 
-    public void checkAdminRole(){
-        for (RemoteRoleVo role: userVo.getRoles()){
-            if ("ADMIN".equals(role.getName())){
+    public void checkAdminRole() {
+        for (RemoteRoleVo role : userVo.getRoles()) {
+            if ("ADMIN".equals(role.getName())) {
                 userOnPage.setAdmin(Boolean.TRUE);
                 LOGGER.info("An admin is on page!");
             }
+        }
+    }
+
+    public void checkBandOwner(BandVo bandVo) {
+        LOGGER.info(userVo.getId() + "==" + bandVo.getOwnerid());
+        if (userVo.getId() == bandVo.getOwnerid()) {
+            userOnPage.setBandOwner(Boolean.TRUE);
         }
     }
 
@@ -104,7 +112,7 @@ public class PublicBandProfileMB {
         LOGGER.info("Modified band with id {} successfully.", bandMB.getBandVo().getId());
     }
 
-    public void demoDelete(DemoVo demoVo){
+    public void demoDelete(DemoVo demoVo) {
         demoService.deleteDemo(demoVo);
     }
 
