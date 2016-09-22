@@ -15,6 +15,10 @@ public class BandEntity extends BaseEntity {
 
     @Basic
     @Column(nullable = false)
+    private Long userId;
+
+    @Basic
+    @Column(nullable = false)
     private String name;
 
     @Basic
@@ -102,5 +106,13 @@ public class BandEntity extends BaseEntity {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

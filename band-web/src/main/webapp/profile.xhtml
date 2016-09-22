@@ -25,7 +25,12 @@
                     <h:outputText value="Band profile is disabled"/>
                 </ui:fragment>
 
-                <ui:fragment rendered="#{bandBean.bandVo != null and bandBean.bandVo.disabled == false}">
+                <ui:fragment rendered="#{bandBean.bandVo.id == null and publicBandProfileBean.userVo.id != null}">
+                    <p:button styleClass="create" outcome="createBand" value="#{msg['create.new.band']}"
+                              icon="ui-icon-plus"></p:button>
+                </ui:fragment>
+
+                <ui:fragment rendered="#{bandBean.bandVo.id != null and bandBean.bandVo.disabled == false}">
                     <ui:include src="band-profile-assets.xhtml"/>
                 </ui:fragment>
             </div>

@@ -17,6 +17,15 @@
     </application>
 
     <navigation-rule>
+        <from-view-id>/profile.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>createBand</from-outcome>
+            <to-view-id>/new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <from-view-id>/admin</from-view-id>
         <navigation-case>
             <from-outcome>admin</from-outcome>

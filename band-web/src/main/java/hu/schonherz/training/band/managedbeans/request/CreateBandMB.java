@@ -6,6 +6,7 @@ import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
 import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import org.primefaces.event.FlowEvent;
 
 import javax.ejb.EJB;
@@ -31,6 +32,9 @@ public class CreateBandMB {
     @ManagedProperty(value = "#{bandMatesBean}")
     private BandMatesMB bandMatesMB;
 
+    @ManagedProperty("#{USER}")
+    private RemoteUserVo userVo;
+
     @EJB
     private BandService bandService;
 
@@ -39,6 +43,7 @@ public class CreateBandMB {
 
     public String doCreate() {
         bandMB.getBandVo().setDisabled(false);
+        bandMB.getBandVo().setUserId(userVo.getId());
         bandService.createBand(bandMB.getBandVo());
 
         for (BandMateVo bandMateVo: bandMatesMB.getBandMateVos()) {
@@ -77,4 +82,11 @@ public class CreateBandMB {
         this.bandMatesMB = bandMatesMB;
     }
 
+    public RemoteUserVo getUserVo() {
+        return userVo;
+    }
+
+    public void setUserVo(RemoteUserVo userVo) {
+        this.userVo = userVo;
+    }
 }

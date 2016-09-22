@@ -48,6 +48,11 @@ public class BandServiceImpl implements BandService, BandRemoteService {
     }
 
     @Override
+    public BandVo getBandbyUserId(Long userId) {
+        return BandMapper.toVo(bandRepository.findByUserId(userId));
+    }
+
+    @Override
     public BandVo getBandByDisabled(boolean disabled) {
         return BandMapper.toVo(bandRepository.findByDisabled(disabled));
     }

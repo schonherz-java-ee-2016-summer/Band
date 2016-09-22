@@ -9,6 +9,7 @@ import java.util.Collection;
  */
 public class BandVo extends BaseVo {
 
+    private Long userId;
     private String name;
     private String genre;
     private String description;
@@ -82,4 +83,11 @@ public class BandVo extends BaseVo {
         this.demos = demos;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }

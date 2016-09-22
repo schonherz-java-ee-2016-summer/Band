@@ -8,7 +8,7 @@
     <display-name>Band</display-name>
 
     <welcome-file-list>
-        <welcome-file>new.xhtml</welcome-file>
+        <welcome-file>profile.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>

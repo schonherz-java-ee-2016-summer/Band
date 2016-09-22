@@ -17,6 +17,8 @@ public interface BandService {
 
     BandVo getBandByName(String name);
 
+    BandVo getBandbyUserId(Long UserId);
+
     BandVo getBandByDisabled(boolean disabled);
 
     void updateDisabledAttribute(BandVo bandVo);

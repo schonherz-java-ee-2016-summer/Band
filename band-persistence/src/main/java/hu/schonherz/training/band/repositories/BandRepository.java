@@ -22,6 +22,8 @@ public interface BandRepository extends JpaRepository<BandEntity, Long> {
 
     BandEntity findByName(String name);
 
+    BandEntity findByUserId(Long userId);
+
     BandEntity findByDisabled(boolean disabled);
 
     @Modifying
