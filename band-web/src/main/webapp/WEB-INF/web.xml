@@ -56,6 +56,15 @@
         <servlet-name>faces</servlet-name>
     </filter-mapping>
 
+    <filter>
+        <filter-name>CookieFilter</filter-name>
+        <filter-class>hu.schonherz.training.band.filters.CookieFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CookieFilter</filter-name>
+        <servlet-name>faces</servlet-name>
+    </filter-mapping>
+
     <ejb-local-ref>
         <ejb-ref-name>ejb.BandService</ejb-ref-name>
         <local>hu.schonherz.training.band.service.BandService</local>
