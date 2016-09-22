@@ -69,11 +69,12 @@ public class ScheduleViewMB implements Serializable {
         
         EventVo eventVo = EventVoMapper(event);
         eventVo.setBandId(bandMB.getBandVo().getId());
+        LOGGER.info(String.valueOf(eventVo));
         eventService.createEvent(eventVo);
         event = new DefaultScheduleEvent();
     }
 
-    public static EventVo EventVoMapper(ScheduleEvent event){
+    public EventVo EventVoMapper(ScheduleEvent event) {
         EventVo eventVo = new EventVo();
         eventVo.setName(event.getTitle());
         eventVo.setStart(LocalDateTime.ofInstant
@@ -89,7 +90,7 @@ public class ScheduleViewMB implements Serializable {
     }
 
     public void onEventSelect(SelectEvent selectEvent) {
-        event = (SchemaMB) selectEvent.getObject();
+        event = (ScheduleEvent) selectEvent.getObject();
     }
 
     public ScheduleModel getEventModel() {

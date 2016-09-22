@@ -8,7 +8,7 @@
     <p:dialog styleClass="editor" modal="true" header="Image editor" widgetVar="editAndRemove">
         <h:form>
             <p:dataTable id="editorTable" styleClass="editor"
-                         value="#{editBandImageBean.bandImageVoWrapper.bandImageVoList}"
+                         value="#{editBandImageBean.bandImageVoWrapper.bandImageVos}"
                          var="image" rowStyleClass="centered-text">
                 <p:column headerText="Image" style="width: 80px">
                     <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
@@ -24,15 +24,11 @@
                 </p:column>
                 <p:column headerText="Edit" styleClass="sizetoeditor">
                     <p:commandButton value="Edit" ajax="false"
-                                     action="#{editBandImageBean.executeEdit(image.id)}">
-                        <f:param name="id" value="#{bandBean.bandVo.id}"/>
-                    </p:commandButton>
+                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
                 </p:column>
                 <p:column headerText="Remove" styleClass="sizetoeditor">
                     <p:commandButton value="Remove" ajax="false"
-                                     action="#{editBandImageBean.removeImage(image.id)}">
-                        <f:param name="id" value="#{bandBean.bandVo.id}"/>
-                    </p:commandButton>
+                                     action="#{editBandImageBean.removeImage(image.id)}"/>
                 </p:column>
             </p:dataTable>
         </h:form>

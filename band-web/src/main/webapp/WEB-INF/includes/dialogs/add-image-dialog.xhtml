@@ -19,9 +19,7 @@
                               sizeLimit="10000000" fileLimit="1"
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                 <p:commandButton value="Complete uploaded"
-                                 action="#{bandImageUploadBean.upload}">
-                    <f:param name="id" value="#{bandBean.bandVo.id}"/>
-                </p:commandButton>
+                                 action="#{bandImageUploadBean.upload}"/>
             </p:panel>
         </h:form>
     </p:dialog>

@@ -6,8 +6,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
-import hu.schonherz.training.band.managedbeans.view.DemoMB;
+import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.service.DemoService;
+import hu.schonherz.training.band.vo.DemoVo;
 import org.primefaces.event.FileUploadEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,8 +30,8 @@ public class FileUploadView {
     @EJB
     private DemoService demoService;
 
-    @ManagedProperty(value = "#{demoBean}")
-    private DemoMB demoMB;
+    @ManagedProperty(value = "#{bandBean}")
+    private BandMB bandMB;
 
     private String destination = System.getProperty("jboss.server.data.dir") + File.separator + "band";
 
@@ -41,10 +42,7 @@ public class FileUploadView {
 
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
-            demoMB.getDemoVo().setFilename(destination);
-            demoMB.getDemoVo().setName(event.getFile().getFileName());
-            demoMB.getDemoVo().setBandId(1L);
-            demoService.createDemo(demoMB.getDemoVo());
+            LOGGER.info("File uploaded.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,8 +53,17 @@ public class FileUploadView {
                 "band");
         destination.mkdirs();
         Path absPath = Paths.get(destination + File.separator + fileName);
-
         Files.copy(in, absPath, StandardCopyOption.REPLACE_EXISTING);
+
+        saveDemo(absPath.toString(), fileName);
+    }
+
+    public void saveDemo(String path, String name){
+        DemoVo demoVo = new DemoVo();
+        demoVo.setName(name);
+        demoVo.setFilename(path);
+        demoVo.setBandId(bandMB.getBandVo().getId());
+        demoService.createDemo(demoVo);
     }
 
     public DemoService getDemoService() {
@@ -67,11 +74,11 @@ public class FileUploadView {
         this.demoService = demoService;
     }
 
-    public DemoMB getDemoMB() {
-        return demoMB;
+    public BandMB getBandMB() {
+        return bandMB;
     }
 
-    public void setDemoMB(DemoMB demoMB) {
-        this.demoMB = demoMB;
+    public void setBandMB(BandMB bandMB) {
+        this.bandMB = bandMB;
     }
 }

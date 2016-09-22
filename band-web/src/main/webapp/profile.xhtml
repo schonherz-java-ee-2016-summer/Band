@@ -16,7 +16,7 @@
             </f:facet>
 
             <f:metadata>
-                <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}" required="true"/>
+                <f:viewParam id="id" name="id" value="#{bandBean.bandVo.id}"/>
                 <f:viewAction action="#{publicBandProfileBean.onLoad}"/>
             </f:metadata>
 
@@ -33,6 +33,7 @@
                 <ui:fragment rendered="#{bandBean.bandVo.id != null and bandBean.bandVo.disabled == false}">
                     <ui:include src="band-profile-assets.xhtml"/>
                 </ui:fragment>
+
             </div>
         </ui:define>
     </ui:composition>

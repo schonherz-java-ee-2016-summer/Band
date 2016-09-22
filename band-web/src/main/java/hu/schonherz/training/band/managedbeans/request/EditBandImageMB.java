@@ -19,7 +19,7 @@ import java.io.File;
 @ManagedBean(name = "editBandImageBean")
 public class EditBandImageMB {
 
-    private Logger LOGGER = LoggerFactory.getLogger(EditBandImageMB.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditBandImageMB.class);
 
     @ManagedProperty("#{bandImageBean}")
     private BandImageMB bandImageMB;
@@ -35,7 +35,7 @@ public class EditBandImageMB {
 
     public String executeEdit(Long id){
         BandImageVo bandImageVo = null;
-        for (BandImageVo bandImage : bandImageVoWrapper.getBandImageVoList()){
+        for (BandImageVo bandImage : bandImageVoWrapper.getBandImageVos()){
             if (id == bandImage.getId()){
                 bandImageVo = bandImage;
                 break;
@@ -44,7 +44,7 @@ public class EditBandImageMB {
         bandImageVo.setBandId(bandMB.getBandVo().getId());
         bandImageService.saveBandImage(bandImageVo);
         LOGGER.info("Caption of " + bandImageVo.getName() + " was modified");
-        return "/profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
+        return "profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public String removeImage(Long id){
@@ -52,7 +52,7 @@ public class EditBandImageMB {
         File image = new File((bandImageService.getImageById(id).getFilename()));
         bandImageService.deleteBandImage(bandImageService.getImageById(id));
         image.delete();
-        return "/profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
+        return "profile?faces-redirect=true&id=" + bandMB.getBandVo().getId();
     }
 
     public BandImageMB getBandImageMB() {

@@ -16,7 +16,9 @@
                 <h:form id="form">
                     <p:growl id="growl" life="4000" showDetail="false"/>
 
-                    <p:wizard flowListener="#{createBandBean.onFlowProcess}" style="margin-top: 30px;">
+                    <p:wizard flowListener="#{createBandBean.onFlowProcess}" style="margin-top: 30px;"
+                              nextLabel="#{msg['create.new.band.wizard.next']}"
+                              backLabel="#{msg['create.new.band.wizard.back']}">
                         <p:tab id="band" title="#{msg['band']}">
                             <p:panel header="#{msg['band.registration']}">
                                 <p:messages/>

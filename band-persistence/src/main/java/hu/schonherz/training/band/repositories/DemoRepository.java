@@ -16,7 +16,7 @@ import java.util.Collection;
 @Transactional(propagation = Propagation.REQUIRED)
 public interface DemoRepository extends JpaRepository<DemoEntity, Long> {
 
-    Collection<DemoEntity> findByBandId(Long bandId);
+    Collection<DemoEntity> findDemoByBandId(Long bandId);
 
     DemoEntity findById(Long id);
 

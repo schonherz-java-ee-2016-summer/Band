@@ -43,8 +43,8 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
-    public Collection<DemoVo> getDemosByBand(BandVo band) {
-        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findByBandId(band.getId()));
+    public Collection<DemoVo> getDemosByBandId(BandVo bandVo) {
+        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findDemoByBandId(bandVo.getId()));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public void createDemo(DemoVo demoVo) {
         DemoEntity demoEntity = DemoMapper.toEntity(demoVo);
-        demoEntity.setBand(bandRepository.findById(1L));
+        demoEntity.setBand(bandRepository.findById(demoVo.getBandId()));
         demoRepository.save(demoEntity);
     }
 

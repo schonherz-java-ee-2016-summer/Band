@@ -8,6 +8,8 @@ import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandMateVo;
 import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import org.primefaces.event.FlowEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
