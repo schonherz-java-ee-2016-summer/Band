@@ -88,10 +88,15 @@ public class PublicBandProfileMB {
         LOGGER.info("Edit band mate completed.");
     }
 
-    public void deleteBandMates(BandMateVo bandMateVo) {
-       // bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
-        bandMateService.deleteBandMate(bandMateVo);
+    public void deleteBandMates() {
+        bandMateService.deleteBandMate(bandMateMB.getBandMateVo());
         LOGGER.info("Delete band mate completed.");
+    }
+
+    public void addBandMates() {
+        bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
+        bandMateService.createBandMate(bandMateMB.getBandMateVo());
+        LOGGER.info("Add band mate completed.");
     }
 
     public void demoDelete(DemoVo demoVo){

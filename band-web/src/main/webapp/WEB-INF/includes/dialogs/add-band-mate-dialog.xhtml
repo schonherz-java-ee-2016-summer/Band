@@ -1,0 +1,48 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+
+    <p:dialog header="#{msg['band.mate.add']}" widgetVar="band-mate-add-dialog" modal="true">
+        <h:form id="band-mate-add-dialog-form">
+            <p:messages id="reqMessages"/>
+            <h:panelGrid id="add-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+                <h:outputText for="firstName"  styleClass="output-text" value="#{msg['band.mate.first.name']}: *"/>
+                <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
+                             styleClass="input-text"
+                             requiredMessage="#{msg['band.mate.first.name']} #{msg['band.required.message']}"
+                             required="true"/>
+
+                <h:outputText for="lastName" styleClass="output-text" value="#{msg['band.mate.last.name']}: *"/>
+                <p:inputText id="lastName" value="#{bandMateBean.bandMateVo.lastName}"
+                             styleClass="input-text"
+                             requiredMessage="#{msg['band.mate.last.name']} #{msg['band.required.message']}"
+                             required="true"/>
+
+                <h:outputText for="email" styleClass="output-text" value="#{msg['band.mate.email.address']}: * "/>
+                <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
+                             styleClass="input-text"
+                             requiredMessage="#{msg['band.mate.email.address']} #{msg['band.required.message']}"
+                             required="true"/>
+
+                <h:outputText for="instrument" styleClass="output-text" value="#{msg['band.mate.musical.instrument']}: *"/>
+                <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
+                             styleClass="input-text"
+                             requiredMessage="#{msg['band.mate.musical.instrument']} #{msg['band.required.message']}"
+                             required="true"/>
+
+                <h:outputText styleClass="output-text" value="#{msg['band.mate.profile']}:"/>
+                <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
+            </h:panelGrid>
+
+            <p:commandButton type="submit"
+                             value="#{msg['band.edit.save.button']}"
+                             icon="ui-icon-check"
+                             update=":carousel-form:band-mates reqMessages add-band-panel"
+                             actionListener="#{publicBandProfileBean.addBandMates}" />
+
+        </h:form>
+    </p:dialog>
+</ui:composition>
