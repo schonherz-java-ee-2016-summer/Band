@@ -1,10 +1,7 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-import hu.schonherz.training.band.managedbeans.view.BandImagesMB;
-import hu.schonherz.training.band.managedbeans.view.BandMB;
+import hu.schonherz.training.band.managedbeans.view.*;
 
-import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
-import hu.schonherz.training.band.managedbeans.view.DemosMB;
 import hu.schonherz.training.band.service.BandImageService;
 import hu.schonherz.training.band.service.BandMateService;
 import hu.schonherz.training.band.service.BandService;
@@ -13,9 +10,11 @@ import hu.schonherz.training.band.vo.BandMateVo;
 import hu.schonherz.training.band.vo.BandVo;
 import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.vo.DemoVo;
+import org.primefaces.event.CellEditEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -41,6 +40,9 @@ public class PublicBandProfileMB {
 
     @ManagedProperty("#{bandMatesBean}")
     private BandMatesMB bandMatesMB;
+
+    @ManagedProperty("#{bandMateBean}")
+    private BandMateMB bandMateMB;
 
     @ManagedProperty("#{bandImagesBean}")
     private BandImagesMB bandImagesMB;
@@ -78,6 +80,18 @@ public class PublicBandProfileMB {
     public void editBand(ActionEvent actionEvent) {
         bandService.createBand(bandMB.getBandVo());
         LOGGER.info("Modified band with id {} successfully.", bandMB.getBandVo().getId());
+    }
+
+    public void editBandMates() {
+        bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
+        bandMateService.createBandMate(bandMateMB.getBandMateVo());
+        LOGGER.info("Edit band mate completed.");
+    }
+
+    public void deleteBandMates(BandMateVo bandMateVo) {
+       // bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
+        bandMateService.deleteBandMate(bandMateVo);
+        LOGGER.info("Delete band mate completed.");
     }
 
     public void demoDelete(DemoVo demoVo){
@@ -123,4 +137,13 @@ public class PublicBandProfileMB {
     public void setBandImagesMB(BandImagesMB bandImagesMB) {
         this.bandImagesMB = bandImagesMB;
     }
+
+    public BandMateMB getBandMateMB() {
+        return bandMateMB;
+    }
+
+    public void setBandMateMB(BandMateMB bandMateMB) {
+        this.bandMateMB = bandMateMB;
+    }
+
 }

@@ -70,4 +70,15 @@ public class BandMateVo extends BaseVo{
         this.instrument = instrument;
     }
 
+    @Override
+    public String toString() {
+        return "BandMateVo{" +
+                "bandId=" + bandId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", profile=" + profile +
+                ", email='" + email + '\'' +
+                ", instrument='" + instrument + '\'' +
+                '}';
+    }
 }
