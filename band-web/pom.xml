@@ -20,6 +20,12 @@
         </dependency>
 
         <dependency>
+            <groupId>hu.schonherz.training.landing</groupId>
+            <artifactId>landing-service-client-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
             <version>${jsf.version}</version>
