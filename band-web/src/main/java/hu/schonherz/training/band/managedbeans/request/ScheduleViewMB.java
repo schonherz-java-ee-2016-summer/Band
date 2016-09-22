@@ -74,7 +74,7 @@ public class ScheduleViewMB implements Serializable {
         event = new DefaultScheduleEvent();
     }
 
-    public static EventVo EventVoMapper(ScheduleEvent event){
+    public EventVo EventVoMapper(ScheduleEvent event) {
         EventVo eventVo = new EventVo();
         eventVo.setName(event.getTitle());
         eventVo.setStart(LocalDateTime.ofInstant

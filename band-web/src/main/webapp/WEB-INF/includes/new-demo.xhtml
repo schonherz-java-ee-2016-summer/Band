@@ -1,20 +1,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:panel>
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+    <p:dialog header="#{msg['band.demo.dialog']}" widgetVar="demo-upload-dialog" modal="true" height="300">
         <h:form>
             <p:growl id="messages" showDetail="true" />
             <p:fileUpload fileUploadListener="#{fileUploadViewBean.upload}" mode="advanced" dragDropSupport="false"
-                          update=":demo-table, messages" sizeLimit="200000000" fileLimit="3" allowTypes="/(\.|\/)(mp3)$/"
+                          sizeLimit="10485760" allowTypes="/(\.|\/)(mp3)$/"
+                          multiple="true"
                           label="#{msg['band.demo.fileupload.choose']}"
                           uploadLabel="#{msg['band.demo.fileupload.upload']}"
                           cancelLabel="#{msg['band.demo.fileupload.cancel']}"
                           invalidFileMessage="#{msg['band.demo.fileupload.invalid.file.type']}"
-                          invalidSizeMessage="#{msg['band.demo.fileupload.invalid.file.size']}">
-                <f:attribute name="identity" value="#{bandBean.bandVo.id}"/>
-            </p:fileUpload>
+                          invalidSizeMessage="#{msg['band.demo.fileupload.invalid.file.size']}"
+                          update=":form:demo-table, messages" oncomplete="PF('demo-upload-dialog').hide()"/>
         </h:form>
-    </p:panel>
+    </p:dialog>
 </ui:composition>

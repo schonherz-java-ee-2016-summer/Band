@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import hu.schonherz.training.band.managedbeans.view.BandMB;
-import hu.schonherz.training.band.managedbeans.view.DemoMB;
 import hu.schonherz.training.band.service.DemoService;
+import hu.schonherz.training.band.vo.DemoVo;
 import org.primefaces.event.FileUploadEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +30,6 @@ public class FileUploadView {
     @EJB
     private DemoService demoService;
 
-    @ManagedProperty(value = "#{demoBean}")
-    private DemoMB demoMB;
-
     @ManagedProperty(value = "#{bandBean}")
     private BandMB bandMB;
 
@@ -40,16 +37,12 @@ public class FileUploadView {
 
     public void upload(FileUploadEvent event) {
 
-        Object bandId = event.getComponent().getAttributes().get("identity");
-
-        LOGGER.info(String.valueOf(bandId) + "<---------- ITT A BAND ID");
+        FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
 
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
-            demoMB.getDemoVo().setFilename(destination);
-            demoMB.getDemoVo().setName(event.getFile().getFileName());
-            demoMB.getDemoVo().setBandId((Long) bandId);
-            demoService.createDemo(demoMB.getDemoVo());
+            LOGGER.info("File uploaded.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,8 +53,17 @@ public class FileUploadView {
                 "band");
         destination.mkdirs();
         Path absPath = Paths.get(destination + File.separator + fileName);
-
         Files.copy(in, absPath, StandardCopyOption.REPLACE_EXISTING);
+
+        saveDemo(absPath.toString(), fileName);
+    }
+
+    public void saveDemo(String path, String name){
+        DemoVo demoVo = new DemoVo();
+        demoVo.setName(name);
+        demoVo.setFilename(path);
+        demoVo.setBandId(bandMB.getBandVo().getId());
+        demoService.createDemo(demoVo);
     }
 
     public DemoService getDemoService() {
@@ -70,14 +72,6 @@ public class FileUploadView {
 
     public void setDemoService(DemoService demoService) {
         this.demoService = demoService;
-    }
-
-    public DemoMB getDemoMB() {
-        return demoMB;
-    }
-
-    public void setDemoMB(DemoMB demoMB) {
-        this.demoMB = demoMB;
     }
 
     public BandMB getBandMB() {

@@ -69,7 +69,7 @@ public class BandImageUploadMB {
         LOGGING.info("Store an image and save entity to database.");
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         try {
-            ec.redirect(ec.getRequestContextPath() + "/profile.xhtml?faces-redirect=true&id=" + bandMB.getBandVo().getId());
+            ec.redirect(ec.getRequestContextPath() + "/profile.xhtml?id=" + bandMB.getBandVo().getId());
         } catch (IOException e) {
             LOGGING.error("Bad redirect.");
         }

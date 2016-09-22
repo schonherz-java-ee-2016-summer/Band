@@ -7,7 +7,7 @@
         <button class="btn btn-primary"
                 type="button"
                 onclick="PF('edit-band-dialog').show();">
-            Edit Details
+            #{msg['band.edit.button']}
         </button>
 
         <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
@@ -20,12 +20,13 @@
         </h:panelGrid>
 
         <h:panelGrid columns="4" cellpadding="5">
-            <p:dataList value="#{publicBandProfileBean.bandMB.bandVo.bandMates}" var="bandMate">
-                <f:facet name="header">Band Mates</f:facet>
+            <p:dataList value="#{publicBandProfileBean.bandMatesMB.bandMateVos}" var="bandMate">
+                <f:facet name="header">#{msg['band.mate']}</f:facet>
                 #{bandMate.firstName} #{bandMate.lastName}, #{bandMate.instrument}, #{bandMate.email}
             </p:dataList>
         </h:panelGrid>
     </p:panel>
 
     <ui:include src="dialogs/band-edit-dialog.xhtml"/>
+
 </ui:composition>

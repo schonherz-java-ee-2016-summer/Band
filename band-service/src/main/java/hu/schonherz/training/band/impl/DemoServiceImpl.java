@@ -43,8 +43,8 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
-    public Collection<DemoVo> getDemosByBand(BandVo band) {
-        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findByBandId(band.getId()));
+    public Collection<DemoVo> getDemosByBandId(BandVo bandVo) {
+        return DemoMapper.toVo((List<DemoEntity>) demoRepository.findDemoByBandId(bandVo.getId()));
     }
 
     @Override

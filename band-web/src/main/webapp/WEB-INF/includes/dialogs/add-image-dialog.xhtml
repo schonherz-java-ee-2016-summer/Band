@@ -6,7 +6,6 @@
         xmlns:p="http://primefaces.org/ui">
     <p:dialog modal="true" header="Add new image" widgetVar="add">
         <h:form>
-            <p:growl id="messages" showDetail="true" />
             <p:panel header="Give caption to image">
                 <p:messages/>
                 <h:panelGrid columns="2" cellpadding="5" cellspacing="10">
@@ -20,9 +19,7 @@
                               sizeLimit="10000000" fileLimit="1"
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
                 <p:commandButton value="Complete uploaded"
-                                 action="#{bandImageUploadBean.upload}">
-                    <f:param name="id" value="#{bandBean.bandVo.id}"/>
-                </p:commandButton>
+                                 action="#{bandImageUploadBean.upload}"/>
             </p:panel>
         </h:form>
     </p:dialog>

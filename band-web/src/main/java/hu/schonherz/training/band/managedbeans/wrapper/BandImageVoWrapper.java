@@ -1,5 +1,6 @@
 package hu.schonherz.training.band.managedbeans.wrapper;
 
+import hu.schonherz.training.band.managedbeans.view.BandImagesMB;
 import hu.schonherz.training.band.managedbeans.view.BandMB;
 import hu.schonherz.training.band.vo.BandImageVo;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by Attila on 2016.09.17..
@@ -18,31 +20,31 @@ import java.util.Collection;
 @RequestScoped
 public class BandImageVoWrapper {
 
-    private Logger LOG = LoggerFactory.getLogger(BandImageVoWrapper.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BandImageVoWrapper.class);
 
-    @ManagedProperty("#{bandBean}")
-    private BandMB bandMB;
+    @ManagedProperty("#{bandImagesBean}")
+    private BandImagesMB bandImagesMB;
 
-    private Collection<BandImageVo> bandImageVoList;
+    private List<BandImageVo> bandImageVos;
 
     @PostConstruct
     public void init(){
-        bandImageVoList = bandMB.getBandVo().getBandsImages();
+        bandImageVos = bandImagesMB.getBandImageVos();
     }
 
-    public Collection<BandImageVo> getBandImageVoList() {
-        return bandImageVoList;
+    public BandImagesMB getBandImagesMB() {
+        return bandImagesMB;
     }
 
-    public void setBandImageVoList(Collection<BandImageVo> bandImageVoList) {
-        this.bandImageVoList = bandImageVoList;
+    public void setBandImagesMB(BandImagesMB bandImagesMB) {
+        this.bandImagesMB = bandImagesMB;
     }
 
-    public BandMB getBandMB() {
-        return bandMB;
+    public List<BandImageVo> getBandImageVos() {
+        return bandImageVos;
     }
 
-    public void setBandMB(BandMB bandMB) {
-        this.bandMB = bandMB;
+    public void setBandImageVos(List<BandImageVo> bandImageVos) {
+        this.bandImageVos = bandImageVos;
     }
 }

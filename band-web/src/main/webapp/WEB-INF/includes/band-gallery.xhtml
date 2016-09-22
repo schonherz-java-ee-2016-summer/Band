@@ -5,9 +5,9 @@
 
     <div id="band-gallery">
         <p:panel>
-            <p:galleria value="#{bandBean.bandVo.bandsImages}" var="image"
+            <p:galleria value="#{bandImagesBean.bandImageVos}" var="image"
                         showCaption="true"
-                        rendered="#{not bandBean.bandVo.bandsImages.isEmpty()}">
+                        rendered="#{not bandImagesBean.bandImageVos.isEmpty()}">
                 <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="100%">
                     <f:param name="imageId" value="#{image.id}"/>
                 </p:graphicImage>
@@ -15,7 +15,7 @@
 
             <div class="centered-text">
                 <button type="button" class="btn-primary" onclick="PF('add').show();">Add Image</button>
-                <ui:fragment rendered="#{not empty bandBean.bandVo.bandsImages}">
+                <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
                     <button type="button" onclick="PF('editAndRemove').show();">
                         Edit / Remove Images
                     </button>

@@ -14,7 +14,7 @@ public interface DemoService {
 
     DemoVo getDemoById(Long id);
 
-    Collection<DemoVo> getDemosByBand(BandVo band);
+    Collection<DemoVo> getDemosByBandId(BandVo bandVo);
 
     DemoVo getDemoByName(String name);
 
