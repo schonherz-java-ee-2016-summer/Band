@@ -13,7 +13,9 @@ import java.io.Serializable;
 @ViewScoped
 public class EventMB implements Serializable {
 
-    private EventVo eventVo = new EventVo();
+    Long eventId;
+
+    EventVo eventVo;
 
     public EventVo getEventVo() {
         return eventVo;
@@ -21,5 +23,13 @@ public class EventMB implements Serializable {
 
     public void setEventVo(EventVo eventVo) {
         this.eventVo = eventVo;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 }

@@ -35,13 +35,33 @@ public class EventServiceImpl implements EventService {
     @Override
     public void createEvent(EventVo eventVo) {
         EventEntity eventEntity = new EventEntity();
+
         eventEntity.setName(eventVo.getName());
         eventEntity.setStart(eventVo.getStart());
         eventEntity.setFinish(eventVo.getFinish());
         eventEntity.setDescription(eventVo.getDescription());
         eventEntity.setBand(bandRepository.findById(eventVo.getBandId()));
         eventEntity.setVenueId(1L);
+
         eventRepository.save(eventEntity);
+    }
+
+    @Override
+    public EventVo getEventById(Long id) {
+        EventVo eventVo = new EventVo();
+        EventEntity eventEntity = eventRepository.findOne(id);
+        if (eventEntity != null) {
+            eventVo.setId(eventEntity.getId());
+            eventVo.setName(eventEntity.getName());
+            eventVo.setBandId(eventEntity.getBand().getId());
+            eventVo.setStart(eventEntity.getStart());
+            eventVo.setFinish(eventEntity.getFinish());
+            eventVo.setDescription(eventEntity.getDescription());
+            eventVo.setVenueId(1L);
+            return eventVo;
+        } else {
+            return null;
+        }
     }
 
     @Override

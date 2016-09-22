@@ -13,5 +13,7 @@ public interface EventService {
 
     void createEvent(EventVo eventVo);
 
+    EventVo getEventById(Long id);
+
     Collection<EventVo> getEventsByBand(BandVo bandVo);
 }

@@ -8,7 +8,8 @@
 
         <h:panelGrid columnClasses="value">
             <h3 style="margin-top: 0">Band Gigs</h3>
-            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
+            <p:schedule id="schedule" value="#{scheduleBean.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
+                <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
                         update="@widgetVar(eventDialog), messages"
@@ -23,16 +24,16 @@
         <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip">
             <h:panelGrid id="eventDetails" columns="2">
                 <p:outputLabel for="event-title" value="Title:" />
-                <p:inputText id="event-title" value="#{scheduleViewMB.event.title}" required="true" />
+                <p:inputText id="event-title" value="#{eventVoWrapper.title}" required="true" />
 
                 <p:outputLabel for="event-from" value="From:" />
-                <p:calendar id="event-from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+                <p:calendar id="event-from" value="#{eventVoWrapper.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
                 <p:outputLabel for="event-to" value="To:" />
-                <p:calendar id="event-to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
+                <p:calendar id="event-to" value="#{eventVoWrapper.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
                 <p:outputLabel for="event-description" value="Description:" />
-                <p:inputText id="event-description" value="#{scheduleViewMB.event.description}" required="true" />
+                <p:inputText id="event-description" value="#{eventVoWrapper.description}" required="true" />
 
                 <p:commandButton type="reset" value="Reset" />
                 <p:commandButton id="event-add"
