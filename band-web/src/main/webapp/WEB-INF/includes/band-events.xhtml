@@ -4,18 +4,16 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <h:form>
-        <p:growl id="messages" showDetail="true" />
-
         <h:panelGrid columnClasses="value">
             <h3 style="margin-top: 0">Band Gigs</h3>
             <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
-                        update="@widgetVar(eventDialog), messages"
+                        update="@widgetVar(eventDialog)"
                         oncomplete="PF('eventDialog').show();" />
                 <p:ajax event="eventSelect"
                         listener="#{scheduleViewMB.onEventSelect}"
-                        update="@widgetVar(eventDialog), messages"
+                        update="@widgetVar(eventDialog)"
                         oncomplete="PF('eventDialog').show();" />
             </p:schedule>
         </h:panelGrid>

@@ -1,7 +1,6 @@
 package hu.schonherz.training.band.managedbeans.request;
 
-import hu.schonherz.training.band.managedbeans.view.BandImagesMB;
-import hu.schonherz.training.band.managedbeans.view.BandMB;
+import hu.schonherz.training.band.managedbeans.view.*;
 
 import hu.schonherz.training.band.managedbeans.view.UserOnPage;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
@@ -50,6 +49,9 @@ public class PublicBandProfileMB {
 
     @ManagedProperty("#{bandMatesBean}")
     private BandMatesMB bandMatesMB;
+
+    @ManagedProperty("#{bandMateBean}")
+    private BandMateMB bandMateMB;
 
     @ManagedProperty("#{bandImagesBean}")
     private BandImagesMB bandImagesMB;
@@ -112,8 +114,33 @@ public class PublicBandProfileMB {
         LOGGER.info("Modified band with id {} successfully.", bandMB.getBandVo().getId());
     }
 
-    public void demoDelete(DemoVo demoVo) {
+    public void editBandMates() {
+        bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
+        bandMateService.createBandMate(bandMateMB.getBandMateVo());
+
+        LOGGER.info("Edit band mate completed.");
+    }
+
+    public void deleteBandMates(BandMateVo bandMateVo) {
+        bandMateService.deleteBandMate(bandMateVo);
+        bandMatesMB.getBandMateVos().remove(bandMateVo);
+
+        LOGGER.info("Delete band mate completed.");
+    }
+
+    public void addBandMates() {
+        bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
+        bandMateService.createBandMate(bandMateMB.getBandMateVo());
+        bandMatesMB.getBandMateVos().add(bandMateMB.getBandMateVo());
+
+        LOGGER.info("Add band mate completed.");
+    }
+
+    public void demoDelete(DemoVo demoVo){
         demoService.deleteDemo(demoVo);
+        demosMB.getDemoVos().remove(demoVo);
+
+        LOGGER.info("Delete band demo completed.");
     }
 
     public BandMB getBandMB() {
@@ -171,4 +198,13 @@ public class PublicBandProfileMB {
     public void setBandImagesMB(BandImagesMB bandImagesMB) {
         this.bandImagesMB = bandImagesMB;
     }
+
+    public BandMateMB getBandMateMB() {
+        return bandMateMB;
+    }
+
+    public void setBandMateMB(BandMateMB bandMateMB) {
+        this.bandMateMB = bandMateMB;
+    }
+
 }

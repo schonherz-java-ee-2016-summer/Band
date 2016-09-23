@@ -32,7 +32,7 @@ public class BandEntity extends BaseEntity {
     @Column(nullable = false)
     private boolean disabled;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
     private Collection<EventEntity> events;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
@@ -41,7 +41,7 @@ public class BandEntity extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
     private Collection<DemoEntity> demos;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "band")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE, mappedBy = "band")
     private Collection<BandMateEntity> bandMates;
 
     public Collection<DemoEntity> getDemos() {

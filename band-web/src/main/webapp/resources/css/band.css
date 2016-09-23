@@ -42,6 +42,11 @@
     color: black;
 }
 
+.carousel-output-text{
+    font-size: 10pt;
+    color: black;
+}
+
 .output-band-text {
     display: inline-block;
     font-size: 13pt;

@@ -6,7 +6,6 @@
 
     <p:dialog header="#{msg['band.demo.dialog']}" widgetVar="demo-upload-dialog" modal="true" height="300">
         <h:form>
-            <p:growl id="messages" showDetail="true" />
             <p:fileUpload fileUploadListener="#{fileUploadViewBean.upload}" mode="advanced" dragDropSupport="false"
                           sizeLimit="10485760" allowTypes="/(\.|\/)(mp3)$/"
                           multiple="true"
@@ -15,7 +14,7 @@
                           cancelLabel="#{msg['band.demo.fileupload.cancel']}"
                           invalidFileMessage="#{msg['band.demo.fileupload.invalid.file.type']}"
                           invalidSizeMessage="#{msg['band.demo.fileupload.invalid.file.size']}"
-                          update=":form:demo-table, messages" oncomplete="PF('demo-upload-dialog').hide()"/>
+                          update=":form:demo-table" oncomplete="PF('demo-upload-dialog').hide()"/>
         </h:form>
     </p:dialog>
 </ui:composition>
