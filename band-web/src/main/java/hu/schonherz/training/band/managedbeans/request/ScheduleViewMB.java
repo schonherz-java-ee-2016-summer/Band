@@ -50,11 +50,14 @@ public class ScheduleViewMB implements Serializable {
 
         Collection<EventVo> eventVos = eventService.getEventsByBand(bandMB.getBandVo());
         for (EventVo i : eventVos) {
+            LOGGER.info("BBBBBBBBBBBBBBBBBBBBBBBBBB" + i.getDescription());
             schedule.getEventModel().addEvent(new EventVoWrapper(
                     i.getName(),
                     Date.from(i.getStart().atZone(ZoneId.systemDefault()).toInstant()),
                     Date.from(i.getFinish().atZone(ZoneId.systemDefault()).toInstant())));
         }
+        LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEvents());
+        LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEventCount());
     }
 
     public void addEvent(ActionEvent actionEvent) {
@@ -65,23 +68,10 @@ public class ScheduleViewMB implements Serializable {
             schedule.getEventModel().updateEvent(event);
         }
 
-        eventService.createEvent(eventVoMapper(event));
-    }
-
-    public EventVo eventVoMapper(ScheduleEvent event) {
-        LOGGER.info("Mapping Scheduled Event with name {} and description {}...", event.getTitle(), event.getDescription());
-        EventVo eventVo = new EventVo();
-
-        eventVo.setBandId(bandMB.getBandVo().getId());
-        eventVo.setName(event.getTitle());
-        eventVo.setStart(LocalDateTime.ofInstant
-                (event.getStartDate().toInstant(), ZoneId.systemDefault()));
-        eventVo.setFinish(LocalDateTime.ofInstant
-                (event.getEndDate().toInstant(), ZoneId.systemDefault()));
-        eventVo.setDescription(event.getDescription());
-        eventVo.setVenueId(1L);
-
-        return eventVo;
+        event.getEventVo().setBandId(bandMB.getBandVo().getId());
+        event.getEventVo().setVenueId(1L);
+        LOGGER.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + event.getEventVo().toString());
+        eventService.createEvent(event.getEventVo());
     }
 
     public void onDateSelect(SelectEvent selectEvent) {

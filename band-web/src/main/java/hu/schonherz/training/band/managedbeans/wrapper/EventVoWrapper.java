@@ -31,6 +31,7 @@ public class EventVoWrapper extends DefaultScheduleEvent {
 
     public EventVoWrapper(String title, Date start, Date end) {
         super(title, start, end);
+        eventVo = new EventVo();
     }
 
     public EventVoWrapper(Date object) {
@@ -64,7 +65,11 @@ public class EventVoWrapper extends DefaultScheduleEvent {
 
     @Override
     public Date getStartDate() {
-        return Date.from(eventVo.getStart().atZone(ZoneId.systemDefault()).toInstant());
+        if (eventVo.getStart() == null) {
+            return new Date(19890829);
+        } else {
+            return Date.from(eventVo.getStart().atZone(ZoneId.systemDefault()).toInstant());
+        }
     }
 
     @Override
@@ -74,7 +79,11 @@ public class EventVoWrapper extends DefaultScheduleEvent {
 
     @Override
     public Date getEndDate() {
-        return Date.from(eventVo.getFinish().atZone(ZoneId.systemDefault()).toInstant());
+        if (eventVo.getFinish() == null) {
+            return new Date(19890829);
+        } else {
+            return Date.from(eventVo.getFinish().atZone(ZoneId.systemDefault()).toInstant());
+        }
     }
 
     @Override
@@ -101,5 +110,4 @@ public class EventVoWrapper extends DefaultScheduleEvent {
     public void setDescription(String description) {
         eventVo.setDescription(description);
     }
-
 }

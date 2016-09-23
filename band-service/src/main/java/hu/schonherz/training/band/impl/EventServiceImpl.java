@@ -36,6 +36,7 @@ public class EventServiceImpl implements EventService {
     public void createEvent(EventVo eventVo) {
         EventEntity eventEntity = new EventEntity();
 
+        eventEntity.setId(eventVo.getId());
         eventEntity.setName(eventVo.getName());
         eventEntity.setStart(eventVo.getStart());
         eventEntity.setFinish(eventVo.getFinish());
