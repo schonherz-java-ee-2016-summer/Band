@@ -99,6 +99,7 @@ public class PublicBandProfileMB {
     public void addBandMates() {
         bandMateMB.getBandMateVo().setBandId(bandMB.getBandVo().getId());
         bandMateService.createBandMate(bandMateMB.getBandMateVo());
+        bandMatesMB.getBandMateVos().add(bandMateMB.getBandMateVo());
 
         LOGGER.info("Add band mate completed.");
     }

@@ -7,7 +7,6 @@
 
     <p:dialog header="#{msg['band.edit']}" widgetVar="edit-band-dialog" modal="true">
         <h:form>
-            <p:growl id="messages" showDetail="true" />
             <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
                 <h:outputText for="band-name" styleClass="output-text" value="#{msg['band.name']}"/>
                 <p:inputText id="band-name" styleClass="input-text" value="#{bandBean.bandVo.name}"/>
@@ -19,10 +18,10 @@
                 <p:inputTextarea id="band-description" styleClass="input-text" value="#{bandBean.bandVo.description}"/>
                 <p:commandButton type="submit"
                                  value="#{msg['band.edit.save.button']}"
-                                 update="band-panel, messages"
+                                 update="band-panel"
                                  icon="ui-icon-check"
                                  oncomplete="PF('edit-band-dialog').hide()"
-                                 actionListener="#{publicBandProfileBean.editBandMates}">
+                                 actionListener="#{publicBandProfileBean.editBand}">
                     <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 </p:commandButton>
             </h:panelGrid>

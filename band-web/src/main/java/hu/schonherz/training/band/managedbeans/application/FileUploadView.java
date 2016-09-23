@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 
 import hu.schonherz.training.band.managedbeans.view.BandMB;
+import hu.schonherz.training.band.managedbeans.view.DemosMB;
 import hu.schonherz.training.band.service.DemoService;
 import hu.schonherz.training.band.vo.DemoVo;
 import org.primefaces.event.FileUploadEvent;
@@ -27,21 +28,25 @@ public class FileUploadView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileUploadView.class);
 
+    @ManagedProperty(value = "#{bandBean}")
+    private BandMB bandMB;
+
+    @ManagedProperty(value = "#{bandDemosBean}")
+    private DemosMB demosMB;
+
+    private DemoVo demoVo;
+
     @EJB
     private DemoService demoService;
 
-    @ManagedProperty(value = "#{bandBean}")
-    private BandMB bandMB;
 
     private String destination = System.getProperty("jboss.server.data.dir") + File.separator + "band";
 
     public void upload(FileUploadEvent event) {
 
-        FacesMessage msg = new FacesMessage("Success! ", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
+            demosMB.getDemoVos().add(demoVo);
             LOGGER.info("File uploaded.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,7 +64,7 @@ public class FileUploadView {
     }
 
     public void saveDemo(String path, String name){
-        DemoVo demoVo = new DemoVo();
+        demoVo = new DemoVo();
         demoVo.setName(name);
         demoVo.setFilename(path);
         demoVo.setBandId(bandMB.getBandVo().getId());
@@ -81,4 +86,21 @@ public class FileUploadView {
     public void setBandMB(BandMB bandMB) {
         this.bandMB = bandMB;
     }
+
+    public DemosMB getDemosMB() {
+        return demosMB;
+    }
+
+    public void setDemosMB(DemosMB demosMB) {
+        this.demosMB = demosMB;
+    }
+
+    public DemoVo getDemoVo() {
+        return demoVo;
+    }
+
+    public void setDemoVo(DemoVo demoVo) {
+        this.demoVo = demoVo;
+    }
+    
 }

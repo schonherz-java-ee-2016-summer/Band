@@ -12,7 +12,7 @@
         </button>
 
         <h:form id="form">
-            <p:dataTable id="demo-table" var="demo" value="#{bandDemosBean.demoVos}" rendered="#{not bandDemosBean.demoVos.isEmpty()}">
+            <p:dataTable id="demo-table" var="demo" value="#{bandDemosBean.demoVos}">
                 <p:column headerText="#{msg['band.demo.title']}">
                     <h:outputText value="#{demo.name}"/>
                 </p:column>
