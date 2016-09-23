@@ -100,8 +100,10 @@
                                         <h:outputText styleClass="output-text" value="#{msg['band.description']}:"/>
                                         <h:outputText styleClass="output-text-confirmation" value="#{bandBean.bandVo.description}"/>
                                         <h:outputText styleClass="output-text" value="#{msg['band.mate']}:"/>
-                                        <p:dataList value="#{bandMatesBean.bandMateVos}" var="bandMate" styleClass="datalist-noborder">
-                                            <h:outputText styleClass="output-text-list" value="#{bandMate.firstName} #{bandMate.lastName}"/>
+                                        <p:dataList value="#{bandMatesBean.bandMateVos}" var="bandMate"  styleClass="datalist-noborder" type="unordered" itemType="none">
+                                            <h:outputText styleClass="output-text-list-name" value="&#x1f464;  #{bandMate.firstName} #{bandMate.lastName}"/>
+                                            <h:outputText styleClass="output-text-list" value="&#x1f4e7;  #{bandMate.email}"/>
+                                            <h:outputText styleClass="output-text-list" value="&#x266a;  #{bandMate.instrument}"/>
                                         </p:dataList>
                                     </p:panelGrid>
                                 </div>

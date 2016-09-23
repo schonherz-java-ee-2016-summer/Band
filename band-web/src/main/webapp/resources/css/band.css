@@ -32,6 +32,8 @@
 .datalist-noborder .ui-widget-content {
     border: none;
     color: black;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .output-text {
@@ -52,10 +54,21 @@
     word-wrap: break-word;
 }
 
+.output-text-list-name{
+    display: inline-block;
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: black;
+}
+
 .output-text-list{
     display: inline-block;
     font-size: 11pt;
     margin-top: 5px;
+    padding-left: 30px;
+    paddig-right: 30px;
     margin-bottom: 5px;
     color: black;
 }
