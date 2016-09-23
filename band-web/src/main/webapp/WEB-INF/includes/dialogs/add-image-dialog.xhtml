@@ -7,7 +7,7 @@
     <p:dialog modal="true" header="#{msg['band.image.dialog.header']}" widgetVar="add">
         <h:form>
             <p:panel>
-                <p:messages/>
+                <p:messages id="requiredMessage"/>
                 <h:panelGrid columns="2" cellspacing="20" cellpadding="5" columnClasses="label, value">
                     <h:outputText styleClass="output-text" value="#{msg['band.image.caption']}:"/>
                     <p:inputText id="name" value="#{bandImageBean.bandImageVo.caption}" required="true"
@@ -24,7 +24,7 @@
                               invalidFileMessage="#{msg['band.image.fileupload.invalid.file.type']}"
                               invalidSizeMessage="#{msg['band.image.fileupload.invalid.file.size']}"/>
                 <p:commandButton value="#{msg['band.image.fileupload.submit']}"
-                                 action="#{bandImageUploadBean.upload}"/>
+                                 action="#{bandImageUploadBean.upload}" update="requiredMessage"/>
             </p:panel>
         </h:form>
     </p:dialog>

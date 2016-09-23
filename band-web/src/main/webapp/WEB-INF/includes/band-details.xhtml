@@ -10,13 +10,13 @@
                     onclick="PF('edit-band-dialog').show();">
                 #{msg['band.edit.button']}
             </button>
-        </ui:fragment>
 
-        <button class="btn btn-primary"
-                type="button"
-                onclick="PF('band-mate-add-dialog').show();">
-            #{msg['band.mate.add.button']}
-        </button>
+            <button class="btn btn-primary"
+                    type="button"
+                    onclick="PF('band-mate-add-dialog').show();">
+                #{msg['band.mate.add.button']}
+            </button>
+        </ui:fragment>
 
         <h:panelGrid id="band-panel" columns="2" cellpadding="5" columnClasses="label, value">
             <h:outputText styleClass="output-band-text" value="#{msg['band.name']}:"/>
@@ -34,24 +34,27 @@
                         responsive="true"
                         headerText="#{msg['band.mate']}">
 
-                <p:panelGrid id="band-mate-panelgrid" columns="1" style="width:100%" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:panelGrid id="band-mate-panelgrid" columns="1" style="width:100%" layout="grid"
+                             styleClass="ui-panelgrid-blank">
                     <f:facet name="header">
                         #{bandMate.firstName} #{bandMate.lastName}
                     </f:facet>
 
-                    <h:outputText styleClass="carousel-output-text" value="#{bandMate.email}" />
+                    <h:outputText styleClass="carousel-output-text" value="#{bandMate.email}"/>
 
-                    <h:outputText styleClass="carousel-output-text" value="#{bandMate.instrument}" />
+                    <h:outputText styleClass="carousel-output-text" value="#{bandMate.instrument}"/>
 
                 </p:panelGrid>
 
-                <p:commandButton id="bandMateEditButton" oncomplete="PF('band-mate-edit-dialog').show();"
-                                 update=":band-mate-edit-dialog-form:edit-band-panel" icon="ui-icon-pencil">
-                    <f:setPropertyActionListener value="#{bandMate}" target="#{bandMateBean.bandMateVo}" />
-                </p:commandButton>
-
+                <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
+                    <p:commandButton id="bandMateEditButton" oncomplete="PF('band-mate-edit-dialog').show();"
+                                     update=":band-mate-edit-dialog-form:edit-band-panel" icon="ui-icon-pencil">
+                        <f:setPropertyActionListener value="#{bandMate}" target="#{bandMateBean.bandMateVo}"/>
+                    </p:commandButton>
+                </ui:fragment>
+                
                 <f:facet name="footer">
-                    In total there are #{bandMatesBean.bandMateVos.size()} band mates.
+                    #{msg['band.mate.number.before']} #{bandMatesBean.bandMateVos.size()} #{msg['band.mate.number.after']}
                 </f:facet>
             </p:carousel>
         </h:form>
@@ -61,7 +64,7 @@
     <p:dialog header="#{msg['band.mate.edit']}" widgetVar="band-mate-edit-dialog" modal="true">
         <h:form id="band-mate-edit-dialog-form">
             <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
-                <h:outputText for="firstName"  styleClass="output-text" value="#{msg['band.mate.first.name']}:"/>
+                <h:outputText for="firstName" styleClass="output-text" value="#{msg['band.mate.first.name']}:"/>
                 <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
                              styleClass="input-text"/>
 
@@ -73,7 +76,8 @@
                 <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
                              styleClass="input-text"/>
 
-                <h:outputText for="instrument" styleClass="output-text" value="#{msg['band.mate.musical.instrument']}:"/>
+                <h:outputText for="instrument" styleClass="output-text"
+                              value="#{msg['band.mate.musical.instrument']}:"/>
                 <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
                              styleClass="input-text"/>
 
@@ -89,14 +93,16 @@
                              actionListener="#{publicBandProfileBean.deleteBandMates(bandMateBean.bandMateVo)}"
                              oncomplete="PF('band-mate-edit-dialog').hide()"
                              update=":carousel-form:band-mates" icon="ui-icon-close" style="float: right">
-                <p:confirm header="#{msg['band.confirmation']}" message="#{msg['band.mate.delete.question']}" icon="ui-icon-alert"/>
+                <p:confirm header="#{msg['band.confirmation']}" message="#{msg['band.mate.delete.question']}"
+                           icon="ui-icon-alert"/>
             </p:commandButton>
 
             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                 <p:commandButton value="#{msg['band.mate.delete.question.yes']}" type="button"
-                                 update=":carousel-form:band-mates" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                 update=":carousel-form:band-mates" styleClass="ui-confirmdialog-yes"
+                                 icon="ui-icon-check"/>
                 <p:commandButton value="#{msg['band.mate.delete.question.no']}" type="button"
-                                 styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                 styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
             </p:confirmDialog>
         </h:form>
     </p:dialog>

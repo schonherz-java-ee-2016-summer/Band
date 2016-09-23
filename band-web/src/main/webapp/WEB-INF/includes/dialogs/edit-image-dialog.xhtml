@@ -5,29 +5,29 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog styleClass="editor" modal="true" header="Image editor" widgetVar="editAndRemove">
+    <p:dialog modal="true" header="#{msg['band.image.editor']}" widgetVar="editAndRemove" width="100%" position="left">
         <h:form>
-            <p:dataTable id="editorTable" styleClass="editor"
+            <p:dataTable styleClass="editor"
                          value="#{editBandImageBean.bandImageVoWrapper.bandImageVos}"
                          var="image" rowStyleClass="centered-text">
-                <p:column headerText="Image" style="width: 80px">
+                <p:column headerText="#{msg['band.image']}">
                     <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
                         <f:param name="imageId" value="#{image.id}"/>
                     </p:graphicImage>
                 </p:column>
-                <p:column headerText="Name">
+                <p:column headerText="#{msg['band.image.name']}">
                     <h:outputText value="#{image.name}"/>
                 </p:column>
-                <p:column headerText="Caption">
-                    <h:inputTextarea value="#{image.caption}" styleClass="centered-block sizetoeditor" required="true"
-                                     requiredMessage="Caption is required!"/>
+                <p:column headerText="#{msg['band.image.caption']}">
+                    <h:inputTextarea value="#{image.caption}" required="true" styleClass="inputtextarea-size"
+                                     requiredMessage="#{msg['band.image.dialog.validation.error']}!"/>
                 </p:column>
-                <p:column headerText="Edit" styleClass="sizetoeditor">
-                    <p:commandButton value="Edit" ajax="false"
+                <p:column headerText="#{msg['band.image.edit']}">
+                    <p:commandButton value="#{msg['band.image.edit.button']}" ajax="false"
                                      action="#{editBandImageBean.executeEdit(image.id)}"/>
                 </p:column>
-                <p:column headerText="Remove" styleClass="sizetoeditor">
-                    <p:commandButton value="Remove" ajax="false"
+                <p:column headerText="#{msg['band.image.remove']}">
+                    <p:commandButton value="#{msg['band.image.remove']}" ajax="false"
                                      action="#{editBandImageBean.removeImage(image.id)}"/>
                 </p:column>
             </p:dataTable>
