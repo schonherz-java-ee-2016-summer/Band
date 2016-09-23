@@ -41,12 +41,12 @@
 
                     <h:outputText styleClass="carousel-output-text" value="#{bandMate.instrument}" />
 
-                        <p:commandButton oncomplete="PF('band-mate-edit-dialog').show();"
-                                         update=":band-mate-edit-dialog-form:edit-band-panel" icon="ui-icon-pencil">
-                            <f:setPropertyActionListener value="#{bandMate}" target="#{bandMateBean.bandMateVo}" />
-                        </p:commandButton>
-
                 </p:panelGrid>
+
+                <p:commandButton id="bandMateEditButton" oncomplete="PF('band-mate-edit-dialog').show();"
+                                 update=":band-mate-edit-dialog-form:edit-band-panel" icon="ui-icon-pencil">
+                    <f:setPropertyActionListener value="#{bandMate}" target="#{bandMateBean.bandMateVo}" />
+                </p:commandButton>
 
                 <f:facet name="footer">
                     In total there are #{bandMatesBean.bandMateVos.size()} band mates.
@@ -77,15 +77,14 @@
 
             </h:panelGrid>
 
-            <p:commandButton type="submit"
-                             value="#{msg['band.edit.save.button']}"
+            <p:commandButton value="#{msg['band.edit.save.button']}"
                              icon="ui-icon-check"
                              update=":carousel-form:band-mates"
                              oncomplete="PF('band-mate-edit-dialog').hide()"
                              actionListener="#{publicBandProfileBean.editBandMates}"/>
 
-            <p:commandButton value="#{msg['band.mate.delete.button']}" type="submit"
-                             actionListener="#{publicBandProfileBean.deleteBandMates}"
+            <p:commandButton value="#{msg['band.mate.delete.button']}"
+                             actionListener="#{publicBandProfileBean.deleteBandMates(bandMateBean.bandMateVo)}"
                              oncomplete="PF('band-mate-edit-dialog').hide()"
                              update=":carousel-form:band-mates" icon="ui-icon-close" style="float: right">
                 <p:confirm header="#{msg['band.confirmation']}" message="#{msg['band.mate.delete.question']}" icon="ui-icon-alert"/>
