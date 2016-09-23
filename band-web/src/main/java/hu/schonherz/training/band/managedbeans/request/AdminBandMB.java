@@ -3,6 +3,8 @@ package hu.schonherz.training.band.managedbeans.request;
 import hu.schonherz.training.band.managedbeans.view.UserOnPage;
 import hu.schonherz.training.band.service.BandService;
 import hu.schonherz.training.band.vo.BandVo;
+import hu.schonherz.training.landing.vo.remote.RemoteRoleVo;
+import hu.schonherz.training.landing.vo.remote.RemoteUserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +29,14 @@ public class AdminBandMB {
     @ManagedProperty("#{userOnPageBean}")
     private UserOnPage userOnPage;
 
+    @ManagedProperty("#{publicBandProfileBean}")
+    private PublicBandProfileMB publicProfile;
+
     @EJB
     private BandService bandService;
 
     public void onLoad() {
+        publicProfile.checkAdminRole();
         if (userOnPage.getAdmin()) {
             LOGGER.info("Admin page onloaded.");
         } else {
@@ -56,5 +62,13 @@ public class AdminBandMB {
 
     public void setUserOnPage(UserOnPage userOnPage) {
         this.userOnPage = userOnPage;
+    }
+
+    public PublicBandProfileMB getPublicProfile() {
+        return publicProfile;
+    }
+
+    public void setPublicProfile(PublicBandProfileMB publicProfile) {
+        this.publicProfile = publicProfile;
     }
 }
