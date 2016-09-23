@@ -102,5 +102,5 @@ public class FileUploadView {
     public void setDemoVo(DemoVo demoVo) {
         this.demoVo = demoVo;
     }
-    
+
 }

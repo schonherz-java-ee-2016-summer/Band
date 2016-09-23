@@ -37,8 +37,26 @@
 .output-text {
     display: inline-block;
     font-size: 13pt;
+    font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: black;
+}
+
+.output-text-confirmation {
+    display: block;
+    font-size: 13pt;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: black;
+    word-wrap: break-word;
+}
+
+.output-text-list{
+    display: inline-block;
+    font-size: 11pt;
+    margin-top: 5px;
+    margin-bottom: 5px;
     color: black;
 }
 
@@ -58,14 +76,23 @@
 .input-text {
     width: 100%;
     padding: 6px 10px;
-    margin: 4px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.select-boolean {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: inline-block;
 }
 
 .input-textArea {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: inline-block;
 }
 
