@@ -39,7 +39,7 @@ public class CookieFilter implements Filter {
             }
         }
         if (remoteUserVo == null) {
-            ((HttpServletResponse) response).sendRedirect("/../landing");
+            ((HttpServletResponse) response).sendRedirect("/../landing/login.xhtml");
         } else {
             chain.doFilter(req, resp);
         }
