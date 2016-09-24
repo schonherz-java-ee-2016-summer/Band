@@ -6,6 +6,8 @@ import org.primefaces.event.FlowEvent;
 import org.primefaces.model.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -19,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Locale;
 
 /**
  * @author Attila Holhós
@@ -49,6 +52,9 @@ public class BandImageUploadMB {
         try {
             input = uploadedFile.getInputstream();
             LOGGING.info("An Image was uploaded.");
+            ApplicationContext context = new ClassPathXmlApplicationContext("resourcebundles.xml");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    context.getMessage("band.image.upload.success", null, Locale.getDefault()), null));
         } catch (IOException e) {
             LOGGING.error("Uploaded file can't put into inputstream!");
         }
@@ -56,22 +62,24 @@ public class BandImageUploadMB {
 
     public void upload() {
         if (input == null){
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Image was not uploaded!", null);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-        Path filePath = createPath();
-        try {
-            Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            LOGGING.error("Can't save image!");
-        }
-        saveBandImageToDB(filePath);
-        LOGGING.info("Store an image and save entity to database.");
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        try {
-            ec.redirect(ec.getRequestContextPath() + "/profile.xhtml?id=" + bandMB.getBandVo().getId());
-        } catch (IOException e) {
-            LOGGING.error("Bad redirect.");
+            ApplicationContext context = new ClassPathXmlApplicationContext("resourcebundles.xml");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    context.getMessage("band.image.upload.no.image", null, Locale.getDefault()), null));
+        } else {
+            Path filePath = createPath();
+            try {
+                Files.copy(input, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                LOGGING.error("Can't save image!");
+            }
+            saveBandImageToDB(filePath);
+            LOGGING.info("Store an image and save entity to database.");
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            try {
+                ec.redirect(ec.getRequestContextPath() + "/profile.xhtml?id=" + bandMB.getBandVo().getId());
+            } catch (IOException e) {
+                LOGGING.error("Bad redirect.");
+            }
         }
     }
 
