@@ -14,10 +14,6 @@ public class BandVo extends BaseVo {
     private String genre;
     private String description;
     private boolean disabled;
-//  private Collection<EventVo> events;
-    private Collection<BandImageVo> bandsImages;
-    private Collection<DemoVo> demos;
-    private Collection<BandMateVo> bandMates;
 
     public String getName() {
         return name;
@@ -49,38 +45,6 @@ public class BandVo extends BaseVo {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
-    }
-
-    //    public Collection<EventVo> getEvents() {
-//        return events;
-//    }
-//
-//    public void setEvents(Collection<EventVo> events) {
-//        this.events = events;
-//    }
-//
-    public Collection<BandImageVo> getBandsImages() {
-        return bandsImages;
-    }
-
-    public void setBandsImages(Collection<BandImageVo> bandsImages) {
-        this.bandsImages = bandsImages;
-    }
-
-    public Collection<BandMateVo> getBandMates() {
-        return bandMates;
-    }
-
-    public void setBandMates(Collection<BandMateVo> bandMates) {
-        this.bandMates = bandMates;
-    }
-
-    public Collection<DemoVo> getDemos() {
-        return demos;
-    }
-
-    public void setDemos(Collection<DemoVo> demos) {
-        this.demos = demos;
     }
 
     public Long getOwnerid() {
