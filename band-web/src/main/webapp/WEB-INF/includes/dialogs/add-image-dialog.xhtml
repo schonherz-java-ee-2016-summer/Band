@@ -23,7 +23,8 @@
                               cancelLabel="#{msg['band.image.fileupload.cancel']}"
                               fileLimitMessage="#{msg['band.image.fileupload.invalid.file.number']}"
                               invalidFileMessage="#{msg['band.image.fileupload.invalid.file.type']}"
-                              invalidSizeMessage="#{msg['band.image.fileupload.invalid.file.size']}"/>
+                              invalidSizeMessage="#{msg['band.image.fileupload.invalid.file.size']}"
+                              update="requiredMessage"/>
                 <p:commandButton value="#{msg['band.image.fileupload.submit']}"
                                  action="#{bandImageUploadBean.upload}" update="requiredMessage"
                                  style="margin-top: 30px; margin-bottom: 30px;"/>

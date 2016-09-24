@@ -5,7 +5,8 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog modal="true" header="#{msg['band.image.editor']}" widgetVar="editAndRemove" width="100%" position="left">
+    <p:dialog modal="true" header="#{msg['band.image.editor']}" widgetVar="edit-and-remove" width="100%"
+              position="left">
         <h:form>
             <p:dataTable styleClass="editor"
                          value="#{editBandImageBean.bandImageVoWrapper.bandImageVos}"
@@ -24,11 +25,23 @@
                 </p:column>
                 <p:column headerText="#{msg['band.image.edit']}">
                     <p:commandButton value="#{msg['band.image.edit.button']}" ajax="false"
-                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
+                                     action="#{editBandImageBean.executeEdit(image.id)}" icon="ui-icon-pencil"/>
                 </p:column>
-                <p:column headerText="#{msg['band.image.remove']}">
-                    <p:commandButton value="#{msg['band.image.remove']}" ajax="false"
-                                     action="#{editBandImageBean.removeImage(image.id)}"/>
+                <p:column headerText="#{msg['band.image.delete']}">
+                    <p:commandButton value="#{msg['band.image.delete']}"
+                                     action="#{editBandImageBean.removeImage(image.id)}"
+                                     icon="ui-icon ui-icon-trash">
+                        <p:confirm header="#{msg['band.image.confirmation']}"
+                                   message="#{msg['band.image.delete.question']}"
+                                   icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="#{msg['band.image.delete.question.yes']}"
+                                         styleClass="ui-confirmdialog-yes"
+                                         icon="ui-icon-check"/>
+                        <p:commandButton value="#{msg['band.image.delete.question.no']}"
+                                         styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
                 </p:column>
             </p:dataTable>
         </h:form>

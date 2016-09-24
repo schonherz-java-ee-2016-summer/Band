@@ -4,12 +4,15 @@ import hu.schonherz.training.band.managedbeans.view.BandMateMB;
 import hu.schonherz.training.band.managedbeans.view.BandMatesMB;
 import hu.schonherz.training.band.vo.BandMateVo;
 import org.primefaces.context.RequestContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import java.util.Locale;
 
 /**
  *  @author Norbert Barocsi
@@ -37,8 +40,10 @@ public class CreateBandMateMB {
 
         bandMatesMB.getBandMateVos().add(bandMate);
 
+        ApplicationContext context = new ClassPathXmlApplicationContext("resourcebundles.xml");
+        String message = context.getMessage("band.mate.save.success", null, Locale.getDefault());
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Save Completed: " + bandMate.getFirstName()
+                new FacesMessage(message + ": " + bandMate.getFirstName()
                         + " " + bandMate.getLastName()));
     }
 
