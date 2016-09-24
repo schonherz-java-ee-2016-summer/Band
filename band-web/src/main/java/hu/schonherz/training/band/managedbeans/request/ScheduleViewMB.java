@@ -6,7 +6,6 @@ import hu.schonherz.training.band.service.EventService;
 import hu.schonherz.training.band.vo.EventVo;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleModel;
-import org.primefaces.model.ScheduleEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +16,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Collection;
 import java.util.Date;
 
@@ -45,20 +42,15 @@ public class ScheduleViewMB implements Serializable {
 
     @PostConstruct
     public void init() {
-        //LOGGER.info("Initializing calendar view...");
         schedule.setEventModel(new DefaultScheduleModel());
 
         Collection<EventVo> eventVos = eventService.getEventsByBand(bandMB.getBandVo());
         for (EventVo i : eventVos) {
-            //LOGGER.info("BBBBBBBBBBBBBBBBBBBBBBBBBB" + i.getDescription());
             schedule.getEventModel().addEvent(new EventVoWrapper(i));
         }
-        //LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEvents());
-        //LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEventCount());
     }
 
     public void addEvent(ActionEvent actionEvent) {
-        //LOGGER.info("Adding or updating event...");
         if (event.getEventVo().getId() == null) {
             schedule.getEventModel().addEvent(event);
         } else {
@@ -68,20 +60,18 @@ public class ScheduleViewMB implements Serializable {
         event.getEventVo().setBandId(bandMB.getBandVo().getId());
         event.getEventVo().setVenueId(1L);
         eventService.createEvent(event.getEventVo());
+        init();
     }
 
     public void deleteEvent(ActionEvent actionEvent) {
         Collection<EventVo> eventVos = eventService.getEventsByBand(bandMB.getBandVo());
         for (EventVo i : eventVos) {
-            LOGGER.info
-                    ("AAAAAAAAAAAAAAAAAA " + "The id of the eventVo of the eventmodel " + event.getEventVo().getId());
-            LOGGER.info
-                    ("BBBBBBBBBBBBBBBBBB " + "The id of the event from the repo " + i.getId());
-            if (event.getEventVo().getId() == i.getId()) {
+            if (event.getEventVo().getId().equals(i.getId())) {
                 eventService.deleteVo(event.getEventVo());
             }
         }
         schedule.getEventModel().deleteEvent(event);
+        init();
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
