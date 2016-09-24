@@ -22,12 +22,17 @@
 
             <div class="main">
                 <ui:fragment rendered="#{bandBean.bandVo.disabled eq true}">
-                    <h:outputText value="Band profile is disabled"/>
+                    <h:outputText value="#{msg['band.disabled']}"/>
                 </ui:fragment>
 
                 <ui:fragment rendered="#{bandBean.bandVo.id == null and publicBandProfileBean.userVo.id != null}">
-                    <p:button styleClass="create" outcome="createBand" value="#{msg['create.new.band']}"
-                              icon="ui-icon-plus"></p:button>
+                    <div class="create-band centered-text">
+                        <h:outputText  value="#{msg['user.no.have.band']}"/>
+                        <div style="margin-top: 10px" class="centered-text">
+                            <p:button styleClass="create" outcome="createBand" value="#{msg['create.new.band']}"
+                              icon="ui-icon-plus"/>
+                        </div>
+                    </div>
                 </ui:fragment>
 
                 <ui:fragment rendered="#{bandBean.bandVo.id != null and bandBean.bandVo.disabled == false}">

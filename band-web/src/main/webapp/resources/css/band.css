@@ -158,3 +158,11 @@
 #band-gallery .ui-galleria-panel{
     width: 100% !important;
 }
+
+#band-gallery .ui-galleria-filmstrip-wrapper{
+    width: 100% !important;
+}
+
+.create-band{
+    margin-top: 30px;
+}
