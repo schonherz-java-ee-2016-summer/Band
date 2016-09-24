@@ -3,30 +3,28 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <div id="band-gallery">
-        <p:panel>
-            <p:galleria value="#{bandImagesBean.bandImageVos}" var="image"
-                        showCaption="true"
-                        rendered="#{not bandImagesBean.bandImageVos.isEmpty()}">
-                <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="100%">
-                    <f:param name="imageId" value="#{image.id}"/>
-                </p:graphicImage>
-            </p:galleria>
+    <p:panel id="band-gallery">
+        <p:galleria value="#{bandImagesBean.bandImageVos}" var="image"
+                    showCaption="true"
+                    rendered="#{not bandImagesBean.bandImageVos.isEmpty()}">
+            <p:graphicImage value="#{imageStreamerBean.image}" alt="#{image.caption}" title=" " width="100%">
+                <f:param name="imageId" value="#{image.id}"/>
+            </p:graphicImage>
+        </p:galleria>
 
-            <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
-                <div class="centered-text">
-                    <button type="button" class="btn-primary" onclick="PF('add').show();">
-                        #{msg['band.image.add.button']}
+        <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
+            <div class="centered-text">
+                <button type="button" class="btn-primary" onclick="PF('add').show();">
+                    #{msg['band.image.add.button']}
+                </button>
+                <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
+                    <button type="button" onclick="PF('edit-and-remove').show();">
+                        #{msg['band.image.edit.remove.button']}
                     </button>
-                    <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
-                        <button type="button" onclick="PF('editAndRemove').show();">
-                            #{msg['band.image.edit.remove.button']}
-                        </button>
-                    </ui:fragment>
-                </div>
-            </ui:fragment>
-        </p:panel>
-    </div>
+                </ui:fragment>
+            </div>
+        </ui:fragment>
+    </p:panel>
 
     <ui:include src="dialogs/add-image-dialog.xhtml"/>
     <ui:include src="dialogs/edit-image-dialog.xhtml"/>
