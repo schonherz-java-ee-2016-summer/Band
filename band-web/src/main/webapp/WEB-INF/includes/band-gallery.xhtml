@@ -13,12 +13,12 @@
         </p:galleria>
 
         <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
-            <div class="centered-text">
-                <button type="button" class="btn-primary" onclick="PF('add').show();">
+            <div class="centered-text" style="margin-top: 5px">
+                <button type="button" class="btn btn-primary" onclick="PF('add').show();">
                     #{msg['band.image.add.button']}
                 </button>
                 <ui:fragment rendered="#{not empty bandImagesBean.bandImageVos}">
-                    <button type="button" onclick="PF('edit-and-remove').show();">
+                    <button type="button" class="btn btn-primary" onclick="PF('edit-and-remove').show();">
                         #{msg['band.image.edit.remove.button']}
                     </button>
                 </ui:fragment>
