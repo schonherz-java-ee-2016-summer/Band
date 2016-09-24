@@ -7,10 +7,10 @@
 
     <h:outputScript library="js" name="band.js"/>
 
-    <p:dialog header="#{msg['band.mate.add']}" widgetVar="band-mate-add-dialog" modal="true">
+    <p:dialog header="#{msg['band.mate.add']}" closeOnEscape="true" resizable="false" widgetVar="band-mate-add-dialog" modal="true">
         <h:form id="band-mate-add-dialog-form">
             <p:messages id="reqMessages"/>
-            <h:panelGrid id="add-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
+            <p:panelGrid id="add-band-panel" columns="2" columnClasses="ui-grid-col-5,ui-grid-col-7" layout="grid" styleClass="ui-panelgrid-blank">
                 <h:outputText for="firstName"  styleClass="output-text" value="#{msg['band.mate.first.name']}: *"/>
                 <p:inputText id="firstName" value="#{bandMateBean.bandMateVo.firstName}"
                              styleClass="input-text"
@@ -27,7 +27,11 @@
                 <p:inputText id="email" value="#{bandMateBean.bandMateVo.email}"
                              styleClass="input-text"
                              requiredMessage="#{msg['band.mate.email.address']} #{msg['band.required.message']}"
-                             required="true"/>
+                             validatorMessage="#{msg['band.mate.email.validator']}"
+                             required="true">
+                    <f:validateRegex
+                            pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
 
                 <h:outputText for="instrument" styleClass="output-text" value="#{msg['band.mate.musical.instrument']}: *"/>
                 <p:inputText id="instrument" value="#{bandMateBean.bandMateVo.instrument}"
@@ -36,8 +40,8 @@
                              required="true"/>
 
                 <h:outputText styleClass="output-text" value="#{msg['band.mate.profile']}:"/>
-                <p:selectBooleanCheckbox id="profile" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
-            </h:panelGrid>
+                <p:selectBooleanCheckbox id="profile" styleClass="select-boolean" value="#{bandMateBean.bandMateVo.profile}" required="true"/>
+            </p:panelGrid>
 
             <p:commandButton type="submit"
                              value="#{msg['band.edit.save.button']}"

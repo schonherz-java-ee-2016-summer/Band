@@ -5,17 +5,17 @@
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
 
-    <p:dialog header="#{msg['band.edit']}" widgetVar="edit-band-dialog" modal="true">
+    <p:dialog header="#{msg['band.edit']}" closeOnEscape="true" resizable="false" widgetVar="edit-band-dialog" width="500" modal="true">
         <h:form>
-            <h:panelGrid id="edit-band-panel" columns="2" cellpadding="5" columnClasses="label, value">
-                <h:outputText for="band-name" styleClass="output-text" value="#{msg['band.name']}"/>
+            <p:panelGrid id="edit-band-panel" columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank">
+                <h:outputText for="band-name" styleClass="output-text" value="#{msg['band.name']}:"/>
                 <p:inputText id="band-name" styleClass="input-text" value="#{bandBean.bandVo.name}"/>
 
-                <h:outputText for="band-genre" styleClass="output-text" value="#{msg['band.genre']}"/>
+                <h:outputText for="band-genre" styleClass="output-text" value="#{msg['band.genre']}:"/>
                 <p:inputText id="band-genre" styleClass="input-text" value="#{bandBean.bandVo.genre}"/>
 
-                <h:outputText for="band-description" styleClass="output-text" value="#{msg['band.description']}"/>
-                <p:inputTextarea id="band-description" styleClass="input-text" value="#{bandBean.bandVo.description}"/>
+                <h:outputText for="band-description" styleClass="output-text" value="#{msg['band.description']}:"/>
+                <p:inputTextarea id="band-description" styleClass="input-textArea" value="#{bandBean.bandVo.description}"/>
                 <p:commandButton type="submit"
                                  value="#{msg['band.edit.save.button']}"
                                  update="band-panel"
@@ -24,7 +24,7 @@
                                  actionListener="#{publicBandProfileBean.editBand}">
                     <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 </p:commandButton>
-            </h:panelGrid>
+            </p:panelGrid>
         </h:form>
     </p:dialog>
 </ui:composition>

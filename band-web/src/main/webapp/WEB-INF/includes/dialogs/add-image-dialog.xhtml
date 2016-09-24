@@ -4,16 +4,16 @@
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui">
-    <p:dialog modal="true" header="#{msg['band.image.dialog.header']}" widgetVar="add">
+    <p:dialog modal="true" header="#{msg['band.image.dialog.header']}" resizable="false" closeOnEscape="true" widgetVar="add">
         <h:form>
             <p:panel>
                 <p:messages id="requiredMessage"/>
-                <h:panelGrid columns="2" cellspacing="20" cellpadding="5" columnClasses="label, value">
+                <p:panelGrid columns="2" columnClasses="ui-grid-col-4,ui-grid-col-8" layout="grid" styleClass="ui-panelgrid-blank">
                     <h:outputText styleClass="output-text" value="#{msg['band.image.caption']}:"/>
                     <p:inputText id="name" value="#{bandImageBean.bandImageVo.caption}" required="true"
                                  requiredMessage="#{msg['band.image.dialog.validation.error']}."
-                                 styleClass="input-textArea"/>
-                </h:panelGrid>
+                                 styleClass="input-text"/>
+                </p:panelGrid>
                 <p:fileUpload fileUploadListener="#{bandImageUploadBean.create}" mode="advanced"
                               dragDropSupport="false"
                               sizeLimit="10000000" fileLimit="1"
@@ -21,10 +21,12 @@
                               label="#{msg['band.image.fileupload.choose']}"
                               uploadLabel="#{msg['band.image.fileupload.upload']}"
                               cancelLabel="#{msg['band.image.fileupload.cancel']}"
+                              fileLimitMessage="#{msg['band.image.fileupload.invalid.file.number']}"
                               invalidFileMessage="#{msg['band.image.fileupload.invalid.file.type']}"
                               invalidSizeMessage="#{msg['band.image.fileupload.invalid.file.size']}"/>
                 <p:commandButton value="#{msg['band.image.fileupload.submit']}"
-                                 action="#{bandImageUploadBean.upload}" update="requiredMessage"/>
+                                 action="#{bandImageUploadBean.upload}" update="requiredMessage"
+                                 style="margin-top: 30px; margin-bottom: 30px;"/>
             </p:panel>
         </h:form>
     </p:dialog>

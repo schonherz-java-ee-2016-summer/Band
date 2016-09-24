@@ -46,7 +46,6 @@ public class FileUploadView {
 
         try {
             copyFile(event.getFile().getFileName(), event.getFile().getInputstream());
-            demosMB.getDemoVos().add(demoVo);
             LOGGER.info("File uploaded.");
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,6 +68,7 @@ public class FileUploadView {
         demoVo.setFilename(path);
         demoVo.setBandId(bandMB.getBandVo().getId());
         demoService.createDemo(demoVo);
+        demosMB.getDemoVos().add(demoVo);
     }
 
     public DemoService getDemoService() {

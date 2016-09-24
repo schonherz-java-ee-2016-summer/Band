@@ -136,8 +136,9 @@ public class PublicBandProfileMB {
         LOGGER.info("Add band mate completed.");
     }
 
-    public void demoDelete(DemoVo demoVo){
-        demoService.deleteDemo(demoVo);
+    public void demoDelete(DemoVo demoVo) {
+
+        demoService.deleteDemo(demoService.getDemoByName(demoVo.getName()));
         demosMB.getDemoVos().remove(demoVo);
 
         LOGGER.info("Delete band demo completed.");
