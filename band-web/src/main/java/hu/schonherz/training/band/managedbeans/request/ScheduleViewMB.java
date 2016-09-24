@@ -75,7 +75,7 @@ public class ScheduleViewMB implements Serializable {
             }
         }
         schedule.getEventModel().deleteEvent(event);
-        initializator();
+        initialiser();
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
