@@ -31,7 +31,6 @@ public class EventVoWrapper extends DefaultScheduleEvent {
 
     public EventVoWrapper(String title, Date start, Date end) {
         super(title, start, end);
-        eventVo = new EventVo();
     }
 
     public EventVoWrapper(Date object) {

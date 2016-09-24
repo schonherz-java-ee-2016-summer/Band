@@ -82,4 +82,10 @@ public class EventServiceImpl implements EventService {
         }
         return eventVos;
     }
+
+    @Override
+    public void deleteVo(EventVo eventVo) {
+        EventEntity eventEntity = eventRepository.findById(eventVo.getId());
+        eventRepository.delete(eventEntity);
+    }
 }
