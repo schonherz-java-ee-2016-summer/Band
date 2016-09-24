@@ -51,10 +51,7 @@ public class ScheduleViewMB implements Serializable {
         Collection<EventVo> eventVos = eventService.getEventsByBand(bandMB.getBandVo());
         for (EventVo i : eventVos) {
             LOGGER.info("BBBBBBBBBBBBBBBBBBBBBBBBBB" + i.getDescription());
-            schedule.getEventModel().addEvent(new EventVoWrapper(
-                    i.getName(),
-                    Date.from(i.getStart().atZone(ZoneId.systemDefault()).toInstant()),
-                    Date.from(i.getFinish().atZone(ZoneId.systemDefault()).toInstant())));
+            schedule.getEventModel().addEvent(new EventVoWrapper(i));
         }
         LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEvents());
         LOGGER.info("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ    " + schedule.getEventModel().getEventCount());
