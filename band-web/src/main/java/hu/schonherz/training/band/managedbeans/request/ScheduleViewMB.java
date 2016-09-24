@@ -42,6 +42,10 @@ public class ScheduleViewMB implements Serializable {
 
     @PostConstruct
     public void init() {
+        initialiser();
+    }
+
+    public void initialiser() {
         schedule.setEventModel(new DefaultScheduleModel());
 
         Collection<EventVo> eventVos = eventService.getEventsByBand(bandMB.getBandVo());
@@ -60,7 +64,7 @@ public class ScheduleViewMB implements Serializable {
         event.getEventVo().setBandId(bandMB.getBandVo().getId());
         event.getEventVo().setVenueId(1L);
         eventService.createEvent(event.getEventVo());
-        init();
+        initialiser();
     }
 
     public void deleteEvent(ActionEvent actionEvent) {
@@ -71,7 +75,7 @@ public class ScheduleViewMB implements Serializable {
             }
         }
         schedule.getEventModel().deleteEvent(event);
-        init();
+        initializator();
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
