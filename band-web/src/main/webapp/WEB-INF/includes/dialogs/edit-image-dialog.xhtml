@@ -6,13 +6,13 @@
         xmlns:p="http://primefaces.org/ui">
 
     <p:dialog modal="true" header="#{msg['band.image.editor']}" widgetVar="edit-and-remove" width="100%"
-              position="left">
+              position="left" styleClass="edit-image-dialog">
         <h:form>
-            <p:dataTable styleClass="editor"
+            <p:dataTable styleClass="editor" scrollable="true" scrollHeight="500"
                          value="#{editBandImageBean.bandImageVoWrapper.bandImageVos}"
                          var="image" rowStyleClass="centered-text">
                 <p:column headerText="#{msg['band.image']}">
-                    <p:graphicImage value="#{imageStreamerBean.image}" width="60" height="40">
+                    <p:graphicImage value="#{imageStreamerBean.image}" width="80" height="60">
                         <f:param name="imageId" value="#{image.id}"/>
                     </p:graphicImage>
                 </p:column>
@@ -23,13 +23,12 @@
                     <h:inputTextarea value="#{image.caption}" required="true" styleClass="inputtextarea-size"
                                      requiredMessage="#{msg['band.image.dialog.validation.error']}!"/>
                 </p:column>
-                <p:column headerText="#{msg['band.image.edit']}">
-                    <p:commandButton value="#{msg['band.image.edit.button']}" ajax="false"
-                                     action="#{editBandImageBean.executeEdit(image.id)}" icon="ui-icon-pencil"/>
+                <p:column headerText="#{msg['band.image.edit']}" style="width: 100px">
+                    <p:commandButton ajax="false" icon="ui-icon-pencil"
+                                     action="#{editBandImageBean.executeEdit(image.id)}"/>
                 </p:column>
-                <p:column headerText="#{msg['band.image.delete']}">
-                    <p:commandButton value="#{msg['band.image.delete']}"
-                                     action="#{editBandImageBean.removeImage(image.id)}"
+                <p:column headerText="#{msg['band.image.delete']}" style="width: 100px">
+                    <p:commandButton action="#{editBandImageBean.removeImage(image.id)}"
                                      icon="ui-icon ui-icon-trash">
                         <p:confirm header="#{msg['band.image.confirmation']}"
                                    message="#{msg['band.image.delete.question']}"

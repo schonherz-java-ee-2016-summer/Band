@@ -166,3 +166,7 @@
 .create-band{
     margin-top: 30px;
 }
+
+.edit-image-dialog .ui-datatable-scrollable-body {
+    height: 200px !important;
+}
