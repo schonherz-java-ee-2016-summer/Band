@@ -50,6 +50,8 @@
     font-size: 18pt;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     color: black;
 }
 
@@ -58,6 +60,8 @@
     font-size: 13pt;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
     color: black;
     word-wrap: break-word;
 }

@@ -3,7 +3,7 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <p:panel>
+    <p:panel id="demo">
         <ui:fragment rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
             <button class="btn btn-primary"
                     type="button"
@@ -13,19 +13,20 @@
         </ui:fragment>
 
         <h:form id="form">
-            <p:dataTable id="demo-table" var="demo" value="#{bandDemosBean.demoVos}">
+            <p:dataTable id="demo-table" var="demo" value="#{bandDemosBean.demoVos}"
+                         rendered="#{not bandDemosBean.demoVos.isEmpty()}">
                 <p:column headerText="#{msg['band.demo.title']}">
                     <h:outputText value="#{demo.name}"/>
                 </p:column>
                 <p:column headerText="#{msg['band.demo.player']}">
                     <audio controls="controls">
-                        <source src="#{request.contextPath}/band/demo?filename=#{demo.name}" type="audio/mpeg"/>
+                        <source src="#{request.contextPath}/band/demo?id=#{bandBean.bandVo.id}%26filename=#{demo.name}" type="audio/mpeg"/>
                     </audio>
                 </p:column>
                 <p:column headerText="#{msg['band.demo.delete']}" rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
                     <p:commandButton value="#{msg['band.demo.delete.button']}"
                                      actionListener="#{publicBandProfileBean.demoDelete(demo)}"
-                                     update=":form:demo-table"/>
+                                     update="demo"/>
                 </p:column>
             </p:dataTable>
         </h:form>

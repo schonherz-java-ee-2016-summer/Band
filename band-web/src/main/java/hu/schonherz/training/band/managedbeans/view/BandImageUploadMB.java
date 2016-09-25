@@ -84,10 +84,11 @@ public class BandImageUploadMB {
     }
 
     public Path createPath(){
-        Path folder = Paths.get(System.getProperty("jboss.server.data.dir"), "uploadedImage");
+        Path folder = Paths.get(System.getProperty("jboss.server.data.dir"), bandMB.getBandVo().getId() +
+                File.separator + "uploadedImage");
         if (!folder.toFile().exists()) {
             if (!folder.toFile().mkdirs()) {
-                folder = Paths.get(System.getProperty("jboss.server.data.dir"));
+                folder = Paths.get(System.getProperty("jboss.server.data.dir") + bandMB.getBandVo().getId());
             }
         }
         return Paths.get(folder.toString() + "\\" + filename);

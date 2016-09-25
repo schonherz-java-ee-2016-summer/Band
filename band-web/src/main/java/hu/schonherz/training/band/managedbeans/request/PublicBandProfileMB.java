@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.EJB;
 import javax.faces.bean.*;
 import javax.faces.event.ActionEvent;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -137,10 +138,10 @@ public class PublicBandProfileMB {
     }
 
     public void demoDelete(DemoVo demoVo) {
-
+        File mp3 = new File(demoVo.getFilename());
         demoService.deleteDemo(demoService.getDemoByName(demoVo.getName()));
         demosMB.getDemoVos().remove(demoVo);
-
+        mp3.delete();
         LOGGER.info("Delete band demo completed.");
     }
 

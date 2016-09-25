@@ -54,7 +54,7 @@ public class FileUploadView {
 
     public void copyFile(String fileName, InputStream in) throws IOException {
         File destination = new File(System.getProperty("jboss.server.data.dir") + File.separator +
-                "band");
+                "band" + File.separator + bandMB.getBandVo().getId());
         destination.mkdirs();
         Path absPath = Paths.get(destination + File.separator + fileName);
         Files.copy(in, absPath, StandardCopyOption.REPLACE_EXISTING);
