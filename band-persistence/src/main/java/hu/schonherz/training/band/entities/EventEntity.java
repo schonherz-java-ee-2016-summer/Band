@@ -16,7 +16,7 @@ public class EventEntity extends BaseEntity {
     private String name;
 
     @Basic
-    @Column(nullable = false)
+    @Column
     private String description;
 
     @Basic

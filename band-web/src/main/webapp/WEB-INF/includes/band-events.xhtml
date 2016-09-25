@@ -6,7 +6,8 @@
     <h:form>
         <h:panelGrid columnClasses="value">
             <h3 style="margin-top: 0">Band Gigs</h3>
-            <p:schedule id="schedule" value="#{scheduleViewMB.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
+            <p:schedule id="schedule" value="#{scheduleBean.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
+                <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
                         update="@widgetVar(eventDialog)"
@@ -37,6 +38,10 @@
                 <p:commandButton id="event-add"
                                  value="Save"
                                  actionListener="#{scheduleViewMB.addEvent}"
+                                 oncomplete="PF('gigs').update(); PF('eventDialog').hide();"/>
+                <p:commandButton id="event-delete"
+                                 value="Delete"
+                                 actionListener="#{scheduleViewMB.deleteEvent}"
                                  oncomplete="PF('gigs').update(); PF('eventDialog').hide();"/>
             </h:panelGrid>
         </p:dialog>
