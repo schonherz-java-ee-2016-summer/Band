@@ -45,6 +45,7 @@ public class CreateBandMateMB {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(message + ": " + bandMate.getFirstName()
                         + " " + bandMate.getLastName()));
+        bandMateMB.setBandMateVo(new BandMateVo());
     }
 
     public BandMateMB getBandMateMB() {
