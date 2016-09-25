@@ -22,25 +22,26 @@
         <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip"
                   rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
             <h:panelGrid id="eventDetails" columns="2">
-                <p:outputLabel for="event-title" value="Title:" />
+                <p:outputLabel for="event-title" value="#{msg['band.event.title']}" />
                 <p:inputText id="event-title" value="#{scheduleViewMB.event.title}" required="true" />
 
-                <p:outputLabel for="event-from" value="From:" />
+                <p:outputLabel for="event-from" value="#{msg['band.event.from']}" />
                 <p:calendar id="event-from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
-                <p:outputLabel for="event-to" value="To:" />
+                <p:outputLabel for="event-to" value="#{msg['band.event.to']}" />
                 <p:calendar id="event-to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
-                <p:outputLabel for="event-description" value="Description:" />
+                <p:outputLabel for="event-description" value="#{msg['band.event.description']}" />
                 <p:inputText id="event-description" value="#{scheduleViewMB.event.description}" required="true" />
 
-                <p:commandButton type="reset" value="Reset" />
+                <p:commandButton type="reset"
+                                 value="#{msg['band.event.reset']}" />
                 <p:commandButton id="event-add"
-                                 value="Save"
+                                 value="#{msg['band.event.save']}"
                                  actionListener="#{scheduleViewMB.addEvent}"
                                  oncomplete="PF('gigs').update(); PF('eventDialog').hide();"/>
                 <p:commandButton id="event-delete"
-                                 value="Delete"
+                                 value="#{msg['band.event.delete']}"
                                  actionListener="#{scheduleViewMB.deleteEvent}"
                                  oncomplete="PF('gigs').update(); PF('eventDialog').hide();"/>
             </h:panelGrid>
