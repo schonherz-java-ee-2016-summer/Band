@@ -5,7 +5,7 @@
                 xmlns:p="http://primefaces.org/ui">
     <h:form>
         <h:panelGrid columnClasses="value">
-            <h3 style="margin-top: 0">Band Gigs</h3>
+            <h3 style="margin-top: 0">#{msg['band.event.header']}</h3>
             <p:schedule id="schedule" value="#{scheduleBean.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
                 <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 <p:ajax event="dateSelect"
@@ -19,7 +19,7 @@
             </p:schedule>
         </h:panelGrid>
 
-        <p:dialog widgetVar="eventDialog" header="Event Details" showEffect="clip" hideEffect="clip"
+        <p:dialog widgetVar="eventDialog" header="#{msg['band.event.eventDetails']}" showEffect="clip" hideEffect="clip"
                   rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
             <h:panelGrid id="eventDetails" columns="2">
                 <p:outputLabel for="event-title" value="#{msg['band.event.title']}" />
