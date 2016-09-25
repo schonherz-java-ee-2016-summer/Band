@@ -23,7 +23,7 @@
                   rendered="#{userOnPageBean.admin or userOnPageBean.bandOwner}">
             <h:panelGrid id="eventDetails" columns="2">
                 <p:outputLabel for="event-title" value="#{msg['band.event.title']}" />
-                <p:inputText id="event-title" value="#{scheduleViewMB.event.title}" required="true" />
+                <p:inputText id="event-title" value="#{scheduleViewMB.event.title}" required="true" requiredMessage="#{msg['band.event.title.missing']}" />
 
                 <p:outputLabel for="event-from" value="#{msg['band.event.from']}" />
                 <p:calendar id="event-from" value="#{scheduleViewMB.event.startDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
@@ -32,7 +32,7 @@
                 <p:calendar id="event-to" value="#{scheduleViewMB.event.endDate}" timeZone="GMT+2" pattern="dd/MM/yyyy HH:mm"/>
 
                 <p:outputLabel for="event-description" value="#{msg['band.event.description']}" />
-                <p:inputText id="event-description" value="#{scheduleViewMB.event.description}" required="true" />
+                <p:inputText id="event-description" value="#{scheduleViewMB.event.description}" required="true" requiredMessage="#{msg['band.event.description.missing']}"/>
 
                 <p:commandButton type="reset"
                                  value="#{msg['band.event.reset']}" />
