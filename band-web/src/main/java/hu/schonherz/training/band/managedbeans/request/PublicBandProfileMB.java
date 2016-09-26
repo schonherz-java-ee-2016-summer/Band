@@ -134,6 +134,8 @@ public class PublicBandProfileMB {
         bandMateService.createBandMate(bandMateMB.getBandMateVo());
         bandMatesMB.getBandMateVos().add(bandMateMB.getBandMateVo());
 
+        bandMateMB.setBandMateVo(new BandMateVo());
+
         LOGGER.info("Add band mate completed.");
     }
 
