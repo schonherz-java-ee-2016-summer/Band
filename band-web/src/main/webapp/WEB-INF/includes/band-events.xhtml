@@ -6,7 +6,7 @@
     <h:form>
         <h:panelGrid columnClasses="value">
             <h3 style="margin-top: 0">#{msg['band.event.header']}</h3>
-            <p:schedule id="schedule" value="#{scheduleBean.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2" locale="hu_HU">
+            <p:schedule id="schedule" value="#{scheduleBean.eventModel}" editable="true" widgetVar="gigs" timeZone="GMT+2">
                 <f:param name="id" value="#{bandBean.bandVo.id}"/>
                 <p:ajax event="dateSelect"
                         listener="#{scheduleViewMB.onDateSelect}"
